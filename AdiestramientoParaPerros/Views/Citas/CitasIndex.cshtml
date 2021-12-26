@@ -1,0 +1,79 @@
+﻿@model Calendario
+
+@section title {
+    <title>Citas</title>
+}
+
+@section estilos {
+    <link href="~/css/calendar.css" rel="stylesheet" />
+    <link href="~/css/theme.css" rel="stylesheet" />
+}
+
+
+@section scripts {
+
+    <!-- Documentacion para el calendario
+    https://www.jqueryscript.net/time-clock/powerful-calendar.html -->
+    <script src="~/js/calendario.js"></script>
+
+    <!-- Script que se encarga de gestionar el calendario -->
+    <script>
+
+        //Funcion que se encarga de actualizar el dia seleccionado de forma visual
+        function selectDate(date) {
+            console.log(date)
+            var date2 = new Date(date);
+            console.log(date2.toLocaleString())
+
+            $('#calendar-wrapper').updateCalendarOptions({
+                date: date
+            });
+        }
+
+
+
+        //CODIGO DE PRUEBA PARA GENERAR DIAS DISABLED
+        let fechas = [];
+        @foreach(DateTime dt in Model.DiasOcupados)
+        {
+            <text>
+
+                fechas.push(new Date('@dt.Year' + '-' + '@dt.Month' + '-' + '@dt.Day') );
+            </text>
+        }
+        console.log(fechas);
+        //https://www.jqueryscript.net/time-clock/powerful-calendar.html
+        //Calendario
+        var calendar = $('.calendar').calendar({
+            date: new Date(),
+            onClickDate: selectDate,
+            showTodayButton: true,
+            todayButtonContent: "Hoy",
+            min: new Date(),
+            startOnMonday: true,
+            disable: function (date) {
+                var igual = false;
+                fechas.forEach(element => {
+                    //console.log(" recorro -> " + element.getDay() + "/" + element.getMonth() + "/" + element.getFullYear() + " y comparo con -> " + date.getDay() + "/" + date.getMonth() + "/" + date.getFullYear())
+                    if (date.getDate() == element.getDate() &&
+                        date.getMonth() == element.getMonth() &&
+                        date.getFullYear() == element.getFullYear()) {
+                        //console.log("Es igual")
+                        igual = true;
+                    }
+
+                });
+                //console.log("return -> " + igual)
+                return igual;
+            },
+        });
+    </script>
+}
+
+
+<h1>Calendario</h1>
+<div class="calendar" id="calendar-wrapper"></div>
+
+<button id="btnconcertarcita">
+    Pedir cita
+</button>

@@ -5,8 +5,7 @@
 }
 
 @section estilos {
-    <link href="~/css/calendar.css" rel="stylesheet" />
-    <link href="~/css/theme.css" rel="stylesheet" />
+    <link href="~/css/calendario.css" rel="stylesheet"/>
 }
 
 
@@ -19,52 +18,65 @@
     <!-- Script que se encarga de gestionar el calendario -->
     <script>
 
-        //Funcion que se encarga de actualizar el dia seleccionado de forma visual
-        function selectDate(date) {
-            console.log(date)
-            var date2 = new Date(date);
-            console.log(date2.toLocaleString())
-
-            $('#calendar-wrapper').updateCalendarOptions({
-                date: date
-            });
-        }
-
-
-
-        //CODIGO DE PRUEBA PARA GENERAR DIAS DISABLED
+          //CODIGO DE PRUEBA PARA GENERAR DIAS DISABLED
         let fechas = [];
         @foreach(DateTime dt in Model.DiasOcupados)
         {
             <text>
-
                 fechas.push(new Date('@dt.Year' + '-' + '@dt.Month' + '-' + '@dt.Day') );
             </text>
         }
-        console.log(fechas);
-        //https://www.jqueryscript.net/time-clock/powerful-calendar.html
-        //Calendario
-        var calendar = $('.calendar').calendar({
+
+
+           //Funcion que se encarga de actualizar el dia seleccionado de forma visual
+        //function selectDate(date) {
+        //    console.log(date)
+        //    var date2 = new Date(date);
+        //    console.log(date2.toLocaleString())
+
+        //    $('#calendar-wrapper').updateCalendarOptions({
+        //        date: date
+        //    });
+        //}
+
+
+        function selectDate(date) {
+            $('#calendar-wrapper').updateCalendarOptions({
+                date: date,
+            });
+           //GUARDAR la fecha seleccionada para enviarla con el post en el submit de mas abajo
+            //Puedo meter un input disabled con la fecha
+        }
+        //https://www.jqueryscript.net/time-clock/powerful-calendar.html    
+        //Calendario     
+        var calendar = $('.calendar-wrapper').calendar({
             date: new Date(),
             onClickDate: selectDate,
             showTodayButton: true,
             todayButtonContent: "Hoy",
+            prevButton: "<",
+            nextButton: ">",
             min: new Date(),
             startOnMonday: true,
             disable: function (date) {
-                var igual = false;
+                var disabled = false;
+                //console.log(date.getMonth())
                 fechas.forEach(element => {
-                    //console.log(" recorro -> " + element.getDay() + "/" + element.getMonth() + "/" + element.getFullYear() + " y comparo con -> " + date.getDay() + "/" + date.getMonth() + "/" + date.getFullYear())
+                    //console.log("---------- siguiente ---------")
+                    //console.log(" recorro -> " + element.getDate() + "/" + element.getMonth() + "/" + element.getFullYear() + " y comparo con -> " + date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear())
                     if (date.getDate() == element.getDate() &&
                         date.getMonth() == element.getMonth() &&
                         date.getFullYear() == element.getFullYear()) {
                         //console.log("Es igual")
-                        igual = true;
+                        disabled = true;
                     }
 
+                    if (date.getDay() == 0 || date.getDay() == 6) {
+                        disabled = true;
+                    }
                 });
-                //console.log("return -> " + igual)
-                return igual;
+                //console.log("return -> " + disabled)
+                return disabled;
             },
         });
     </script>
@@ -72,8 +84,11 @@
 
 
 <h1>Calendario</h1>
-<div class="calendar" id="calendar-wrapper"></div>
+<div class="p-5 m-5 calendar-wrapper" id="calendar-wrapper"></div>
 
-<button id="btnconcertarcita">
-    Pedir cita
-</button>
+<form method="post">
+    <button type="submit" id="btnconcertarcita" class="btn btn-success">
+        Pedir cita
+    </button>
+</form>
+           

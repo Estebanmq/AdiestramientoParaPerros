@@ -10,7 +10,7 @@ namespace AdiestramientoParaPerros.Controllers
     public class CitasController : Controller
     {
 
-        #region Vista CitasIndex
+        #region Controlador Vista CitasIndex
         public IActionResult CitasIndex()
         {
 
@@ -46,21 +46,26 @@ namespace AdiestramientoParaPerros.Controllers
         #endregion
 
 
-        #region Vista ConcertarCita
+        #region Controlador Vista ConcertarCita
         //Recibe la fecha seleccionada en el calendario
         public IActionResult ConcertarCita(String fecha)
         {
-           
+            //Convierto el String a DateTime para mostrar la fecha en formato dd/MM/yyyy
             DateTime dateFecha = DateTime.ParseExact(fecha, "ddd MMM dd yyyy HH:mm:ss ", System.Globalization.CultureInfo.InvariantCulture);
             ViewBag.fechacita = dateFecha.Day + "/" + dateFecha.Month + "/" + dateFecha.Year;
             return View();
         }
 
-
+        //Metodo post de la vista ConcertarCita
+        //Recibe todos los parametros necesarios para crear un objeto Cita
+        //Devuelve un string con la view a cargar
         [HttpPost]
         public IActionResult ConcertarCita(String fechacita, String telefonocontacto, String nombreperro, String razaperro, String motivocita, String objetivocita)
         {
+            //Formateo la fecha para agregarla al objeto Cita
             DateTime fecha = DateTime.ParseExact(fechacita, "d/M/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+
+            //Objeto Cita para trabajar sobre la Base de datos
             Cita cita = new Cita();
             cita.FechaCita = fecha;
             cita.TelefonoContacto = telefonocontacto;
@@ -69,18 +74,18 @@ namespace AdiestramientoParaPerros.Controllers
             cita.MotivoCita = motivocita;
             cita.ObjetivoCita = objetivocita;
            
+
             return RedirectToAction("ListadoCitas");
         }
         #endregion
 
 
-        #region Vista ListadoCitas
+        #region Controlador Vista ListadoCitas
         public IActionResult ListadoCitas()
         {
+            //Codigo prueba para cargar citas
             String fechacita = "07/01/2021";
             DateTime fecha = DateTime.ParseExact(fechacita, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-
-
             List<Cita> citas = new List<Cita>();
             #region Listado de pruebas de citas
             Cita c = new Cita();
@@ -148,6 +153,8 @@ namespace AdiestramientoParaPerros.Controllers
                 "perferendis mollitia cumque maxime? Debitis laborum esse consequuntur pariatur! Vero dolorem ut mollitia!";
             citas.Add(c);
             #endregion
+            //Fin codigo prueba
+
 
             return View(citas);
         } 

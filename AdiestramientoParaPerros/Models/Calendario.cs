@@ -8,5 +8,6 @@ namespace AdiestramientoParaPerros.Models
     public class Calendario
     {
         public List<DateTime>DiasOcupados { get; set; }
+    
     }
 }

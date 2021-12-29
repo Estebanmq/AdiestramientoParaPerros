@@ -1,5 +1,6 @@
 ﻿@model Calendario
 
+<!--Titulo de la pagina-->
 @section title {
     <title>Citas</title>
 }
@@ -7,7 +8,6 @@
 @section estilos {
     <link href="~/css/calendario.css" rel="stylesheet"/>
 }
-
 
 @section scripts {
 
@@ -18,7 +18,7 @@
     <!-- Script que se encarga de gestionar el calendario -->
     <script>
 
-          //CODIGO DE PRUEBA PARA GENERAR DIAS DISABLED
+        //CODIGO DE PRUEBA PARA GENERAR DIAS DISABLED
         let fechas = [];
         @foreach(DateTime dt in Model.DiasOcupados)
         {
@@ -28,7 +28,7 @@
         }
 
 
-           //Funcion que se encarga de actualizar el dia seleccionado de forma visual
+        //Funcion que se encarga de actualizar el dia seleccionado de forma visual
         //function selectDate(date) {
         //    console.log(date)
         //    var date2 = new Date(date);
@@ -39,16 +39,24 @@
         //    });
         //}
 
-
+        //Funcion que recibe un string que representa la fecha seleccionada, este se ejecuta cada vez que se selecciona una fecha en el calendario
         function selectDate(date) {
+            //Llamada al metodo que actualiza las opciones del calendario
             $('#calendar-wrapper').updateCalendarOptions({
                 date: date,
             });
-           //GUARDAR la fecha seleccionada para enviarla con el post en el submit de mas abajo
-            //Puedo meter un input disabled con la fecha
+
+            //Guardo el string con la fecha seleccionada en el input 'cita', este input envia por post la fecha seleccionada para trabajar en otra view con ella
+            $('input[name="cita"]').val(date);
+
+            if ($("#btnconcertarcita[hidden]")) {
+                $("#btnconcertarcita").removeAttr("hidden");
+            } else {
+                $("#btnconcertarcita").attr("hidden");
+            }
         }
-        //https://www.jqueryscript.net/time-clock/powerful-calendar.html    
-        //Calendario     
+
+        //Variable calendario que gestiona todo el calendario  
         var calendar = $('.calendar-wrapper').calendar({
             date: new Date(),
             onClickDate: selectDate,
@@ -59,23 +67,23 @@
             min: new Date(),
             startOnMonday: true,
             disable: function (date) {
+                //Funcion que se encarga de desactivar los dias recibidos en el modelo 'DiasOcupados' y los fines de semana
                 var disabled = false;
-                //console.log(date.getMonth())
                 fechas.forEach(element => {
-                    //console.log("---------- siguiente ---------")
-                    //console.log(" recorro -> " + element.getDate() + "/" + element.getMonth() + "/" + element.getFullYear() + " y comparo con -> " + date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear())
+                    //Si la fecha coincide con un dia ocupado lo deshabilito
                     if (date.getDate() == element.getDate() &&
                         date.getMonth() == element.getMonth() &&
                         date.getFullYear() == element.getFullYear()) {
-                        //console.log("Es igual")
                         disabled = true;
                     }
 
+                    //Si es fin de semana lo deshabilito
                     if (date.getDay() == 0 || date.getDay() == 6) {
                         disabled = true;
                     }
                 });
-                //console.log("return -> " + disabled)
+
+                //Devuelvo si desactivo la fecha o no
                 return disabled;
             },
         });
@@ -84,10 +92,13 @@
 
 
 <h1>Calendario</h1>
+<!-- Wrapper para el calendario -->
 <div class="p-5 m-5 calendar-wrapper" id="calendar-wrapper"></div>
 
+<!-- Formulario para la fecha seleccionada -->
 <form method="post">
-    <button type="submit" id="btnconcertarcita" class="btn btn-success">
+    <input type="text" name="cita" hidden/>
+    <button type="submit" id="btnconcertarcita" class="btn btn-success" hidden>
         Pedir cita
     </button>
 </form>

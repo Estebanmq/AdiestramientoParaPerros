@@ -1,0 +1,20 @@
+﻿@model List<Cita>
+
+<h1>
+    Citas concertadas
+</h1>
+
+@foreach (Cita c in Model)
+{
+    <div class="card m-5">
+        <div class="card-header">
+            Fecha de la cita: @c.FechaCita.Date
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Cita para: @c.NombrePerro</h5>
+            <p class="card-text">Motivo: @c.MotivoCita</p>
+           
+        </div>
+    </div>
+}
+

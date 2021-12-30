@@ -22,6 +22,18 @@
     <link href="~/css/cover-img.css" rel="stylesheet" />
 }
 
+@section navlinks {
+    <li class="nav-item">
+        <a class="nav-link" href="#container-concertar-cita">Concertar Cita</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#container-quienessomos-contacto">Quienes Somos</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#container-quienessomos-contacto">Contacto</a>
+    </li>
+}
+
 <!-- #region Contenedor imagen de portada -->
 <div class="bg-overlay w-100">
     <div class="row text-center">
@@ -43,7 +55,7 @@
             <p class="col-md-8 fs-4">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae iste exercitationem quos maxime cupiditate soluta architecto possimus
             </p>
-            <a asp-controller="Citas" asp-action="CitasIndex" class="btn btn-primary btn-lg" type="button">Concertar citas</a>
+            <a asp-controller="Citas" asp-action="CitasIndex" class="btn btn-primary btn-lg" >Concertar citas</a>
         </div>
     </div>
     <!--#endregion -->
@@ -57,7 +69,7 @@
                 <p>
                     Lorem ipsum ea illo error rerum magnam accusantium consequatur tempore iusto, laborum natus, eos reprehenderit.
                 </p>
-                <button class="btn btn-outline-light" type="button">Saber mas</button>
+                <a asp-controller="QuienesSomos" asp-action="QuienesSomosVista" class="btn btn-outline-light">Saber mas</a>
             </div>
         </div>
         <!-- #endregion -->
@@ -69,7 +81,7 @@
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae iste exercitationem quos maxime cupiditate soluta architecto possimus,
                     ea illo error rerum magnam accusantium consequatur tempore iusto, laborum natus, eos reprehenderit.
                 </p>
-                <button class="btn btn-outline-secondary" type="button">Contacto</button>
+                <a asp-controller="Contacto" asp-action="ContactoVista" class="btn btn-outline-secondary">Contacto</a>
             </div>
         </div>
         <!-- #endregion -->

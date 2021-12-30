@@ -1,52 +1,107 @@
-﻿<h1>Sign Up </h1>
+﻿@section title {
+    <title>Registro</title>
+}
+
+
+@section navlinks {
+    <li class="nav-item">
+        <a asp-controller="Citas" asp-action="CitasIndex" class="nav-link">Concertar Cita</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" asp-controller="QuienesSomos" asp-action="QuienesSomosVista">Quienes Somos</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" asp-controller="Contacto" asp-action="ContactoVista">Contacto</a>
+    </li>
+}
+
+@section scripts {
+    <script>
+        $("#cajatelefono").on('keypress', function (event) {
+            var regex = new RegExp("[0-9]");
+            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+            if (!regex.test(key)) {
+                event.preventDefault();
+                return false;
+            }
+        });
+    </script>
+}
+<h1>Sign Up </h1>
 
 <form class="form m-5" method="post">
-    <div class="row">
+    <div class="row mt-3">
         <div class="col-md-5">
-            <div class="form-group">
-                <label>Nombre</label>
-                <input class="form-control" type="text" name="nombre" />
+            <div class="form-floating">
+                <input id="cajanombre" class="form-control" type="text" name="nombre" placeholder="Nombre *"
+                       required maxlength="50" />
+                <label for="cajanombre">Nombre * </label>
             </div>
         </div>
         <div class="col-md-7">
-            <div class="form-group">
-                <label>Apellidos</label>
-                <input class="form-control" type="text" name="apellidos" />
+            <div class="form-floating">
+                <input id="cajaapellidos" class="form-control" type="text" name="apellidos" placeholder="Apellidos"
+                       maxlength="50" />
+                <label for="cajaapellidos">Apellidos</label>
             </div>
         </div>
     </div>
-
-    <div class="form-group">
-        <label>Nombre de usuario</label>
-        <input class="form-control" type="text" name="nombreusuario" />
-    </div>
-
-    <div class="row">
+    <div class="row  mt-3">
         <div class="col-md-8">
-            <div class="form-group">
-                <label>Correo electronico</label>
-                <input class="form-control" type="email" name="correo" />
+            <div class="form-floating">
+                <input id="cajausuario" class="form-control" type="text" name="nombreusuario" placeholder="Usuario *"
+                       required maxlength="50" />
+                <label for="cajausuario">Nombre de usuario * </label>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="form-group">
-                <label>Telefono</label>
-                <!-- CAMBIO: controlar que se introduzcan numeros -->
-                <input class="form-control" type="text" name="telefono" />
+            <div class="form-floating">
+                <input id="cajatelefono" class="form-control" type="text" name="telefono" placeholder="Teléfono *"
+                       pattern="[0-9]" title="Debe introducir un telefóno válido de 9 dígitos" minlength="9" maxlength="9" />
+                <label for="cajatelefono">Teléfono *</label>
             </div>
         </div>
     </div>
-    
-   
-    <div class="form-group">
-        <label>Contraseña</label>
-        <input class="form-control" type="password" name="password" />
+
+
+
+    <div class="row mt-3">
+        <div class="col-md-6">
+            <div class="form-floating">
+                <input id="cajacorreo" class="form-control" type="email" name="correo" required placeholder="Correo electronico *"
+                       pattern="^[^@("@")]+@("@")[^@("@")]+\.[a-zA-Z]{2,}$" title="Debe introducir un email valido. Ejemplo: email@email.com" maxlength="100" />
+                <label for="cajacorreo">Correo electronico *</label>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-floating">
+                <input id="cajacorreo" class="form-control" type="email" name="correo" required placeholder="Repita el correo electronico *"
+                       pattern="^[^@("@")]+@("@")[^@("@")]+\.[a-zA-Z]{2,}$" title="Debe introducir un email valido. Ejemplo: email@email.com" maxlength="100" />
+                <label for="cajacorreo">Repita el correo electronico</label>
+            </div>
+
+        </div>
     </div>
 
+    <div class="form-floating mt-3">
+        <input id="cajacontrasenya" class="form-control" type="text" name="password" placeholder="Contraseña *" required
+               pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" title="La contraseña debe de tener mínimo ocho caracteres, al menos una letra y un número" minlength="8" />
+        <label for="cajacontrasenya">Contraseña *</label>
+    </div>
+    <div class="form-floating mt-3">
+        <input id="cajacontrasenyarepeat" class="form-control" type="text" name="passwordrepeat" placeholder="Repita la contraseña"
+               required />
+        <label for="cajacontrasenyarepeat">Repita la contraseña</label>
+    </div>
     <div class="form-group mt-2">
         <button class="btn btn-success">
             Registrarse
         </button>
     </div>
 
+    <!-- Para validar los campos mirar:
+    <asp:CompareValidator ID="cfvNumeroCelular" runat="server"  ControlToCompare="txtCorreo" ControlToValidate="txtValidaCorreo" Operator="Equal" Type="Integer" Display="Dynamic" ValidationGroup="vgrCapturaDatos" ErrorMessage="El valor ingresado no coincide." ></asp:CompareValidator>
+    https://es.stackoverflow.com/questions/145654/comparar-dos-campos-de-entrada-c-comparevalidator
+    -->
 </form>
+

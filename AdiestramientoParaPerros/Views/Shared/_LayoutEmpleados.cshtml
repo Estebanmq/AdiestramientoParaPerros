@@ -44,12 +44,19 @@
                             <a class="nav-link active" aria-current="page" href="#">Logo</a>
                         </li>
                         <li class="nav-item">
-                            <a asp-controller="Home" asp-action="Index" class="nav-link">Home</a>
+                            <a asp-controller="HomeEmpleados" asp-action="IndexEmpleados" class="nav-link">Home</a>
                         </li>
-                        @RenderSection("navlinks",false)
-
                         <li class="nav-item">
-                            <a asp-controller="Login" asp-action="LoginIndex" class="nav-link" >Login</a>
+                            <a class="nav-link">Citas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" >Consultas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link">Administración</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="Login" asp-action="LoginIndex" class="nav-link">Login</a>
                         </li>
 
                         @*Ejemplo disabled

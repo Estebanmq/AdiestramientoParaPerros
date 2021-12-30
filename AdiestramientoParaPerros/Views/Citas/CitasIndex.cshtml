@@ -1,12 +1,23 @@
 ﻿@model Calendario
-
 <!--Titulo de la pagina-->
 @section title {
     <title>Citas</title>
 }
 
 @section estilos {
-    <link href="~/css/calendario.css" rel="stylesheet"/>
+    <link href="~/css/calendario.css" rel="stylesheet" />
+}
+
+@section navlinks {
+    <li class="nav-item">
+        <a asp-controller="Citas" asp-action="CitasIndex" class="nav-link">Concertar Cita</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" asp-controller="QuienesSomos" asp-action="QuienesSomosVista">Quienes Somos</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" asp-controller="Contacto" asp-action="ContactoVista">Contacto</a>
+    </li>
 }
 
 @section scripts {
@@ -56,7 +67,7 @@
             }
         }
 
-        //Variable calendario que gestiona todo el calendario  
+        //Variable calendario que gestiona todo el calendario
         var calendar = $('.calendar-wrapper').calendar({
             date: new Date(),
             onClickDate: selectDate,
@@ -92,14 +103,16 @@
 
 
 <h1>Calendario</h1>
+<a asp-controller="Citas" asp-action="ListadoCitas" class="btn btn-info">
+    Ver tus citas
+</a>
 <!-- Wrapper para el calendario -->
 <div class="p-5 m-5 calendar-wrapper" id="calendar-wrapper"></div>
 
 <!-- Formulario para la fecha seleccionada -->
 <form method="post">
-    <input type="text" name="cita" hidden/>
+    <input type="text" name="cita" hidden />
     <button type="submit" id="btnconcertarcita" class="btn btn-success" hidden>
         Pedir cita
     </button>
 </form>
-           

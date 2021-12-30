@@ -14,7 +14,7 @@ namespace AdiestramientoParaPerros.Models
         public String RazaPerro { get; set; }
         public String MotivoCita { get; set; }
         public String ObjetivoCita { get; set; }
-
-
+        public int IdUsuario { get; set; }
+        public int IdEmpleado { get; set; }
     }
 }

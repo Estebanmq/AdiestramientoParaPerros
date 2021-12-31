@@ -10,6 +10,7 @@ namespace AdiestramientoParaPerros.Controllers
     {
         public IActionResult IndexEmpleados()
         {
+            //Esto se debe de poner en otro sitio investigar (esta en trello)
             ViewBag.Layout = "_LayoutEmpleados";
             return View();
         }

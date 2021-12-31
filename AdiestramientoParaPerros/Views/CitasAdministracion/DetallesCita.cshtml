@@ -1,0 +1,28 @@
+﻿@model Cita
+
+@{
+    Layout = ViewBag.Layout;
+}
+
+@section title {
+    <title>Detalles de cita</title>
+}
+
+<h1>Detalles de la cita</h1>
+
+<div class="card">
+    <h5 class="card-header">Detalles</h5>
+    <div class="card-body">
+        <h5 class="card-title">Fecha de la cita: @Model.FechaCita</h5>
+        <h5 class="card-title">Nombre del perro: @Model.NombrePerro - Raza: @Model.RazaPerro </h5>
+        <h5 class="card-title">Teléfono de contacto: @Model.TelefonoContacto</h5>
+
+        <h5 class="card-title">Motivo de la cita:</h5>
+        <p class="card-text">@Model.MotivoCita</p>
+
+        <h5 class="card-title">Objetivo de la cita:</h5>
+        <p class="card-text">@Model.ObjetivoCita</p>
+
+        <a asp-controller="CitasAdministracion" asp-action="ModificarCita" class="btn btn-primary">Modificar</a>
+    </div>
+</div>

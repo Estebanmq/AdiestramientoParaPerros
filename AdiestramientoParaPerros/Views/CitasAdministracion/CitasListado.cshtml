@@ -1,0 +1,67 @@
+﻿@model List<Cita>
+
+@{
+    Layout = ViewBag.Layout;
+}
+
+
+@section title {
+    <title>Administración de citas</title>
+}
+
+<h1>Listado de citas</h1>
+
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        Filtro
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item" href="#">Fecha</a></li>
+        <li><a class="dropdown-item" href="#">Raza</a></li>
+        <li><a class="dropdown-item" href="#">Cerradas</a></li>
+    </ul>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Perro</th>
+            <th>Raza</th>
+            <th>Teléfono</th>
+            <th>Detalles</th>
+            <th>Modificar</th>
+            <th>Eliminar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Cita c in Model)
+        {
+            <tr>
+                <td>@c.FechaCita</td>
+                <td>@c.NombrePerro</td>
+                <td>@c.RazaPerro</td>
+                <td>@c.TelefonoContacto</td>
+                <td>
+                    <!--Aqui enviar el id de la cita -->
+                    <a asp-controller="CitasAdministracion" asp-action="DetallesCita" class="btn btn-info">
+                        Detalles
+                    </a>
+                </td>
+                <td>
+                    <!--Aqui enviar el id de la cita -->
+
+                    <a asp-controller="CitasAdministracion" asp-action="ModificarCita" class="btn btn-warning">
+                        Modificar
+                    </a>
+                </td>
+                <td>
+                    <a class="btn btn-danger">
+                        Eliminar
+                    </a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>

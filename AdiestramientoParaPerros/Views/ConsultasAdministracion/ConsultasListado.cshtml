@@ -1,0 +1,36 @@
+﻿@model List<Consulta>
+
+@{
+    Layout = ViewBag.Layout;
+}
+
+@section title {
+    <title>Consultas</title>
+}
+
+
+@foreach (Consulta c in Model)
+{
+    <div class="card m-2">
+        <div class="card-header">
+            @c.Estado
+        </div>
+        <div class="card-body">
+            <p class="card-text">@c.TextoConsulta</p>
+
+            @if (c.TelefonoContacto != "")
+            {
+                <h5 class="card-title">Teléfono: @c.TelefonoContacto</h5>
+            }
+            else if (c.EmailContacto != "")
+            {
+                <h5 class="card-title">Email: @c.EmailContacto</h5>
+
+            }
+        <button class="btn btn-success">
+            Ver
+        </button>
+
+        </div>
+    </div>
+}

@@ -1,0 +1,42 @@
+﻿@model List<Empleado>
+
+@{  
+   Layout = ViewBag.Layout;
+}
+
+@section title {
+    <title>Empleados</title>
+}
+
+<form method="post" class="form">
+    <div class="form-group">
+        <input type="search" name="nombre" placeholder="Nombre de empleado" class="m-2 form-control" />
+        <button class="btn btn-info m-2">Buscar</button>
+    </div>
+</form>
+
+<a class="btn btn-warning" asp-controller="EmpleadosAdministracion" asp-action="AgregarEmpleado">Agregar empleado</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Correo</th>
+            <th>Teléfono</th>
+            <th>Nivel de permiso</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(Empleado emp in Model)
+        {
+        <tr>
+            <td>@emp.Usuario.Nombre</td>
+            <td>@emp.Usuario.Apellidos</td>
+            <td>@emp.Usuario.Correo</td>
+            <td>@emp.Usuario.Telefono</td>
+            <td>@emp.NvlPermiso</td>
+        </tr>
+        }    
+    </tbody>
+</table>

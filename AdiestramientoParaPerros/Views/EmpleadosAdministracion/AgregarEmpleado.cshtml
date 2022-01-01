@@ -1,0 +1,44 @@
+﻿@{
+    Layout = ViewBag.Layout;
+}
+
+@section title {
+    <title>Agregar empleado</title>
+}
+
+
+<form class="form" method="post">
+    <div class="form-group m-2">
+        <label>Nombre de usuario</label>
+        <input type="text" name="nombreusuario" class="form-control" />
+    </div>
+    <div class="form-group m-2">
+        <label>Nombre</label>
+        <input type="text" name="nombre" class="form-control" />
+    </div>
+    <div class="form-group m-2">
+        <label>Apellidos</label>
+        <input type="text" name="apellidos" class="form-control" />
+    </div>
+    <div class="form-group m-2">
+        <label>Correo</label>
+        <input type="text" name="correo" class="form-control" />
+    </div>
+    <div class="form-group m-2">
+        <label>Telefono</label>
+        <input type="text" name="telefono" class="form-control" />
+    </div>
+    <div class="form-group m-2">
+        <select name="nvlpermiso" class="form-select">
+            <option value="0">Empleado</option>
+            <option value="1">Administrador</option>
+        </select>
+    </div>
+    <div class="form-group m-2">
+        <button type="submit" class="btn btn-primary">
+            Crear usuario
+        </button>
+    </div>
+
+
+</form>

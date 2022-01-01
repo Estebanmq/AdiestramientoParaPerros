@@ -8,6 +8,7 @@ namespace AdiestramientoParaPerros.Models
     public class Empleado
     {
         public int IdEmpleado { get; set; }
+        public Usuario Usuario { get; set; }
         public String Correo { get; set; }
         public int NvlPermiso { get; set; } 
     }

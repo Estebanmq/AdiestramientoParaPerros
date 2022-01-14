@@ -80,6 +80,10 @@ namespace AdiestramientoParaPerros.Controllers
         public IActionResult AgregarEmpleado(String nombreusuario, String nombre, String apellidos, String correo,
             String telefono, int nvlpermiso)
         {
+            //Llamo a la base de datos para insertar un empleado
+            //Insertado por procedimiento el cual inserta en la tabla usuarios y empleados
+            //Genero contraseña??
+            
 
             return View();
         }

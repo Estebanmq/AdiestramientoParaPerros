@@ -1,4 +1,5 @@
 ﻿using AdiestramientoParaPerros.Models;
+using AdiestramientoParaPerros.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,12 @@ namespace AdiestramientoParaPerros.Controllers
 {
     public class CitasController : Controller
     {
+        private RepositoryAdiestramiento repo;
+
+        public CitasController(RepositoryAdiestramiento repo)
+        {
+            this.repo = repo;
+        }
 
         #region Controlador Vista CitasIndex
         public IActionResult CitasIndex()
@@ -62,18 +69,8 @@ namespace AdiestramientoParaPerros.Controllers
         [HttpPost]
         public IActionResult ConcertarCita(String fechacita, String telefonocontacto, String nombreperro, String razaperro, String motivocita, String objetivocita)
         {
-            //Formateo la fecha para agregarla al objeto Cita
-            DateTime fecha = DateTime.ParseExact(fechacita, "d/M/yyyy", System.Globalization.CultureInfo.InvariantCulture);
 
-            //Objeto Cita para trabajar sobre la Base de datos
-            Cita cita = new Cita();
-            cita.FechaCita = fecha;
-            cita.TelefonoContacto = telefonocontacto;
-            cita.NombrePerro = nombreperro;
-            cita.RazaPerro = razaperro;
-            cita.MotivoCita = motivocita;
-            cita.ObjetivoCita = objetivocita;
-           
+            this.repo.InsertCita(fechacita, telefonocontacto, nombreperro, razaperro, motivocita, objetivocita);
 
             return RedirectToAction("ListadoCitas");
         }
@@ -83,10 +80,12 @@ namespace AdiestramientoParaPerros.Controllers
         #region Controlador Vista ListadoCitas
         public IActionResult ListadoCitas()
         {
+
+
             //Codigo prueba para cargar citas
-            String fechacita = "07/01/2021";
-            DateTime fecha = DateTime.ParseExact(fechacita, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-            List<Cita> citas = new List<Cita>();
+            //String fechacita = "07/01/2021";
+            //DateTime fecha = DateTime.ParseExact(fechacita, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            //List<Cita> citas = new List<Cita>();
             #region Listado de pruebas de citas
             Cita c = new Cita();
             c.IdCita = 1;
@@ -155,6 +154,7 @@ namespace AdiestramientoParaPerros.Controllers
             #endregion
             //Fin codigo prueba
 
+            List<Cita>citas = this.repo.GetCitas();
 
             return View(citas);
         } 

@@ -35,23 +35,23 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (Cita c in Model)
+        @foreach (Cita cita in Model)
         {
             <tr>
-                <td>@c.FechaCita</td>
-                <td>@c.NombrePerro</td>
-                <td>@c.RazaPerro</td>
-                <td>@c.TelefonoContacto</td>
+                <td>@cita.FechaCita</td>
+                <td>@cita.NombrePerro</td>
+                <td>@cita.RazaPerro</td>
+                <td>@cita.TelefonoContacto</td>
                 <td>
                     <!--Aqui enviar el id de la cita -->
-                    <a asp-controller="CitasAdministracion" asp-action="DetallesCita" class="btn btn-info">
+                    <a asp-controller="CitasAdministracion" asp-action="DetallesCita" asp-route-idcita="@cita.IdCita" class="btn btn-info">
                         Detalles
                     </a>
                 </td>
                 <td>
                     <!--Aqui enviar el id de la cita -->
 
-                    <a asp-controller="CitasAdministracion" asp-action="ModificarCita" class="btn btn-warning">
+                    <a asp-controller="CitasAdministracion" asp-action="ModificarCita" asp-route-idcita="@cita.IdCita" class="btn btn-warning">
                         Modificar
                     </a>
                 </td>

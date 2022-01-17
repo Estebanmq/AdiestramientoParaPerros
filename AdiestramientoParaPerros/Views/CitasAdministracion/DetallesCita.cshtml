@@ -23,6 +23,6 @@
         <h5 class="card-title">Objetivo de la cita:</h5>
         <p class="card-text">@Model.ObjetivoCita</p>
 
-        <a asp-controller="CitasAdministracion" asp-action="ModificarCita" class="btn btn-primary">Modificar</a>
+        <a asp-controller="CitasAdministracion" asp-action="ModificarCita" asp-route-idcita="@Model.IdCita" class="btn btn-primary">Modificar</a>
     </div>
 </div>

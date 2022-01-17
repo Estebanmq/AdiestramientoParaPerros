@@ -29,7 +29,7 @@ namespace AdiestramientoParaPerros
         {
             String cadena = this.Configuration.GetConnectionString("cadenaazureadiestramiento");
 
-            services.AddTransient<RepositoryAdiestramiento>();
+            services.AddTransient<RepositoryCitas>();
             services.AddDbContext<AdiestramientoContext>(options => options.UseSqlServer(cadena));
 
             services.AddControllersWithViews();

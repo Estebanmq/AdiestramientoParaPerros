@@ -10,9 +10,9 @@ namespace AdiestramientoParaPerros.Controllers
 {
     public class CitasController : Controller
     {
-        private RepositoryAdiestramiento repo;
+        private RepositoryCitas repo;
 
-        public CitasController(RepositoryAdiestramiento repo)
+        public CitasController(RepositoryCitas repo)
         {
             this.repo = repo;
         }
@@ -87,70 +87,70 @@ namespace AdiestramientoParaPerros.Controllers
             //DateTime fecha = DateTime.ParseExact(fechacita, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             //List<Cita> citas = new List<Cita>();
             #region Listado de pruebas de citas
-            Cita c = new Cita();
-            c.IdCita = 1;
-            c.FechaCita = fecha;
-            c.TelefonoContacto = "653334778";
-            c.NombrePerro = "Canela";
-            c.RazaPerro = "Espagneul Breton";
-            c.MotivoCita = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit deserunt " +
-                    "vitae enim sapiente et architecto, praesentium, ipsa quidem dolores incidunt voluptas " +
-                    "voluptatum nemo est assumenda asperiores magnam reiciendis, dolorum fugiat.";
-            c.ObjetivoCita = "Adipisci, reiciendis eveniet, id saepe dicta commodi sunt enim tempore repellendus " +
-                "perferendis mollitia cumque maxime? Debitis laborum esse consequuntur pariatur! Vero dolorem ut mollitia!";
-            citas.Add(c);
+            //Cita c = new Cita();
+            //c.IdCita = 1;
+            //c.FechaCita = fecha;
+            //c.TelefonoContacto = "653334778";
+            //c.NombrePerro = "Canela";
+            //c.RazaPerro = "Espagneul Breton";
+            //c.MotivoCita = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit deserunt " +
+            //        "vitae enim sapiente et architecto, praesentium, ipsa quidem dolores incidunt voluptas " +
+            //        "voluptatum nemo est assumenda asperiores magnam reiciendis, dolorum fugiat.";
+            //c.ObjetivoCita = "Adipisci, reiciendis eveniet, id saepe dicta commodi sunt enim tempore repellendus " +
+            //    "perferendis mollitia cumque maxime? Debitis laborum esse consequuntur pariatur! Vero dolorem ut mollitia!";
+            //citas.Add(c);
 
-            c = new Cita();
-            c.IdCita = 2;
-            c.FechaCita = fecha;
-            c.TelefonoContacto = "653313078";
-            c.NombrePerro = "Sola";
-            c.RazaPerro = "Espagneul Breton";
-            c.MotivoCita = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit deserunt " +
-                    "vitae enim sapiente et architecto, praesentium, ipsa quidem dolores incidunt voluptas " +
-                    "voluptatum nemo est assumenda asperiores magnam reiciendis, dolorum fugiat.";
-            c.ObjetivoCita = "Adipisci, reiciendis eveniet, id saepe dicta commodi sunt enim tempore repellendus " +
-                "perferendis mollitia cumque maxime? Debitis laborum esse consequuntur pariatur! Vero dolorem ut mollitia!";
-            citas.Add(c);
+            //c = new Cita();
+            //c.IdCita = 2;
+            //c.FechaCita = fecha;
+            //c.TelefonoContacto = "653313078";
+            //c.NombrePerro = "Sola";
+            //c.RazaPerro = "Espagneul Breton";
+            //c.MotivoCita = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit deserunt " +
+            //        "vitae enim sapiente et architecto, praesentium, ipsa quidem dolores incidunt voluptas " +
+            //        "voluptatum nemo est assumenda asperiores magnam reiciendis, dolorum fugiat.";
+            //c.ObjetivoCita = "Adipisci, reiciendis eveniet, id saepe dicta commodi sunt enim tempore repellendus " +
+            //    "perferendis mollitia cumque maxime? Debitis laborum esse consequuntur pariatur! Vero dolorem ut mollitia!";
+            //citas.Add(c);
 
-            c = new Cita();
-            c.IdCita = 3;
-            c.FechaCita = fecha;
-            c.TelefonoContacto = "653331928";
-            c.NombrePerro = "Ella";
-            c.RazaPerro = "Espagneul Breton";
-            c.MotivoCita = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit deserunt " +
-                    "vitae enim sapiente et architecto, praesentium, ipsa quidem dolores incidunt voluptas " +
-                    "voluptatum nemo est assumenda asperiores magnam reiciendis, dolorum fugiat.";
-            c.ObjetivoCita = "Adipisci, reiciendis eveniet, id saepe dicta commodi sunt enim tempore repellendus " +
-                "perferendis mollitia cumque maxime? Debitis laborum esse consequuntur pariatur! Vero dolorem ut mollitia!";
-            citas.Add(c);
+            //c = new Cita();
+            //c.IdCita = 3;
+            //c.FechaCita = fecha;
+            //c.TelefonoContacto = "653331928";
+            //c.NombrePerro = "Ella";
+            //c.RazaPerro = "Espagneul Breton";
+            //c.MotivoCita = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit deserunt " +
+            //        "vitae enim sapiente et architecto, praesentium, ipsa quidem dolores incidunt voluptas " +
+            //        "voluptatum nemo est assumenda asperiores magnam reiciendis, dolorum fugiat.";
+            //c.ObjetivoCita = "Adipisci, reiciendis eveniet, id saepe dicta commodi sunt enim tempore repellendus " +
+            //    "perferendis mollitia cumque maxime? Debitis laborum esse consequuntur pariatur! Vero dolorem ut mollitia!";
+            //citas.Add(c);
 
-            c = new Cita();
-            c.IdCita = 4;
-            c.FechaCita = fecha;
-            c.TelefonoContacto = "65234478";
-            c.NombrePerro = "Pepe";
-            c.RazaPerro = "Akita";
-            c.MotivoCita = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit deserunt " +
-                    "vitae enim sapiente et architecto, praesentium, ipsa quidem dolores incidunt voluptas " +
-                    "voluptatum nemo est assumenda asperiores magnam reiciendis, dolorum fugiat.";
-            c.ObjetivoCita = "Adipisci, reiciendis eveniet, id saepe dicta commodi sunt enim tempore repellendus " +
-                "perferendis mollitia cumque maxime? Debitis laborum esse consequuntur pariatur! Vero dolorem ut mollitia!";
-            citas.Add(c);
+            //c = new Cita();
+            //c.IdCita = 4;
+            //c.FechaCita = fecha;
+            //c.TelefonoContacto = "65234478";
+            //c.NombrePerro = "Pepe";
+            //c.RazaPerro = "Akita";
+            //c.MotivoCita = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit deserunt " +
+            //        "vitae enim sapiente et architecto, praesentium, ipsa quidem dolores incidunt voluptas " +
+            //        "voluptatum nemo est assumenda asperiores magnam reiciendis, dolorum fugiat.";
+            //c.ObjetivoCita = "Adipisci, reiciendis eveniet, id saepe dicta commodi sunt enim tempore repellendus " +
+            //    "perferendis mollitia cumque maxime? Debitis laborum esse consequuntur pariatur! Vero dolorem ut mollitia!";
+            //citas.Add(c);
 
-            c = new Cita();
-            c.IdCita = 5;
-            c.FechaCita = fecha;
-            c.TelefonoContacto = "612894778";
-            c.NombrePerro = "Imanol";
-            c.RazaPerro = "Shiba Inu";
-            c.MotivoCita = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit deserunt " +
-                    "vitae enim sapiente et architecto, praesentium, ipsa quidem dolores incidunt voluptas " +
-                    "voluptatum nemo est assumenda asperiores magnam reiciendis, dolorum fugiat.";
-            c.ObjetivoCita = "Adipisci, reiciendis eveniet, id saepe dicta commodi sunt enim tempore repellendus " +
-                "perferendis mollitia cumque maxime? Debitis laborum esse consequuntur pariatur! Vero dolorem ut mollitia!";
-            citas.Add(c);
+            //c = new Cita();
+            //c.IdCita = 5;
+            //c.FechaCita = fecha;
+            //c.TelefonoContacto = "612894778";
+            //c.NombrePerro = "Imanol";
+            //c.RazaPerro = "Shiba Inu";
+            //c.MotivoCita = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit deserunt " +
+            //        "vitae enim sapiente et architecto, praesentium, ipsa quidem dolores incidunt voluptas " +
+            //        "voluptatum nemo est assumenda asperiores magnam reiciendis, dolorum fugiat.";
+            //c.ObjetivoCita = "Adipisci, reiciendis eveniet, id saepe dicta commodi sunt enim tempore repellendus " +
+            //    "perferendis mollitia cumque maxime? Debitis laborum esse consequuntur pariatur! Vero dolorem ut mollitia!";
+            //citas.Add(c);
             #endregion
             //Fin codigo prueba
 

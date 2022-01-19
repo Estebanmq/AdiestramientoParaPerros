@@ -1,1 +1,12 @@
-﻿<h1></h1>
+﻿@model Consulta
+
+<a asp-controller="ConsultasAdministracion" asp-action="ConsultasListado">Volver</a>
+
+<h1>Detalles</h1>
+
+<h2>@Model.Estado</h2>
+
+<h2>@Model.TelefonoContacto</h2>
+<h2>@Model.EmailContacto</h2>
+<h2>@Model.TextoConsulta</h2>
+

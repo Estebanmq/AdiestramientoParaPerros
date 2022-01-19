@@ -27,9 +27,9 @@
                 <h5 class="card-title">Email: @c.EmailContacto</h5>
 
             }
-        <button class="btn btn-success">
-            Ver
-        </button>
+        <a asp-controller="ConsultasAdministracion" asp-action="DetallesConsulta" asp-route-idconsulta="@c.IdConsulta">
+            Detalles
+        </a>
 
         </div>
     </div>

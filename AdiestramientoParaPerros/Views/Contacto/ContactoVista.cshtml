@@ -1,18 +1,44 @@
 ﻿@section title {
-<title>Contacto</title>
+    <title>Contacto</title>
 }
 
 
 @section navlinks {
-<li class="nav-item">
-    <a asp-controller="Citas" asp-action="CitasIndex" class="nav-link">Concertar Cita</a>
-</li>
-<li class="nav-item">
-    <a class="nav-link" asp-controller="QuienesSomos" asp-action="QuienesSomosVista">Quienes Somos</a>
-</li>
-<li class="nav-item">
-    <a class="nav-link" asp-controller="Contacto" asp-action="ContactoVista">Contacto</a>
-</li>
+    <li class="nav-item">
+        <a asp-controller="Citas" asp-action="CitasIndex" class="nav-link">Concertar Cita</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" asp-controller="QuienesSomos" asp-action="QuienesSomosVista">Quienes Somos</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" asp-controller="Contacto" asp-action="ContactoVista">Contacto</a>
+    </li>
 }
 
 <h1>Contacto</h1>
+
+<div class="row m-5">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <form method="post">
+            <div class="input-group mb-3">
+                <span class="input-group-text">Email de contacto</span>
+                <input name="emailcontacto" type="text" class="form-control" placeholder="nombre@ejemplo.com" aria-label="Email de contacto">
+            </div>
+
+            <div class="input-group mb-3">
+                <input name="telefonocontacto" type="text" class="form-control" placeholder="Teléfono" aria-label="Email de contacto">
+                <span class="input-group-text">Teléfono de contacto</span>
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-text">Mensaje</span>
+                <textarea class="form-control" name="textoconsulta" aria-label="Mensaje"></textarea>
+            </div>
+
+            <button class="w-100 btn btn-lg btn-primary m-3" type="submit">Envía mensaje</button>
+        </form>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+

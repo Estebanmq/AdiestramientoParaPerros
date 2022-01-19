@@ -104,25 +104,28 @@
 
 <div id="header-citas" class="bg-overlay">
     <div class="row text-center">
-        <h2 class="text-white">Si quiere concertar una cita con nosotros pidela ahora sin compromiso! Tambien puede consultar sus citas:</h2>
-        <a asp-controller="Citas" asp-action="ListadoCitas" class="w-25 btn btn-info">
-            Ver tus citas
-        </a>
+        <h2 class="text-white">
+            Si quieres, puedes concertar una cita con nosotros. Pidela ahora sin compromiso! Tambien puedes
+            <a asp-controller="Citas" asp-action="ListadoCitas" class="link-info">
+                consultar tus citas
+            </a>
+        </h2>
+
 
     </div>
 </div>
-
-@*<div class="p-3 bg-secondary bg-gradient text-center">
-
-    </div>*@
 
 <!-- Wrapper para el calendario -->
 <div class="p-5 m-5 calendar-wrapper" id="calendar-wrapper"></div>
 
 <!-- Formulario para la fecha seleccionada -->
-<form method="post">
-    <input type="text" name="cita" hidden />
-    <button type="submit" id="btnconcertarcita" class="btn btn-success" hidden>
-        Pedir cita
-    </button>
-</form>
+<div class="container bg-light">
+    <div class="col-md-12 text-center">
+        <form method="post">
+            <input type="text" name="cita" hidden />
+            <button type="submit" id="btnconcertarcita" class="btn btn-success" hidden>
+                Pedir cita
+            </button>
+        </form>
+    </div>
+</div>

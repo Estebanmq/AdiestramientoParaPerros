@@ -6,6 +6,7 @@
 
 @section estilos {
     <link href="~/css/calendario.css" rel="stylesheet" />
+    <link href="~/css/cover-img-style.css" rel="stylesheet" />
 }
 
 @section navlinks {
@@ -101,11 +102,20 @@
     </script>
 }
 
+<div id="header-citas" class="bg-overlay">
+    <div class="row text-center">
+        <h2 class="text-white">Si quiere concertar una cita con nosotros pidela ahora sin compromiso! Tambien puede consultar sus citas:</h2>
+        <a asp-controller="Citas" asp-action="ListadoCitas" class="w-25 btn btn-info">
+            Ver tus citas
+        </a>
 
-<h1>Calendario</h1>
-<a asp-controller="Citas" asp-action="ListadoCitas" class="btn btn-info">
-    Ver tus citas
-</a>
+    </div>
+</div>
+
+@*<div class="p-3 bg-secondary bg-gradient text-center">
+
+    </div>*@
+
 <!-- Wrapper para el calendario -->
 <div class="p-5 m-5 calendar-wrapper" id="calendar-wrapper"></div>
 

@@ -11,6 +11,16 @@ namespace AdiestramientoParaPerros.Controllers
         #region Controlador Vista LoginIndex
         public IActionResult LoginIndex()
         {
+
+            return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult LoginIndex(String email, String password)
+        {
+            //LLamar a la BBDD 
+
             return View();
         }
         #endregion

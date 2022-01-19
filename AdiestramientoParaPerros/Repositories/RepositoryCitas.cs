@@ -73,6 +73,9 @@ namespace AdiestramientoParaPerros.Repositories
             Cita cita = this.FindCita(idcita);
             this.context.Citas.Remove(cita);
             this.context.SaveChanges();
+
+
+
         }
 
         #endregion

@@ -96,8 +96,10 @@ namespace AdiestramientoParaPerros.Controllers
             //Llamo a la base de datos para insertar un empleado
             //Insertado por procedimiento el cual inserta en la tabla usuarios y empleados
             //Genero contraseña??
+            this.repo.InsertEmpleado(nombre,apellidos,correo,telefono,rol);
 
-            
+            ViewBag.Roles = this.repo.GetRolesEmpleados();
+
 
             return View();
         }

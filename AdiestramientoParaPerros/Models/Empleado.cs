@@ -21,7 +21,7 @@ namespace AdiestramientoParaPerros.Models
         public String Apellidos { get; set; }
 
         [Column("CORREO")]
-        public String Correo { get ; set; }
+        public String Correo { get; set; }
 
         [Column("TELEFONO")]
         public String Telefono { get; set; }
@@ -29,10 +29,7 @@ namespace AdiestramientoParaPerros.Models
         [Column("IDROL")]
         public int IdRol { get; set; }
 
-        [Column("PASSWORD")]
-        public String Password { get; set; }
-        } 
-
-        
+        //[Column("PASSWORD")]
+        //public String Password { get; set; }
     }
 }

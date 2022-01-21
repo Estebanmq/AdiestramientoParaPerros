@@ -1,5 +1,6 @@
 ﻿@{
     Layout = ViewBag.Layout;
+    List<Rol> roles = ViewBag.Roles as List<Rol>;
 }
 
 @section title {
@@ -8,10 +9,6 @@
 
 
 <form class="form" method="post">
-    <div class="form-group m-2">
-        <label>Nombre de usuario</label>
-        <input type="text" name="nombreusuario" class="form-control" />
-    </div>
     <div class="form-group m-2">
         <label>Nombre</label>
         <input type="text" name="nombre" class="form-control" />
@@ -30,8 +27,10 @@
     </div>
     <div class="form-group m-2">
         <select name="nvlpermiso" class="form-select">
-            <option value="0">Empleado</option>
-            <option value="1">Administrador</option>
+            @foreach(Rol rol in roles)
+            {
+                <option value="@rol.IdRol">@rol.NombreRol</option>
+            }
         </select>
     </div>
     <div class="form-group m-2">

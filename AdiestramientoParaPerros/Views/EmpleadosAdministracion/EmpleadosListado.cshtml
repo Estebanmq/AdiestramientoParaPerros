@@ -1,7 +1,8 @@
 ﻿@model List<Empleado>
 
 @{  
-   Layout = ViewBag.Layout;
+    Layout = ViewBag.Layout;
+    List<Rol> roles = ViewBag.Roles as List<Rol>;
 }
 
 @section title {
@@ -24,18 +25,18 @@
             <th>Apellidos</th>
             <th>Correo</th>
             <th>Teléfono</th>
-            <th>Nivel de permiso</th>
+            <th>Rol</th>
         </tr>
     </thead>
     <tbody>
         @foreach(Empleado emp in Model)
         {
         <tr>
-            <td>@emp.Usuario.Nombre</td>
-            <td>@emp.Usuario.Apellidos</td>
-            <td>@emp.Usuario.Correo</td>
-            <td>@emp.Usuario.Telefono</td>
-            <td>@emp.NvlPermiso</td>
+            <td>@emp.Nombre</td>
+            <td>@emp.Apellidos</td>
+            <td>@emp.Correo</td>
+            <td>@emp.Telefono</td>
+            <td>@roles.Find(z => z.IdRol == emp.IdRol).NombreRol</td>
         </tr>
         }    
     </tbody>

@@ -1,12 +1,46 @@
 ﻿@model Consulta
+@{ 
+    List<Estado> estados = ViewBag.Estados as List<Estado>;
+}
 
-<a asp-controller="ConsultasAdministracion" asp-action="ConsultasListado">Volver</a>
 
-<h1>Detalles</h1>
+<div class="container m-3">
+    <div class="card">
+        <div class="card-body">
+            <a class="btn btn-info float-end m-2" asp-controller="ConsultasAdministracion" asp-action="ConsultasListado">Volver</a>
+            <h3 class="card-title">Información de la consulta</h3>
+            <h5 class="card-subtitle p-1">Email: @Model.EmailContacto</h5>
+            <h5 class="card-subtitle p-1">Teléfono: @Model.TelefonoContacto</h5>
+            <div class="row justify-content-center">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <h4 class="box-title mt-2">Motivo de la consulta</h4>
+                    <p>@Model.TextoConsulta</p>
 
-<h2>@Model.Estado</h2>
+                    <form method="post" class="w-25" >
+                        <input type="hidden" name="idconsulta" value="@Model.IdConsulta" />    
+                        <div class="form-group">
+                            <label>Estado</label>
+                            <select class="form-select" name="estado">
+                                <option selected value="@Model.Estado">@estados.Find(z => z.IdEstado == Model.Estado).TextoEstado</option>
+                                @foreach (Estado estado in estados)
+                                {
+                                    if (Model.Estado != estado.IdEstado)
+                                    {
+                                        <option value="@estado.IdEstado">@estado.TextoEstado</option>
+                                    }
+                                }
+                            </select>
+                            <button type="submit" class="mt-2 btn btn-warning btn-rounded">Cambiar estado</button>
+                        </div>
+                    </form>
 
-<h2>@Model.TelefonoContacto</h2>
-<h2>@Model.EmailContacto</h2>
-<h2>@Model.TextoConsulta</h2>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 

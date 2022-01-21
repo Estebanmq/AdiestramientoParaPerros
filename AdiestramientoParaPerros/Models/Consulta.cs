@@ -10,8 +10,6 @@ namespace AdiestramientoParaPerros.Models
     [Table("CONSULTAS")]
     public class Consulta
     {
-        public enum Estados { PENDIENTE = 0 , ENPROCESO = 1 , TERMINADA = 2}
-
         [Key]
         [Column("IDCONSULTA")]
         public int IdConsulta { get; set; }
@@ -26,6 +24,6 @@ namespace AdiestramientoParaPerros.Models
         public String EmailContacto { get; set; }
 
         [Column("ESTADO")]
-        public Estados Estado { get; set; }
+        public int Estado { get; set; }
     }
 }

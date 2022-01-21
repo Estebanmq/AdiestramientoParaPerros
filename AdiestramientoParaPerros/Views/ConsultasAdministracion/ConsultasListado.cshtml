@@ -2,6 +2,7 @@
 
 @{
     Layout = ViewBag.Layout;
+    List<Estado> estados = ViewBag.Estados as List<Estado>;
 }
 
 @section title {
@@ -13,23 +14,22 @@
 {
     <div class="card m-2">
         <div class="card-header">
-            @c.Estado
+            @estados.Find(z => z.IdEstado == c.Estado).TextoEstado
         </div>
         <div class="card-body">
-            <p class="card-text">@c.TextoConsulta</p>
-
             @if (c.TelefonoContacto != "")
             {
                 <h5 class="card-title">Teléfono: @c.TelefonoContacto</h5>
             }
-            else if (c.EmailContacto != "")
+            @if (c.EmailContacto != "")
             {
                 <h5 class="card-title">Email: @c.EmailContacto</h5>
-
             }
-        <a asp-controller="ConsultasAdministracion" asp-action="DetallesConsulta" asp-route-idconsulta="@c.IdConsulta">
-            Detalles
-        </a>
+            <p class="card-text">@c.TextoConsulta</p>
+
+            <a class="btn btn-info" asp-controller="ConsultasAdministracion" asp-action="DetallesConsulta" asp-route-idconsulta="@c.IdConsulta">
+                Detalles
+            </a>
 
         </div>
     </div>

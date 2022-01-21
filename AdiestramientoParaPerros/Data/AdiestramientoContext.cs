@@ -19,6 +19,8 @@ namespace AdiestramientoParaPerros.Data
 
         //Set que almacena todos los empleados de la base de datos
         public DbSet<Empleado> Empleados { get; set; }
-       
+
+        //Set que almacena todos los estados de las consultas
+        public DbSet<Estado> Estados { get; set; }
     }
 }

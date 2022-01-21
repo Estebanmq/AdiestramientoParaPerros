@@ -51,6 +51,8 @@ namespace AdiestramientoParaPerros.Controllers
             //Esto se debe de poner en otro sitio investigar (esta en trello)
             ViewBag.Layout = "_LayoutEmpleados";
 
+            ViewBag.Estados = this.repo.GetEstados();
+
             List<Consulta> consultas = this.repo.GetConsultas();
 
             return View(consultas);
@@ -63,10 +65,19 @@ namespace AdiestramientoParaPerros.Controllers
         #region Controlador Vista Detalles de consulta
         public IActionResult DetallesConsulta(int idconsulta)
         {
-
+            List<Estado> estados = this.repo.GetEstados();
+            ViewBag.Estados = estados;
 
             Consulta c = this.repo.FindConsulta(idconsulta);
             return View(c);
+        }
+
+        [HttpPost]
+        public IActionResult DetallesConsulta(int estado, int idconsulta)
+        {
+            this.repo.UpdateEstadoConsulta(estado, idconsulta);
+
+            return RedirectToAction("ConsultasListado");
         }
         #endregion
     }

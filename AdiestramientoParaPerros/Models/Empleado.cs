@@ -14,12 +14,21 @@ namespace AdiestramientoParaPerros.Models
         [Column("IDEMPLEADO")]
         public int IdEmpleado { get; set; }
 
-        public Usuario Usuario { get; set; }
+        [Column("NOMBRE")]
+        public String Nombre { get; set; }
+
+        [Column("APELLIDOS")]
+        public String Apellidos { get; set; }
 
         [Column("CORREO")]
-        public String Correo { get; set; }
+        public String Correo { get ; set; }
 
-        [Column("NVLPERMISO")]
-        public int NvlPermiso { get; set; } 
+        [Column("TELEFONO")]
+        public String Telefono { get; set; }
+
+        [Column("IDROL")]
+        public int IdRol { get; set; } 
+
+        
     }
 }

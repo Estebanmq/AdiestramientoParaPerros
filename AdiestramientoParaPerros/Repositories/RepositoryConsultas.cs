@@ -22,7 +22,7 @@ namespace AdiestramientoParaPerros.Repositories
 
         //Metodo que recibe los datos necesarios para insertar una consulta en el a base de datos
         public void InsertConsulta(String emailcontacto, String telefonocontacto, String textoconsulta)
-        {
+        {       
             Consulta consulta = new Consulta();
             consulta.EmailContacto = emailcontacto;
             consulta.TelefonoContacto = telefonocontacto;
@@ -50,6 +50,32 @@ namespace AdiestramientoParaPerros.Repositories
         {
             return this.context.Consultas.FirstOrDefault(z => z.IdConsulta == idconsulta);
         }
+
+
+        //Método que cambia el estaod de una consulta
+        public void UpdateEstadoConsulta(int estado, int idconsulta)
+        {
+            Consulta consulta = this.FindConsulta(idconsulta);
+            consulta.Estado = estado;
+            this.context.SaveChanges();
+        }
+        #endregion
+
+        #region AAD Estados
+        //MEtodo que devuelve todos los estados
+        public List<Estado> GetEstados()
+        {
+            var consulta = from datos in this.context.Estados
+                           select datos;
+            return consulta.ToList();
+        }
+
+        //Metodo que devuelve un estado a partir de su id
+        public Estado FindEstado(int id)
+        {
+            return this.context.Estados.FirstOrDefault(z => z.IdEstado == id);
+        }
+
         #endregion
     }
 }

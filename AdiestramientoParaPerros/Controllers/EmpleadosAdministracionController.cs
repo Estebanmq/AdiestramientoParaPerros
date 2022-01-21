@@ -30,15 +30,15 @@ namespace AdiestramientoParaPerros.Controllers
             emp.NvlPermiso = 1;
             empleados.Add(emp);
 
-            usr = new Usuario();
-            emp = new Empleado();
-            usr.Nombre = "Mar";
-            usr.Apellidos = "Mar";
-            usr.Correo = "lachicamasmonaymascutedeluniveros@laquieroinfinito.com";
-            usr.Telefono = "11122021";
-            emp.Usuario = usr;
-            emp.NvlPermiso = 1;
-            empleados.Add(emp);
+            //usr = new Usuario();
+            //emp = new Empleado();
+            //usr.Nombre = "Mar";
+            //usr.Apellidos = "Mar";
+            //usr.Correo = "lachicamasmonaymascutedeluniveros@laquieroinfinito.com";
+            //usr.Telefono = "11122021";
+            //emp.Usuario = usr;
+            //emp.NvlPermiso = 1;
+            //empleados.Add(emp);
 
             usr = new Usuario();
             emp = new Empleado();

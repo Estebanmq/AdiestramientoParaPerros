@@ -1,5 +1,6 @@
 ﻿using AdiestramientoParaPerros.Models;
 using AdiestramientoParaPerros.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -21,42 +22,22 @@ namespace AdiestramientoParaPerros.Controllers
         #region Controlador Vista Listado de consultas
         public IActionResult ConsultasListado()
         {
-            //Codigo de prueba de datoss
-            //List<Consulta> consultas = new List<Consulta>();
-            //Consulta c = new Consulta();
+            if(this.IsLogued() && this.IsEmpleado()) {
 
-            //c.TextoConsulta = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo, laborum inventore iure itaque eum ea maxime natus excepturi? Eum unde porro sint nam corporis.";
-            //c.TelefonoContacto = "657777233";
-            //c.EmailContacto = "email@email.com";
-            //c.Estado = Consulta.Estados.ENPROCESO;
-            //consultas.Add(c);
-            //c = new Consulta();
+                //Esto se debe de poner en otro sitio investigar (esta en trello)
+                ViewBag.Layout = "_LayoutEmpleados";
 
-            //c.TextoConsulta = "Loremea ipsum dolor  itaque eum  maxime natus excepturi? Eum unde porro sint nam  sit amet consectetur adipisicing elit. Nemo, laborum inventore iurecorporis.";
-            //c.TelefonoContacto = "657902333";
-            //c.EmailContacto = "email2@email2.com";
-            //c.Estado = Consulta.Estados.PENDIENTE;
-            //consultas.Add(c);
-            //c = new Consulta();
+                ViewBag.Estados = this.repo.GetEstados();
 
-            //c.TextoConsulta = "maxime natus excepturi? Eum undeLoremea ipsum dolor  itaque eum porro sint nam  sit amet consectetur adipisicing elit. Nemo, laborum inventore iurecorporis.";
-            //c.TelefonoContacto = "631202333";
-            //c.EmailContacto = "email3@email3.com";
-            //c.Estado = Consulta.Estados.TERMINADA;
-            //consultas.Add(c);
-            //c = new Consulta();
+                List<Consulta> consultas = this.repo.GetConsultas();
 
-            //Fin codigo de prueba
-
-            //Esto se debe de poner en otro sitio investigar (esta en trello)
-            ViewBag.Layout = "_LayoutEmpleados";
-
-            ViewBag.Estados = this.repo.GetEstados();
-
-            List<Consulta> consultas = this.repo.GetConsultas();
-
-            return View(consultas);
-        }
+                return View(consultas);
+            }
+            else
+            {
+                return RedirectToAction("AccesoDenegado", "Errors");
+            }
+        } 
 
 
         #endregion
@@ -65,11 +46,18 @@ namespace AdiestramientoParaPerros.Controllers
         #region Controlador Vista Detalles de consulta
         public IActionResult DetallesConsulta(int idconsulta)
         {
-            List<Estado> estados = this.repo.GetEstados();
-            ViewBag.Estados = estados;
+            if (this.IsLogued() && this.IsEmpleado())
+            {
+                List<Estado> estados = this.repo.GetEstados();
+                ViewBag.Estados = estados;
 
-            Consulta c = this.repo.FindConsulta(idconsulta);
-            return View(c);
+                Consulta c = this.repo.FindConsulta(idconsulta);
+                return View(c);
+            }
+            else
+            {
+                return RedirectToAction("AccesoDenegado", "Errors");
+            }
         }
 
         [HttpPost]
@@ -80,5 +68,41 @@ namespace AdiestramientoParaPerros.Controllers
             return RedirectToAction("ConsultasListado");
         }
         #endregion
+
+        private bool IsLogued()
+        {
+            if (HttpContext.Session.GetInt32("IDUSUARIO") == null || HttpContext.Session.GetInt32("IDROL") == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private bool IsEmpleado()
+        {
+            if (HttpContext.Session.GetInt32("IDROL") == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private bool IsAdmin()
+        {
+            if (HttpContext.Session.GetInt32("IDROL") == 2)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

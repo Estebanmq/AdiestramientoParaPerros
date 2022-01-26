@@ -1,5 +1,6 @@
 ﻿using AdiestramientoParaPerros.Models;
 using AdiestramientoParaPerros.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -21,15 +22,21 @@ namespace AdiestramientoParaPerros.Controllers
         #region Controlador Vista Listado de empleados
         public IActionResult EmpleadosListado()
         {
+            if(this.IsLogued() && this.IsAdmin())
+            {
 
-            //Esto se debe de poner en otro sitio investigar (esta en trello)
-            ViewBag.Layout = "_LayoutEmpleados";
+                //Esto se debe de poner en otro sitio investigar (esta en trello)
+                ViewBag.Layout = "_LayoutEmpleados";
 
-            ViewBag.Roles = this.repo.GetRoles();
+                ViewBag.Roles = this.repo.GetRoles();
 
-            List<Usuario> usuariosempleados = this.repo.GetEmpleados();
+                List<Usuario> usuariosempleados = this.repo.GetEmpleados();
 
-            return View(usuariosempleados);
+                return View(usuariosempleados);
+            } else
+            {
+                return RedirectToAction("AccesoDenegado", "Errors");
+            }
         }
 
         [HttpPost]
@@ -43,13 +50,19 @@ namespace AdiestramientoParaPerros.Controllers
         #region Controlador Vista Agregar Empleado
         public IActionResult AgregarEmpleado()
         {
+            if (this.IsLogued() && this.IsAdmin())
+            {
+                //Esto se debe de poner en otro sitio investigar (esta en trello)
+                ViewBag.Layout = "_LayoutEmpleados";
 
-            //Esto se debe de poner en otro sitio investigar (esta en trello)
-            ViewBag.Layout = "_LayoutEmpleados";
+                ViewBag.Roles = this.repo.GetRolesEmpleados();
 
-            ViewBag.Roles = this.repo.GetRolesEmpleados();
+                return View();
+            } else
+            {
+                return RedirectToAction("AccesoDenegado", "Errors");
+            }
 
-            return View();
         }
 
         [HttpPost]
@@ -62,5 +75,41 @@ namespace AdiestramientoParaPerros.Controllers
             return RedirectToAction("EmpleadosListado");
         }
         #endregion
+
+        private bool IsLogued()
+        {
+            if (HttpContext.Session.GetInt32("IDUSUARIO") == null || HttpContext.Session.GetInt32("IDROL") == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private bool IsEmpleado()
+        {
+            if (HttpContext.Session.GetInt32("IDROL") == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private bool IsAdmin()
+        {
+            if (HttpContext.Session.GetInt32("IDROL") == 2)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

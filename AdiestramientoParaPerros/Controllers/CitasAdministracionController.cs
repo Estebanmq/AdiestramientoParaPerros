@@ -1,5 +1,6 @@
 ﻿using AdiestramientoParaPerros.Models;
 using AdiestramientoParaPerros.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -21,86 +22,22 @@ namespace AdiestramientoParaPerros.Controllers
         #region Controlador Vista Listado de citas
         public IActionResult CitasListado()
         {
-            //Aqui cargar las citas del empleado logeado !!!!!
+            if(this.IsLogued() && this.IsEmpleado())
+            {
+                //Aqui cargar las citas del empleado logeado !!!!!
 
-            //Codigo prueba para cargar cita
-            //String fechacita = "07/01/2021";
-            //DateTime fecha = DateTime.ParseExact(fechacita, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-            //List<Cita> citas = new List<Cita>();
-            #region Listado de pruebas de citas
-            //Cita c = new Cita();
-            //c.IdCita = 1;
-            //c.FechaCita = fecha;
-            //c.TelefonoContacto = "653334778";
-            //c.NombrePerro = "Canela";
-            //c.RazaPerro = "Espagneul Breton";
-            //c.MotivoCita = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit deserunt " +
-            //        "vitae enim sapiente et architecto, praesentium, ipsa quidem dolores incidunt voluptas " +
-            //        "voluptatum nemo est assumenda asperiores magnam reiciendis, dolorum fugiat.";
-            //c.ObjetivoCita = "Adipisci, reiciendis eveniet, id saepe dicta commodi sunt enim tempore repellendus " +
-            //    "perferendis mollitia cumque maxime? Debitis laborum esse consequuntur pariatur! Vero dolorem ut mollitia!";
-            //citas.Add(c);
+                //Esto se debe de poner en otro sitio investigar (esta en trello)
+                ViewBag.Layout = "_LayoutEmpleados";
 
-            //c = new Cita();
-            //c.IdCita = 2;
-            //c.FechaCita = fecha;
-            //c.TelefonoContacto = "653313078";
-            //c.NombrePerro = "Sola";
-            //c.RazaPerro = "Espagneul Breton";
-            //c.MotivoCita = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit deserunt " +
-            //        "vitae enim sapiente et architecto, praesentium, ipsa quidem dolores incidunt voluptas " +
-            //        "voluptatum nemo est assumenda asperiores magnam reiciendis, dolorum fugiat.";
-            //c.ObjetivoCita = "Adipisci, reiciendis eveniet, id saepe dicta commodi sunt enim tempore repellendus " +
-            //    "perferendis mollitia cumque maxime? Debitis laborum esse consequuntur pariatur! Vero dolorem ut mollitia!";
-            //citas.Add(c);
+                List<Cita> citas = this.repo.GetCitas();
 
-            //c = new Cita();
-            //c.IdCita = 3;
-            //c.FechaCita = fecha;
-            //c.TelefonoContacto = "653331928";
-            //c.NombrePerro = "Ella";
-            //c.RazaPerro = "Espagneul Breton";
-            //c.MotivoCita = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit deserunt " +
-            //        "vitae enim sapiente et architecto, praesentium, ipsa quidem dolores incidunt voluptas " +
-            //        "voluptatum nemo est assumenda asperiores magnam reiciendis, dolorum fugiat.";
-            //c.ObjetivoCita = "Adipisci, reiciendis eveniet, id saepe dicta commodi sunt enim tempore repellendus " +
-            //    "perferendis mollitia cumque maxime? Debitis laborum esse consequuntur pariatur! Vero dolorem ut mollitia!";
-            //citas.Add(c);
+                return View(citas);
+            } else
+            {
+                return RedirectToAction("AccesoDenegado", "Errors");
+            }
 
-            //c = new Cita();
-            //c.IdCita = 4;
-            //c.FechaCita = fecha;
-            //c.TelefonoContacto = "65234478";
-            //c.NombrePerro = "Pepe";
-            //c.RazaPerro = "Akita";
-            //c.MotivoCita = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit deserunt " +
-            //        "vitae enim sapiente et architecto, praesentium, ipsa quidem dolores incidunt voluptas " +
-            //        "voluptatum nemo est assumenda asperiores magnam reiciendis, dolorum fugiat.";
-            //c.ObjetivoCita = "Adipisci, reiciendis eveniet, id saepe dicta commodi sunt enim tempore repellendus " +
-            //    "perferendis mollitia cumque maxime? Debitis laborum esse consequuntur pariatur! Vero dolorem ut mollitia!";
-            //citas.Add(c);
-
-            //c = new Cita();
-            //c.IdCita = 5;
-            //c.FechaCita = fecha;
-            //c.TelefonoContacto = "612894778";
-            //c.NombrePerro = "Imanol";
-            //c.RazaPerro = "Shiba Inu";
-            //c.MotivoCita = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit deserunt " +
-            //        "vitae enim sapiente et architecto, praesentium, ipsa quidem dolores incidunt voluptas " +
-            //        "voluptatum nemo est assumenda asperiores magnam reiciendis, dolorum fugiat.";
-            //c.ObjetivoCita = "Adipisci, reiciendis eveniet, id saepe dicta commodi sunt enim tempore repellendus " +
-            //    "perferendis mollitia cumque maxime? Debitis laborum esse consequuntur pariatur! Vero dolorem ut mollitia!";
-            //citas.Add(c);
-            #endregion
-            //Fin codigo prueba
-
-            //Esto se debe de poner en otro sitio investigar (esta en trello)
-            ViewBag.Layout = "_LayoutEmpleados";
-
-            List<Cita> citas = this.repo.GetCitas();
-
-            return View(citas);
+           
         }
         #endregion
 
@@ -108,28 +45,20 @@ namespace AdiestramientoParaPerros.Controllers
 
         public IActionResult DetallesCita(int idcita)
         {
-            
-            //String fechacita = "07/01/2021";
-            //DateTime fecha = DateTime.ParseExact(fechacita, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-            //Cita c = new Cita();
-            //c.IdCita = 1;
-            //c.FechaCita = fecha;
-            //c.TelefonoContacto = "653334778";
-            //c.NombrePerro = "Canela";
-            //c.RazaPerro = "Espagneul Breton";
-            //c.MotivoCita = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit deserunt " +
-            //        "vitae enim sapiente et architecto, praesentium, ipsa quidem dolores incidunt voluptas " +
-            //        "voluptatum nemo est assumenda asperiores magnam reiciendis, dolorum fugiat.";
-            //c.ObjetivoCita = "Adipisci, reiciendis eveniet, id saepe dicta commodi sunt enim tempore repellendus " +
-            //    "perferendis mollitia cumque maxime? Debitis laborum esse consequuntur pariatur! Vero dolorem ut mollitia!";
-            //Fin codigo prueba
 
-            //Esto se debe de poner en otro sitio investigar (esta en trello)
-            ViewBag.Layout = "_LayoutEmpleados";
+            if (this.IsLogued() && this.IsEmpleado()) 
+            { 
+                //Esto se debe de poner en otro sitio investigar (esta en trello)
+                ViewBag.Layout = "_LayoutEmpleados";
 
-            Cita cita = this.repo.FindCita(idcita);
-
-            return View(cita);
+                Cita cita = this.repo.FindCita(idcita);
+    
+                return View(cita);
+            } 
+            else 
+            {
+                return RedirectToAction("AccesoDenegado", "Errors");
+            }
         }
 
         #endregion
@@ -138,29 +67,19 @@ namespace AdiestramientoParaPerros.Controllers
 
         public IActionResult ModificarCita(int idcita)
         {
-            //Codigo prueba para cargar cita
-            //String fechacita = "07/01/2021";
-            //DateTime fecha = DateTime.ParseExact(fechacita, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-            //Cita c = new Cita();
-            //c.IdCita = 1;
-            //c.FechaCita = fecha;
-            //c.TelefonoContacto = "653334778";
-            //c.NombrePerro = "Canela";
-            //c.RazaPerro = "Espagneul Breton";
-            //c.MotivoCita = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit deserunt " +
-            //        "vitae enim sapiente et architecto, praesentium, ipsa quidem dolores incidunt voluptas " +
-            //        "voluptatum nemo est assumenda asperiores magnam reiciendis, dolorum fugiat.";
-            //c.ObjetivoCita = "Adipisci, reiciendis eveniet, id saepe dicta commodi sunt enim tempore repellendus " +
-            //    "perferendis mollitia cumque maxime? Debitis laborum esse consequuntur pariatur! Vero dolorem ut mollitia!";
-            //Fin codigo prueba
+            if (this.IsLogued() && this.IsEmpleado())
+            {
+                //Esto se debe de poner en otro sitio investigar (esta en trello)
+                ViewBag.Layout = "_LayoutEmpleados";
 
+                Cita cita = this.repo.FindCita(idcita);
 
-            //Esto se debe de poner en otro sitio investigar (esta en trello)
-            ViewBag.Layout = "_LayoutEmpleados";
-
-            Cita cita = this.repo.FindCita(idcita);
-
-            return View(cita);
+                return View(cita);
+            } 
+            else
+            {
+                return RedirectToAction("AccesoDenegado", "Errors");
+            }
         }
 
         [HttpPost]
@@ -170,5 +89,39 @@ namespace AdiestramientoParaPerros.Controllers
             return RedirectToAction("CitasListado");
         }
         #endregion
+
+        private bool IsLogued()
+        {
+            if (HttpContext.Session.GetInt32("IDUSUARIO") == null || HttpContext.Session.GetInt32("IDROL") == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private bool IsEmpleado()
+        {
+            if(HttpContext.Session.GetInt32("IDROL") == 0)
+            {
+                return false;
+            } else
+            {
+                return true;
+            }
+        }
+
+        private bool IsAdmin()
+        {
+            if(HttpContext.Session.GetInt32("IDROL") == 2)
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
+        }
     }
 }

@@ -2,6 +2,7 @@
 using AdiestramientoParaPerros.Models;
 using AdiestramientoParaPerros.Repositories;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -34,8 +35,11 @@ namespace AdiestramientoParaPerros.Controllers
             Usuario usuario = this.repo.LogIn(email, password);
             if(usuario != null)
             {
-                if(usuario.IdRol == 0)
+                HttpContext.Session.SetInt32("IDUSUARIO", usuario.IdUsuario);
+                HttpContext.Session.SetInt32("IDROL", usuario.IdRol);
+                if (usuario.IdRol == 0)
                 {
+                    //Aqui redirigir a Perfil
                     return RedirectToAction("Index", "Home");
                 } else if (usuario.IdRol == 1)
                 {

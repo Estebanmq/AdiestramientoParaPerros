@@ -1,5 +1,6 @@
 ﻿using AdiestramientoParaPerros.Models;
 using AdiestramientoParaPerros.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace AdiestramientoParaPerros.Controllers
         #region Controlador Vista CitasIndex
         public IActionResult CitasIndex()
         {
-
+         
             //Modelo para la vista CitasIndex
             //CAMBIO: solo una lista de datetime
             Calendario cal = new Calendario();
@@ -32,8 +33,11 @@ namespace AdiestramientoParaPerros.Controllers
             cal.DiasOcupados.Add(new DateTime(2022, 01, 12));
             cal.DiasOcupados.Add(new DateTime(2022, 01, 09));
             cal.DiasOcupados.Add(new DateTime(2021, 12, 28));
-        
+
             return View(cal);
+            
+
+        
         }
 
         //Metodo post de la vista CitasIndex
@@ -57,10 +61,17 @@ namespace AdiestramientoParaPerros.Controllers
         //Recibe la fecha seleccionada en el calendario
         public IActionResult ConcertarCita(String fecha)
         {
-            //Convierto el String a DateTime para mostrar la fecha en formato dd/MM/yyyy
-            DateTime dateFecha = DateTime.ParseExact(fecha, "ddd MMM dd yyyy HH:mm:ss ", System.Globalization.CultureInfo.InvariantCulture);
-            ViewBag.fechacita = dateFecha.Day + "/" + dateFecha.Month + "/" + dateFecha.Year;
-            return View();
+            if (this.IsLogued())
+            {
+                return RedirectToAction("NoRegistradoCitas", "Errors");
+            }
+            else
+            {
+                //Convierto el String a DateTime para mostrar la fecha en formato dd/MM/yyyy
+                DateTime dateFecha = DateTime.ParseExact(fecha, "ddd MMM dd yyyy HH:mm:ss ", System.Globalization.CultureInfo.InvariantCulture);
+                ViewBag.fechacita = dateFecha.Day + "/" + dateFecha.Month + "/" + dateFecha.Year;
+                return View();
+            }
         }
 
         //Metodo post de la vista ConcertarCita
@@ -82,85 +93,29 @@ namespace AdiestramientoParaPerros.Controllers
         {
 
 
-            //Codigo prueba para cargar citas
-            //String fechacita = "07/01/2021";
-            //DateTime fecha = DateTime.ParseExact(fechacita, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-            //List<Cita> citas = new List<Cita>();
-            #region Listado de pruebas de citas
-            //Cita c = new Cita();
-            //c.IdCita = 1;
-            //c.FechaCita = fecha;
-            //c.TelefonoContacto = "653334778";
-            //c.NombrePerro = "Canela";
-            //c.RazaPerro = "Espagneul Breton";
-            //c.MotivoCita = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit deserunt " +
-            //        "vitae enim sapiente et architecto, praesentium, ipsa quidem dolores incidunt voluptas " +
-            //        "voluptatum nemo est assumenda asperiores magnam reiciendis, dolorum fugiat.";
-            //c.ObjetivoCita = "Adipisci, reiciendis eveniet, id saepe dicta commodi sunt enim tempore repellendus " +
-            //    "perferendis mollitia cumque maxime? Debitis laborum esse consequuntur pariatur! Vero dolorem ut mollitia!";
-            //citas.Add(c);
+            if (this.IsLogued())
+            {
+                return RedirectToAction("NoRegistradoCitas", "Errors");
+            }
+            else
+            {
+                List<Cita> citas = this.repo.GetCitas();
 
-            //c = new Cita();
-            //c.IdCita = 2;
-            //c.FechaCita = fecha;
-            //c.TelefonoContacto = "653313078";
-            //c.NombrePerro = "Sola";
-            //c.RazaPerro = "Espagneul Breton";
-            //c.MotivoCita = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit deserunt " +
-            //        "vitae enim sapiente et architecto, praesentium, ipsa quidem dolores incidunt voluptas " +
-            //        "voluptatum nemo est assumenda asperiores magnam reiciendis, dolorum fugiat.";
-            //c.ObjetivoCita = "Adipisci, reiciendis eveniet, id saepe dicta commodi sunt enim tempore repellendus " +
-            //    "perferendis mollitia cumque maxime? Debitis laborum esse consequuntur pariatur! Vero dolorem ut mollitia!";
-            //citas.Add(c);
-
-            //c = new Cita();
-            //c.IdCita = 3;
-            //c.FechaCita = fecha;
-            //c.TelefonoContacto = "653331928";
-            //c.NombrePerro = "Ella";
-            //c.RazaPerro = "Espagneul Breton";
-            //c.MotivoCita = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit deserunt " +
-            //        "vitae enim sapiente et architecto, praesentium, ipsa quidem dolores incidunt voluptas " +
-            //        "voluptatum nemo est assumenda asperiores magnam reiciendis, dolorum fugiat.";
-            //c.ObjetivoCita = "Adipisci, reiciendis eveniet, id saepe dicta commodi sunt enim tempore repellendus " +
-            //    "perferendis mollitia cumque maxime? Debitis laborum esse consequuntur pariatur! Vero dolorem ut mollitia!";
-            //citas.Add(c);
-
-            //c = new Cita();
-            //c.IdCita = 4;
-            //c.FechaCita = fecha;
-            //c.TelefonoContacto = "65234478";
-            //c.NombrePerro = "Pepe";
-            //c.RazaPerro = "Akita";
-            //c.MotivoCita = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit deserunt " +
-            //        "vitae enim sapiente et architecto, praesentium, ipsa quidem dolores incidunt voluptas " +
-            //        "voluptatum nemo est assumenda asperiores magnam reiciendis, dolorum fugiat.";
-            //c.ObjetivoCita = "Adipisci, reiciendis eveniet, id saepe dicta commodi sunt enim tempore repellendus " +
-            //    "perferendis mollitia cumque maxime? Debitis laborum esse consequuntur pariatur! Vero dolorem ut mollitia!";
-            //citas.Add(c);
-
-            //c = new Cita();
-            //c.IdCita = 5;
-            //c.FechaCita = fecha;
-            //c.TelefonoContacto = "612894778";
-            //c.NombrePerro = "Imanol";
-            //c.RazaPerro = "Shiba Inu";
-            //c.MotivoCita = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit deserunt " +
-            //        "vitae enim sapiente et architecto, praesentium, ipsa quidem dolores incidunt voluptas " +
-            //        "voluptatum nemo est assumenda asperiores magnam reiciendis, dolorum fugiat.";
-            //c.ObjetivoCita = "Adipisci, reiciendis eveniet, id saepe dicta commodi sunt enim tempore repellendus " +
-            //    "perferendis mollitia cumque maxime? Debitis laborum esse consequuntur pariatur! Vero dolorem ut mollitia!";
-            //citas.Add(c);
-            #endregion
-            //Fin codigo prueba
-
-            List<Cita>citas = this.repo.GetCitas();
-
-            return View(citas);
+                return View(citas);
+            }
         } 
-
-
-
         #endregion
+
+        private bool IsLogued()
+        {
+            if (HttpContext.Session.GetInt32("IDUSUARIO") == null || HttpContext.Session.GetInt32("IDROL") == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }

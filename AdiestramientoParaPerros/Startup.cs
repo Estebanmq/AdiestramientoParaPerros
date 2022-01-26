@@ -27,12 +27,24 @@ namespace AdiestramientoParaPerros
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+
+            //Configuracion de la base de datos
             String cadena = this.Configuration.GetConnectionString("cadenaazureadiestramiento");
 
             services.AddTransient<RepositoryCitas>();
             services.AddTransient<RepositoryConsultas>();
             services.AddTransient<RepositoryUsuarios>();
             services.AddDbContext<AdiestramientoContext>(options => options.UseSqlServer(cadena));
+
+            //Configuracion del session
+            //La memoria distribuida de cache, session comparte informacion con cache para trabajar
+            services.AddDistributedMemoryCache();
+
+            //Una sesion funciona por tiempo de inactividad debemos indicar tiempo que duraran los objetos dentro de la sesion
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(60);
+            });
 
             services.AddControllersWithViews();
         }
@@ -48,6 +60,8 @@ namespace AdiestramientoParaPerros
             app.UseRouting();
 
             app.UseStaticFiles();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

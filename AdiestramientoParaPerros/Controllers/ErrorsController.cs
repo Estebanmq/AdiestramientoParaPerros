@@ -12,5 +12,10 @@ namespace AdiestramientoParaPerros.Controllers
         {
             return View();
         }
+
+        public IActionResult NoRegistradoCitas()
+        {
+            return View();
+        }
     }
 }

@@ -31,7 +31,7 @@ namespace AdiestramientoParaPerros
 
             services.AddTransient<RepositoryCitas>();
             services.AddTransient<RepositoryConsultas>();
-            services.AddTransient<RepositoryUsuariosEmpleados>();
+            services.AddTransient<RepositoryUsuarios>();
             services.AddDbContext<AdiestramientoContext>(options => options.UseSqlServer(cadena));
 
             services.AddControllersWithViews();

@@ -13,9 +13,9 @@ namespace AdiestramientoParaPerros.Controllers
     public class LoginController : Controller
     {
 
-        private RepositoryUsuariosEmpleados repo;
+        private RepositoryUsuarios repo;
 
-        public LoginController(RepositoryUsuariosEmpleados repo)
+        public LoginController(RepositoryUsuarios repo)
         {
             this.repo = repo;
         } 
@@ -31,10 +31,19 @@ namespace AdiestramientoParaPerros.Controllers
         [HttpPost]
         public IActionResult LoginIndex(String email, String password)
         {
-            bool logea = this.repo.LogIn(email, password);
-            if(logea)
+            Usuario usuario = this.repo.LogIn(email, password);
+            if(usuario != null)
             {
-                
+                if(usuario.IdRol == 0)
+                {
+                    return RedirectToAction("Index", "Home");
+                } else if (usuario.IdRol == 1)
+                {
+                    return RedirectToAction("IndexEmpleados", "HomeEmpleados");
+                } else if(usuario.IdRol == 2)
+                {
+                    return RedirectToAction("IndexEmpleados", "HomeEmpleados");
+                }
             }
             else
             {
@@ -48,6 +57,14 @@ namespace AdiestramientoParaPerros.Controllers
         public IActionResult SignUp()
         {
             return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult SignUp(String nombre, String apellidos, String nombreusuario, String telefono, String correo, String password)
+        {
+            this.repo.RegistrarUsuario(nombre, apellidos, nombreusuario, telefono, correo, password);
+            return RedirectToAction("Index","Home");
         }
         #endregion
     }

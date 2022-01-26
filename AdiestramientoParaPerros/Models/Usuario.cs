@@ -33,6 +33,6 @@ namespace AdiestramientoParaPerros.Models
         public int IdRol { get; set; }
 
         [Column("PASSWORD")]
-        public String Password { get; set; }
+        public byte[] Password { get; set; }
     }
 }

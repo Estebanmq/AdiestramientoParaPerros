@@ -18,7 +18,7 @@ namespace AdiestramientoParaPerros.Helpers
         /// <returns>
         ///     La contraseña hasheada
         /// </returns>
-        public static String GetHashedPassword(String password)
+        public static byte[] GetHashedPassword(String password)
         {
             //El salt son bits aleatorios que se utilizan para encriptar cosas, en este caso la contraseña
             byte[] salt;
@@ -36,7 +36,7 @@ namespace AdiestramientoParaPerros.Helpers
             Array.Copy(hash, 0, hashBytes, 16, 20);
 
             //Insertaria esto en la bbdd, retorna el string del hasheo final
-            return Convert.ToBase64String(hashBytes);
+            return hashBytes;
         } 
 
         /// <summary>
@@ -52,12 +52,12 @@ namespace AdiestramientoParaPerros.Helpers
         ///     True en el caso de que la contraseña y el hash sea igual
         ///     False en el caso contrario
         /// </returns>
-        public static bool CompareHashPassword(String hashedPassword, String password)
+        public static bool CompareHashPassword(byte[] hashedPassword, String password)
         {
             //hashedPassword viene de la bbdd
 
             //Hashbytes almacena el hash en bytes[] de una contraseña retornada del metodo GetHashedPassword
-            byte[] hashbytes = Convert.FromBase64String(hashedPassword);
+            byte[] hashbytes = hashedPassword;
 
             //Me creo un salt igual que en GetHashedPassword
             byte[] salt = new byte[16];

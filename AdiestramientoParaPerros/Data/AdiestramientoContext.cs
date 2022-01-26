@@ -17,9 +17,6 @@ namespace AdiestramientoParaPerros.Data
         //Set que almacena todas las consultas de la bdd
         public DbSet<Consulta> Consultas { get; set; }
 
-        //Set que almacena todos los empleados de la bdd
-        public DbSet<Empleado> Empleados { get; set; }
-
         //Set que almacena todos los estados de la bdd
         public DbSet<Estado> Estados { get; set; }
 

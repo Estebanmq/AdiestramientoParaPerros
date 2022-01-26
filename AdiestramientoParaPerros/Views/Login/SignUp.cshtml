@@ -57,7 +57,7 @@
         <div class="col-md-4">
             <div class="form-floating">
                 <input id="cajatelefono" class="form-control" type="text" name="telefono" placeholder="Teléfono *"
-                       pattern="[0-9]" title="Debe introducir un telefóno válido de 9 dígitos" minlength="9" maxlength="9" />
+                       title="Debe introducir un telefóno válido de 9 dígitos" minlength="9" maxlength="9" />
                 <label for="cajatelefono">Teléfono *</label>
             </div>
         </div>
@@ -73,14 +73,14 @@
                 <label for="cajacorreo">Correo electronico *</label>
             </div>
         </div>
-        <div class="col-md-6">
+        @*<div class="col-md-6">
             <div class="form-floating">
                 <input id="cajacorreo" class="form-control" type="email" name="correo" required placeholder="Repita el correo electronico *"
                        pattern="^[^@("@")]+@("@")[^@("@")]+\.[a-zA-Z]{2,}$" title="Debe introducir un email valido. Ejemplo: email@email.com" maxlength="100" />
                 <label for="cajacorreo">Repita el correo electronico</label>
             </div>
 
-        </div>
+        </div>*@
     </div>
 
     <div class="form-floating mt-3">
@@ -88,11 +88,11 @@
                pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" title="La contraseña debe de tener mínimo ocho caracteres, al menos una letra y un número" minlength="8" />
         <label for="cajacontrasenya">Contraseña *</label>
     </div>
-    <div class="form-floating mt-3">
+    @*<div class="form-floating mt-3">
         <input id="cajacontrasenyarepeat" class="form-control" type="text" name="passwordrepeat" placeholder="Repita la contraseña"
                required />
         <label for="cajacontrasenyarepeat">Repita la contraseña</label>
-    </div>
+    </div>*@
     <div class="form-group mt-2">
         <button class="btn btn-success">
             Registrarse

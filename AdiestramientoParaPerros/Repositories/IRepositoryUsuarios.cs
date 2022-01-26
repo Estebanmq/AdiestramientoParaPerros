@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AdiestramientoParaPerros.Repositories
 {
-    public interface IRepositoryEmpleadosUsuarios
+    public interface IRepositoryUsuarios
     {
        
         //Metodo que devuelve todos los roles de la bdd

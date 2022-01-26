@@ -1,4 +1,4 @@
-﻿@model List<Empleado>
+﻿@model List<Usuario>
 
 @{  
     Layout = ViewBag.Layout;
@@ -29,14 +29,14 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(Empleado emp in Model)
+        @foreach(Usuario usuario in Model)
         {
         <tr>
-            <td>@emp.Nombre</td>
-            <td>@emp.Apellidos</td>
-            <td>@emp.Correo</td>
-            <td>@emp.Telefono</td>
-            <td>@roles.Find(z => z.IdRol == emp.IdRol).NombreRol</td>
+            <td>@usuario.Nombre</td>
+            <td>@usuario.Apellidos</td>
+            <td>@usuario.Correo</td>
+            <td>@usuario.Telefono</td>
+            <td>@roles.Find(z => z.IdRol == usuario.IdRol).NombreRol</td>
         </tr>
         }    
     </tbody>

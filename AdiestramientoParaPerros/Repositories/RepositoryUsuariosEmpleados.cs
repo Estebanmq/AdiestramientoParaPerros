@@ -1,4 +1,5 @@
 ﻿using AdiestramientoParaPerros.Data;
+using AdiestramientoParaPerros.Helpers;
 using AdiestramientoParaPerros.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,48 @@ namespace AdiestramientoParaPerros.Repositories
         public RepositoryUsuariosEmpleados(AdiestramientoContext context)
         {
             this.context = context;
+        }
+
+        public bool LogIn(String email, String password)
+        {
+            
+            Usuario usuario = this.FindUsuarioEmail(email);
+           
+            if (usuario != null)
+            {
+                if( HelperPassword.CompareHashPassword(usuario.Password, password))
+                {
+                    //Guardo en session el usuario
+                    //Guardo en temp el tipo?
+                    return true;
+                }
+            }
+
+            Empleado empleado = this.FindEmpleadoEmail(email);
+            if(empleado != null)
+            {
+                if (HelperPassword.CompareHashPassword(empleado.Password, password))
+                {
+                    //Guardo en session el empleado
+                    //Guardo en temp el tipo?
+                    return true;
+                }
+            }
+           
+           
+            return false;
+            
+        }
+
+        public Usuario FindUsuarioEmail(String email)
+        {
+            return this.context.Usuarios.FirstOrDefault(z => z.Correo == email);
+        }
+
+        public Empleado FindEmpleadoEmail(String email)
+        {
+          
+            return this.context.Empleados.FirstOrDefault(z => z.Correo == email);
         }
 
         //Metodo que devuelve todos los empleados

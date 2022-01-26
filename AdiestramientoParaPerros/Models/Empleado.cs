@@ -29,7 +29,7 @@ namespace AdiestramientoParaPerros.Models
         [Column("IDROL")]
         public int IdRol { get; set; }
 
-        //[Column("PASSWORD")]
-        //public String Password { get; set; }
+        [Column("PASSWORD")]
+        public String Password { get; set; }
     }
 }

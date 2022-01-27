@@ -15,5 +15,7 @@ namespace AdiestramientoParaPerros.Repositories
         //Metodo que devuelve un rol a partir de su id
         Rol FindRol(int idrol);
 
+    
+
     }
 }

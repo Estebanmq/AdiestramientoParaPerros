@@ -115,14 +115,7 @@ namespace AdiestramientoParaPerros.Repositories
         // SUJETO A CAMBIOS
         public void InsertEmpleado(String nombre, String apellidos, String correo, String telefono, int rol)
         {
-            //String sql = "SP_INSERT_EMPLEADO @NOMBRE, @APELLIDOS, @CORREO, @TELEFONO, @IDROL, @PASSWORD";
-            //SqlParameter pamnombre = new SqlParameter("@NOMBRE", nombre);
-            //SqlParameter pamapellidos = new SqlParameter("@APELLIDOS", apellidos);
-            //SqlParameter pamcorreo = new SqlParameter("@CORREO", correo);
-            //SqlParameter pamtelefono = new SqlParameter("@TELEFONO", telefono);
-            //SqlParameter pamrol = new SqlParameter("@IDROL", rol);
-            //SqlParameter pampwd = new SqlParameter("@PASSWORD", nombre + apellidos);
-            //this.context.Database.ExecuteSqlRaw(sql, pamnombre, pamapellidos, pamcorreo, pamtelefono, pamrol, pampwd);
+          
             Usuario usuario = new Usuario();
             usuario.IdUsuario = this.GetMaxIdUsuarios();
             usuario.Nombre = nombre;

@@ -61,7 +61,7 @@ namespace AdiestramientoParaPerros.Controllers
         //Recibe la fecha seleccionada en el calendario
         public IActionResult ConcertarCita(String fecha)
         {
-            if (this.IsLogued())
+            if (!this.IsLogued())
             {
                 return RedirectToAction("NoRegistradoCitas", "Errors");
             }
@@ -93,7 +93,7 @@ namespace AdiestramientoParaPerros.Controllers
         {
 
 
-            if (this.IsLogued())
+            if (!this.IsLogued())
             {
                 return RedirectToAction("NoRegistradoCitas", "Errors");
             }

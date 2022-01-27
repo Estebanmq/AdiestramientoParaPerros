@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AdiestramientoParaPerros.Repositories
 {
-    public class RepositoryCitas
+    public class RepositoryCitas : IRepositoryCitas
     {
         private AdiestramientoContext context;
 
@@ -16,10 +16,13 @@ namespace AdiestramientoParaPerros.Repositories
             this.context = context;
         }
 
-
         #region AAD de Citas
-        //Metodo que devuelve todas las citas a partir del id de un usuario
-        //TENGO QUE RECIBIR EL ID DE USUARIO
+        /// <summary>
+        ///     Metodo que devuelve todas las citas de la bbdd
+        /// </summary>
+        /// <returns>
+        ///     Todas las citas
+        /// </returns>
         public List<Cita> GetCitas()
         {
             var consulta = from datos in this.context.Citas
@@ -29,14 +32,30 @@ namespace AdiestramientoParaPerros.Repositories
 
         }
 
-        //Metodo que devuelve una cita a partir del id pasado como parametro
+        /// <summary>
+        ///     Metodo que devuelve una cita a traves de su id
+        /// </summary>
+        /// <param name="idcita">
+        ///     El id de la cita a recuperar
+        /// </param>
+        /// <returns>
+        ///     La cita con el id pasado como parametro
+        /// </returns>
         public Cita FindCita(int idcita)
         {
             return this.context.Citas.FirstOrDefault(z => z.IdCita == idcita);
 
         }
 
-        //Metodo que inserta una cita en la bdd con los datos pasados como parametros
+        /// <summary>
+        ///     Inserta en la base de datos una nueva cita con los datos pasados como parametros
+        /// </summary>
+        /// <param name="fechacita">La fecha de la cita</param>
+        /// <param name="telefonocontacto">El telefono de contacto</param>
+        /// <param name="nombreperro">El nombre del perro</param>
+        /// <param name="razaperro">La raza del perro</param>
+        /// <param name="motivocita">El motivo de la cita</param>
+        /// <param name="objetivocita">El objetivo de la cita</param>
         public void InsertCita(String fechacita, String telefonocontacto, String nombreperro, String razaperro, String motivocita, String objetivocita)
         {
             //Formateo la fecha para agregarla al objeto Cita
@@ -51,23 +70,29 @@ namespace AdiestramientoParaPerros.Repositories
             cita.MotivoCita = motivocita;
             cita.ObjetivoCita = objetivocita;
 
-            //Agrego el objeto a la coleccion que gestiona los datos en la bdd
             this.context.Citas.Add(cita);
             this.context.SaveChanges();
         }
 
-        //Metodo que modifica el objetivo y el motivo de una cita con los cambios pasados como parametros en la cita indicada en el id
+        /// <summary>
+        ///     Metodo que actualiza el motivo y el objetivo de la cita con el id pasado como parametro
+        /// </summary>
+        /// <param name="idcita">El id de la cita a actualizar</param>
+        /// <param name="motivocita">El nuevo motivo de la cita</param>
+        /// <param name="objetivocita">El nuevo motivo de la cita</param>
         public void UpdateCita(int idcita, String motivocita, String objetivocita)
         {
-            Cita cita =this.FindCita(idcita);
+            Cita cita = this.FindCita(idcita);
             cita.MotivoCita = motivocita;
             cita.ObjetivoCita = objetivocita;
 
             this.context.SaveChanges();
-           
         }
 
-        //Metodo que elimina una cita a partir del id pasado como parametro
+        /// <summary>
+        ///     Elimina la cita con el id indicado como parametro
+        /// </summary>
+        /// <param name="idcita">El id de la cita a eliminar</param>
         public void DeleteCita(int idcita)
         {
             Cita cita = this.FindCita(idcita);
@@ -78,6 +103,17 @@ namespace AdiestramientoParaPerros.Repositories
 
         }
 
+        public List<Cita> GetCitasEmpleado(int idempleado)
+        {
+            return null;
+        }
+
+        public List<Cita> GetCitasCliente(int idcliente)
+        {
+            return null;
+        }
+
+     
         #endregion
     }
 }

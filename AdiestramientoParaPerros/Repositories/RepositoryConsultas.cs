@@ -21,6 +21,12 @@ namespace AdiestramientoParaPerros.Repositories
         #region AAD para consultas
 
         //Metodo que recibe los datos necesarios para insertar una consulta en el a base de datos
+        /// <summary>
+        ///     Inserta una consulta con los datos pasados commo parametros
+        /// </summary>
+        /// <param name="emailcontacto">El email de contacto</param>
+        /// <param name="telefonocontacto">El telefono de contacto</param>
+        /// <param name="textoconsulta">El texto con la consulta</param>        
         public void InsertConsulta(String emailcontacto, String telefonocontacto, String textoconsulta)
         {       
             Consulta consulta = new Consulta();

@@ -32,9 +32,9 @@ namespace AdiestramientoParaPerros.Models
         [Column("OBJETIVO")]
         public String ObjetivoCita { get; set; }
 
-        //[Column("IDUSUARIO")]
-        //public int IdUsuario { get; set; }
-        
+        [Column("IDCLIENTE")]
+        public int IdCliente { get; set; }
+
         //[Column("IDEMPLEADO")]
         //public int IdEmpleado { get; set; }
     }

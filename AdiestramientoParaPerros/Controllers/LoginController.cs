@@ -68,7 +68,7 @@ namespace AdiestramientoParaPerros.Controllers
         public IActionResult SignUp(String nombre, String apellidos, String nombreusuario, String telefono, String correo, String password)
         {
             this.repo.RegistrarUsuario(nombre, apellidos, nombreusuario, telefono, correo, password);
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("LogInIndex");
         }
         #endregion
 

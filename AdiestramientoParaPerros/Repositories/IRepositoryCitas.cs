@@ -55,7 +55,8 @@ namespace AdiestramientoParaPerros.Repositories
         /// <param name="razaperro">La raza del perro</param>
         /// <param name="motivocita">El motivo de la cita</param>
         /// <param name="objetivocita">El objetivo de la cita</param>
-        void InsertCita(String fechacita, String telefonocontacto, String nombreperro, String razaperro, String motivocita, String objetivocita);
+        /// <param name="idcliente">El id del Cliente que pidio la cita</param>
+
 
         /// <summary>
         ///     Metodo que actualiza el motivo y el objetivo de la cita con el id pasado como parametro
@@ -70,6 +71,12 @@ namespace AdiestramientoParaPerros.Repositories
         /// </summary>
         /// <param name="idcita">El id de la cita a eliminar</param>
         void DeleteCita(int cita);
+
+        /// <summary>
+        ///     Devuelve el Id mas alto de la tabla citas mas 1
+        /// </summary>
+        /// <returns>El id mas 1</returns>
+        int GetMaxIdCita();
 
     }
 }

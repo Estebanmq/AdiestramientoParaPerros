@@ -56,19 +56,22 @@ namespace AdiestramientoParaPerros.Repositories
         /// <param name="razaperro">La raza del perro</param>
         /// <param name="motivocita">El motivo de la cita</param>
         /// <param name="objetivocita">El objetivo de la cita</param>
-        public void InsertCita(String fechacita, String telefonocontacto, String nombreperro, String razaperro, String motivocita, String objetivocita)
+        /// <param name="idcliente">El id del cliente que pidio la cita</param>
+        public void InsertCita(String fechacita, String telefonocontacto, String nombreperro, String razaperro, String motivocita, String objetivocita, int idcliente)
         {
             //Formateo la fecha para agregarla al objeto Cita
             DateTime fecha = DateTime.ParseExact(fechacita, "d/M/yyyy", System.Globalization.CultureInfo.InvariantCulture);
 
             //Objeto Cita para trabajar sobre la Base de datos
             Cita cita = new Cita();
+            cita.IdCita = this.GetMaxIdCita();
             cita.FechaCita = fecha;
             cita.TelefonoContacto = telefonocontacto;
             cita.NombrePerro = nombreperro;
             cita.RazaPerro = razaperro;
             cita.MotivoCita = motivocita;
             cita.ObjetivoCita = objetivocita;
+            cita.IdCliente = idcliente;
 
             this.context.Citas.Add(cita);
             this.context.SaveChanges();
@@ -124,10 +127,22 @@ namespace AdiestramientoParaPerros.Repositories
         /// </returns>
         public List<Cita> GetCitasCliente(int idcliente)
         {
-            return null;
+            var consulta = from datos in this.context.Citas
+                           where datos.IdCliente == idcliente
+                           select datos;
+            return consulta.ToList();
         }
 
-     
+        /// <summary>
+        ///     Devuelve el Id mas alto de la tabla citas mas 1
+        /// </summary>
+        /// <returns>El id mas 1</returns>
+        public int GetMaxIdCita()
+        {
+            return this.context.Citas.Max(x => x.IdCita) + 1;
+        }
+
+
         #endregion
     }
 }

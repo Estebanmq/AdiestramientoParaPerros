@@ -81,7 +81,8 @@ namespace AdiestramientoParaPerros.Controllers
         public IActionResult ConcertarCita(String fechacita, String telefonocontacto, String nombreperro, String razaperro, String motivocita, String objetivocita)
         {
 
-            this.repo.InsertCita(fechacita, telefonocontacto, nombreperro, razaperro, motivocita, objetivocita);
+            //El id tiene que ser del session usuario registrado
+            this.repo.InsertCita(fechacita, telefonocontacto, nombreperro, razaperro, motivocita, objetivocita, 4);
 
             return RedirectToAction("ListadoCitas");
         }
@@ -93,16 +94,17 @@ namespace AdiestramientoParaPerros.Controllers
         {
 
 
-            if (!this.IsLogued())
-            {
-                return RedirectToAction("NoRegistradoCitas", "Errors");
-            }
-            else
-            {
-                List<Cita> citas = this.repo.GetCitas();
+            //if (!this.IsLogued())
+            //{
+            //    return RedirectToAction("NoRegistradoCitas", "Errors");
+            //}
+            //else
+            //{
+                //AQUI RECUPERAR EL ID DEL USUARIO REGISTRADO
+                List<Cita> citas = this.repo.GetCitasCliente(4);
 
                 return View(citas);
-            }
+            //}
         } 
         #endregion
 

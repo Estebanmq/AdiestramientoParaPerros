@@ -1,4 +1,5 @@
-﻿using AdiestramientoParaPerros.Helpers;
+﻿using AdiestramientoParaPerros.Extensions;
+using AdiestramientoParaPerros.Helpers;
 using AdiestramientoParaPerros.Models;
 using AdiestramientoParaPerros.Repositories;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
@@ -35,16 +36,16 @@ namespace AdiestramientoParaPerros.Controllers
             Usuario usuario = this.repo.LogIn(email, password);
             if(usuario != null)
             {
-                HttpContext.Session.SetInt32("IDUSUARIO", usuario.IdUsuario);
-                HttpContext.Session.SetInt32("IDROL", usuario.IdRol);
+                HttpContext.Session.SetObject("USUARIO", usuario);
+
+                //HttpContext.Session.SetInt32("IDUSUARIO", usuario.IdUsuario);
+                //HttpContext.Session.SetInt32("IDROL", usuario.IdRol);
+
                 if (usuario.IdRol == 0)
                 {
                     //Aqui redirigir a Perfil
                     return RedirectToAction("Index", "Home");
-                } else if (usuario.IdRol == 1)
-                {
-                    return RedirectToAction("IndexEmpleados", "HomeEmpleados");
-                } else if(usuario.IdRol == 2)
+                } else
                 {
                     return RedirectToAction("IndexEmpleados", "HomeEmpleados");
                 }
@@ -53,7 +54,6 @@ namespace AdiestramientoParaPerros.Controllers
             {
                 return RedirectToAction("AccesoDenegado","Errors");
             }
-            return View();
         }
         #endregion
 
@@ -69,6 +69,17 @@ namespace AdiestramientoParaPerros.Controllers
         {
             this.repo.RegistrarUsuario(nombre, apellidos, nombreusuario, telefono, correo, password);
             return RedirectToAction("Index","Home");
+        }
+        #endregion
+
+        #region Controlador Close Session
+        public IActionResult CloseSession()
+        {
+            if(HttpContext.Session.GetString("USUARIO") != null)
+            {
+                HttpContext.Session.Remove("USUARIO");
+            }
+            return RedirectToAction("Index","HomeController");
         }
         #endregion
     }

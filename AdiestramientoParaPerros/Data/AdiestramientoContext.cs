@@ -11,19 +11,29 @@ namespace AdiestramientoParaPerros.Data
     {
         public AdiestramientoContext(DbContextOptions<AdiestramientoContext> options ) : base(options) { } 
 
-        //Set que almacena todas las citas de la bdd
+        /// <summary>
+        ///     Set que almacena todas las citas de la bdd
+        /// </summary>
         public DbSet<Cita> Citas { get; set; }
 
-        //Set que almacena todas las consultas de la bdd
+        /// <summary>
+        ///     Set que almacena todas las consultas de la bdd
+        /// </summary>
         public DbSet<Consulta> Consultas { get; set; }
 
-        //Set que almacena todos los estados de la bdd
+        /// <summary>
+        ///     Set que almacena todos los estados de la bdd
+        /// </summary>
         public DbSet<Estado> Estados { get; set; }
 
-        //Set que almacena todos los usuarios de las bdd
+        /// <summary>
+        ///     Set que almacena todos los usuarios de las bdd
+        /// </summary>
         public DbSet<Usuario> Usuarios { get; set; }
 
-        //Set que almacena todos los roles de la bdd
+        /// <summary>
+        ///     Set que almacena todos los roles de la bdd
+        /// </summary>
         public DbSet<Rol> Roles { get; set; }
     }
 }

@@ -43,7 +43,10 @@ namespace AdiestramientoParaPerros.Repositories
             this.context.SaveChanges();
         }
 
-        //Metodo que devuelve todas las consulta
+        /// <summary>
+        ///     Devuelve todas las consultas almacenadas en la bdd
+        /// </summary>        
+        /// <returns></returns>
         public List<Consulta> GetConsultas()
         {
             var consulta = from datos in this.context.Consultas
@@ -51,14 +54,22 @@ namespace AdiestramientoParaPerros.Repositories
             return consulta.ToList();
         }
 
-        //Metodo que encuentra una consulta por un id
+        /// <summary>
+        ///     Devuelve una consulta a partir de su id 
+        /// </summary>
+        /// <param name="idconsulta">El id de la consulta</param>
+        /// <returns>Laconsulta si la encuentra, si no, null</returns>
         public Consulta FindConsulta(int idconsulta)
         {
             return this.context.Consultas.FirstOrDefault(z => z.IdConsulta == idconsulta);
         }
 
 
-        //Método que cambia el estaod de una consulta
+         /// <summary>
+        ///     Actualiza el estado de una consulta con el id pasado como parametro
+        /// </summary>
+        /// <param name="estado">El id del estado nuevo</param>
+        /// <param name="idconsulta">El id de la consulta</param>
         public void UpdateEstadoConsulta(int estado, int idconsulta)
         {
             Consulta consulta = this.FindConsulta(idconsulta);
@@ -68,7 +79,11 @@ namespace AdiestramientoParaPerros.Repositories
         #endregion
 
         #region AAD Estados
-        //MEtodo que devuelve todos los estados
+        
+        /// <summary>
+        ///     Devuelve todos los estados para las consultas
+        /// </summary>        
+        /// <returns>Una lista con todos los estados</returns>
         public List<Estado> GetEstados()
         {
             var consulta = from datos in this.context.Estados
@@ -76,7 +91,12 @@ namespace AdiestramientoParaPerros.Repositories
             return consulta.ToList();
         }
 
-        //Metodo que devuelve un estado a partir de su id
+        /// <summary>
+        ///     Devuelve un estado a partir de su id
+        /// </summary>
+        /// <param name="id">El id del estado</param>
+        /// <returns>El Estado si lo encuentra.
+        /// Null si no lo encuentra</returns>
         public Estado FindEstado(int id)
         {
             return this.context.Estados.FirstOrDefault(z => z.IdEstado == id);

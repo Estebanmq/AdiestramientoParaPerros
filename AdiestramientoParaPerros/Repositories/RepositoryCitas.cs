@@ -103,11 +103,25 @@ namespace AdiestramientoParaPerros.Repositories
 
         }
 
+        /// <summary>
+        ///     Devuelve todas las citas asignadas al empleado con el id pasado como parametro
+        /// </summary>
+        /// <param name="idempleado">El id del empleado</param>
+        /// <returns>
+        ///     Una lista de Cita        
+        /// </returns>
         public List<Cita> GetCitasEmpleado(int idempleado)
         {
             return null;
         }
 
+        /// <summary>
+        ///     Devuelve todas las citas del cliente con el id pasado como parametro
+        /// </summary>
+        /// <param name="idcliente">El id del cliente</param>
+        /// <returns>
+        ///     Una lista de Cita
+        /// </returns>
         public List<Cita> GetCitasCliente(int idcliente)
         {
             return null;

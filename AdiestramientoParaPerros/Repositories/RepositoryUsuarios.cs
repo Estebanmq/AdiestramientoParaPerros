@@ -103,7 +103,10 @@ namespace AdiestramientoParaPerros.Repositories
         #endregion
 
         #region AAD EMPLEADOS
-
+        /// <summary>
+        ///     Devuelve todos los empleados en la bdd
+        /// </summary>
+        /// <returns>Una lista de Usuario con todos los empleados</returns>
         public List<Usuario> GetEmpleados()
         {
             var consulta = from datos in this.context.Usuarios
@@ -112,8 +115,15 @@ namespace AdiestramientoParaPerros.Repositories
             return consulta.ToList();
         }
 
-        // SUJETO A CAMBIOS
-        public void InsertEmpleado(String nombre, String apellidos, String correo, String telefono, int rol)
+        /// <summary>
+        ///     Inserta un empleado nuevo en la base de datos con los datos pasaods como parametros
+        /// </summary>
+        /// <param name="nombre">El nombre del empleado</param>
+        /// <param name="apellidos">Los apellidos del empleado</param>
+        /// <param name="correo">El correo del empleado</param>
+        /// <param name="telefono">El telefono del empleado</param>
+        /// <param name="idrol">El id del rol que tendra el empleado</param>
+        public void InsertEmpleado(String nombre, String apellidos, String correo, String telefono, int idrol)
         {
           
             Usuario usuario = new Usuario();
@@ -124,7 +134,7 @@ namespace AdiestramientoParaPerros.Repositories
             usuario.Correo = correo;
             usuario.Telefono = telefono;
             usuario.Password = HelperPassword.GetHashedPassword(nombre.ToLower()+apellidos.ToLower());
-            usuario.IdRol = rol;
+            usuario.IdRol = idrol;
 
             this.context.Usuarios.Add(usuario);
             this.context.SaveChanges();
@@ -132,21 +142,31 @@ namespace AdiestramientoParaPerros.Repositories
         #endregion
 
         #region AAD A ROLES
-        //Metodo que devuelve todos los roles de la bdd
+        /// <summary>
+        ///     Devuelve una lista de Rol con todos los roles en la base de datos
+        /// </summary>
+        /// <returns>Una lista con todos los roles</returns>        
         public List<Rol> GetRoles()
         {
             var consulta = from datos in this.context.Roles
                            select datos;
             return consulta.ToList();
         }
-       
-        //Metodo que devuelve un rol a partir de su id
+
+        /// <summary>
+        ///     Devuelve un rol con el id pasado como parametro
+        /// </summary>
+        /// <param name="idrol">El id del rol a buscar</param>
+        /// <returns>Un objeto Rol con el rol</returns>
         public Rol FindRol(int idrol)
         {
             return this.context.Roles.FirstOrDefault(z => z.IdRol == idrol);
         }
 
-        //Metodo que devuelve los roles de empleados
+        /// <summary>
+        ///     Devuelve una lista con los roles que corresponden a empleados
+        /// </summary>
+        /// <returns>Una lista de Rol con los roles de empleados</returns>        
         public List<Rol>GetRolesEmpleados()
         {
             var consulta = from datos in this.context.Roles

@@ -70,5 +70,6 @@ namespace AdiestramientoParaPerros.Repositories
         /// </summary>
         /// <param name="idcita">El id de la cita a eliminar</param>
         void DeleteCita(int cita);
+
     }
 }

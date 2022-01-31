@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AdiestramientoParaPerros.Repositories
 {
-    public class RepositoryConsultas
+    public class RepositoryConsultas : IRepositoryConsultas
     {
 
         private AdiestramientoContext context;
@@ -17,10 +17,8 @@ namespace AdiestramientoParaPerros.Repositories
             this.context = context;
         }
 
+        #region AAD Consultas
 
-        #region AAD para consultas
-
-        //Metodo que recibe los datos necesarios para insertar una consulta en el a base de datos
         /// <summary>
         ///     Inserta una consulta con los datos pasados commo parametros
         /// </summary>

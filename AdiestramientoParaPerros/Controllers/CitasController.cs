@@ -61,17 +61,14 @@ namespace AdiestramientoParaPerros.Controllers
         //Recibe la fecha seleccionada en el calendario
         public IActionResult ConcertarCita(String fecha)
         {
-            if (!this.IsLogued())
-            {
+            if (HttpContext.Session.GetString("USUARIO") == null)
                 return RedirectToAction("NoRegistradoCitas", "Errors");
-            }
-            else
-            {
-                //Convierto el String a DateTime para mostrar la fecha en formato dd/MM/yyyy
-                DateTime dateFecha = DateTime.ParseExact(fecha, "ddd MMM dd yyyy HH:mm:ss ", System.Globalization.CultureInfo.InvariantCulture);
-                ViewBag.fechacita = dateFecha.Day + "/" + dateFecha.Month + "/" + dateFecha.Year;
-                return View();
-            }
+            
+            //Convierto el String a DateTime para mostrar la fecha en formato dd/MM/yyyy
+            DateTime dateFecha = DateTime.ParseExact(fecha, "ddd MMM dd yyyy HH:mm:ss ", System.Globalization.CultureInfo.InvariantCulture);
+            ViewBag.fechacita = dateFecha.Day + "/" + dateFecha.Month + "/" + dateFecha.Year;
+            return View();
+            
         }
 
         //Metodo post de la vista ConcertarCita
@@ -93,31 +90,16 @@ namespace AdiestramientoParaPerros.Controllers
         public IActionResult ListadoCitas()
         {
 
-
-            //if (!this.IsLogued())
-            //{
-            //    return RedirectToAction("NoRegistradoCitas", "Errors");
-            //}
-            //else
-            //{
-                //AQUI RECUPERAR EL ID DEL USUARIO REGISTRADO
-                List<Cita> citas = this.repo.GetCitasCliente(4);
-
-                return View(citas);
-            //}
+           if(HttpContext.Session.GetString("USUARIO") == null)
+                return RedirectToAction("NoRegistradoCitas", "Errors");
+            
+           //AQUI RECUPERAR EL ID DEL USUARIO REGISTRADO
+            List<Cita> citas = this.repo.GetCitasCliente(4);
+            return View(citas);
+            
         } 
         #endregion
 
-        private bool IsLogued()
-        {
-            if (HttpContext.Session.GetInt32("IDUSUARIO") == null || HttpContext.Session.GetInt32("IDROL") == null)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
+     
     }
 }

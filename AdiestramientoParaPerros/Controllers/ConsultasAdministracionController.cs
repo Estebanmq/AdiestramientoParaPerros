@@ -1,4 +1,5 @@
-﻿using AdiestramientoParaPerros.Models;
+﻿using AdiestramientoParaPerros.Extensions;
+using AdiestramientoParaPerros.Models;
 using AdiestramientoParaPerros.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -22,8 +23,8 @@ namespace AdiestramientoParaPerros.Controllers
         #region Controlador Vista Listado de consultas
         public IActionResult ConsultasListado()
         {
-            if(this.IsLogued() && this.IsEmpleado()) {
-
+            if (HttpContext.Session.GetString("USUARIO") != null && HttpContext.Session.GetObject<Usuario>("USUARIO").IdRol != 0)
+            { 
                 //Esto se debe de poner en otro sitio investigar (esta en trello)
                 ViewBag.Layout = "_LayoutEmpleados";
 
@@ -46,7 +47,7 @@ namespace AdiestramientoParaPerros.Controllers
         #region Controlador Vista Detalles de consulta
         public IActionResult DetallesConsulta(int idconsulta)
         {
-            if (this.IsLogued() && this.IsEmpleado())
+            if (HttpContext.Session.GetString("USUARIO") != null && HttpContext.Session.GetObject<Usuario>("USUARIO").IdRol != 0)
             {
                 List<Estado> estados = this.repo.GetEstados();
                 ViewBag.Estados = estados;
@@ -69,40 +70,6 @@ namespace AdiestramientoParaPerros.Controllers
         }
         #endregion
 
-        private bool IsLogued()
-        {
-            if (HttpContext.Session.GetInt32("IDUSUARIO") == null || HttpContext.Session.GetInt32("IDROL") == null)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-
-        private bool IsEmpleado()
-        {
-            if (HttpContext.Session.GetInt32("IDROL") == 0)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-
-        private bool IsAdmin()
-        {
-            if (HttpContext.Session.GetInt32("IDROL") == 2)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+     
     }
 }

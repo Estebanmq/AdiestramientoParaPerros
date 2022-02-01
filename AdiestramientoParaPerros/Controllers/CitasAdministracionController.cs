@@ -22,20 +22,19 @@ namespace AdiestramientoParaPerros.Controllers
         #region Controlador Vista Listado de citas
         public IActionResult CitasListado()
         {
-            if(this.IsLogued() && this.IsEmpleado())
-            {
-                //Aqui cargar las citas del empleado logeado !!!!!
-
-                //Esto se debe de poner en otro sitio investigar (esta en trello)
-                ViewBag.Layout = "_LayoutEmpleados";
-
-                List<Cita> citas = this.repo.GetCitas();
-
-                return View(citas);
-            } else
-            {
+            if(HttpContext.Session.GetString("USUARIO") == null)
                 return RedirectToAction("AccesoDenegado", "Errors");
-            }
+
+            //Aqui cargar las citas del empleado logeado !!!!!
+
+            //Esto se debe de poner en otro sitio investigar (esta en trello)
+            ViewBag.Layout = "_LayoutEmpleados";
+
+            List<Cita> citas = this.repo.GetCitas();
+
+            return View(citas);
+            
+            
 
            
         }
@@ -45,20 +44,18 @@ namespace AdiestramientoParaPerros.Controllers
 
         public IActionResult DetallesCita(int idcita)
         {
-
-            if (this.IsLogued() && this.IsEmpleado()) 
-            { 
-                //Esto se debe de poner en otro sitio investigar (esta en trello)
-                ViewBag.Layout = "_LayoutEmpleados";
-
-                Cita cita = this.repo.FindCita(idcita);
-    
-                return View(cita);
-            } 
-            else 
-            {
+            if(HttpContext.Session.GetString("USUARIO") == null)
                 return RedirectToAction("AccesoDenegado", "Errors");
-            }
+
+          
+            //Esto se debe de poner en otro sitio investigar (esta en trello)
+            ViewBag.Layout = "_LayoutEmpleados";
+
+            Cita cita = this.repo.FindCita(idcita);
+    
+            return View(cita);
+            
+            
         }
 
         #endregion
@@ -67,19 +64,17 @@ namespace AdiestramientoParaPerros.Controllers
 
         public IActionResult ModificarCita(int idcita)
         {
-            if (this.IsLogued() && this.IsEmpleado())
-            {
-                //Esto se debe de poner en otro sitio investigar (esta en trello)
-                ViewBag.Layout = "_LayoutEmpleados";
-
-                Cita cita = this.repo.FindCita(idcita);
-
-                return View(cita);
-            } 
-            else
-            {
+            if(HttpContext.Session.GetString("USUARIO") == null) 
                 return RedirectToAction("AccesoDenegado", "Errors");
-            }
+
+            //Esto se debe de poner en otro sitio investigar (esta en trello)
+            ViewBag.Layout = "_LayoutEmpleados";
+
+            Cita cita = this.repo.FindCita(idcita);
+
+            return View(cita);
+          
+            
         }
 
         [HttpPost]
@@ -90,38 +85,5 @@ namespace AdiestramientoParaPerros.Controllers
         }
         #endregion
 
-        private bool IsLogued()
-        {
-            if (HttpContext.Session.GetInt32("IDUSUARIO") == null || HttpContext.Session.GetInt32("IDROL") == null)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-
-        private bool IsEmpleado()
-        {
-            if(HttpContext.Session.GetInt32("IDROL") == 0)
-            {
-                return false;
-            } else
-            {
-                return true;
-            }
-        }
-
-        private bool IsAdmin()
-        {
-            if(HttpContext.Session.GetInt32("IDROL") == 2)
-            {
-                return true;
-            } else
-            {
-                return false;
-            }
-        }
     }
 }

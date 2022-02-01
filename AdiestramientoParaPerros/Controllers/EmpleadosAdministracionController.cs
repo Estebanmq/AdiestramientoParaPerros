@@ -1,4 +1,5 @@
-﻿using AdiestramientoParaPerros.Models;
+﻿using AdiestramientoParaPerros.Extensions;
+using AdiestramientoParaPerros.Models;
 using AdiestramientoParaPerros.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -22,7 +23,7 @@ namespace AdiestramientoParaPerros.Controllers
         #region Controlador Vista Listado de empleados
         public IActionResult EmpleadosListado()
         {
-            if(this.IsLogued() && this.IsAdmin())
+            if (HttpContext.Session.GetString("USUARIO") != null && HttpContext.Session.GetObject<Usuario>("USUARIO").IdRol == 2)
             {
 
                 //Esto se debe de poner en otro sitio investigar (esta en trello)
@@ -50,7 +51,7 @@ namespace AdiestramientoParaPerros.Controllers
         #region Controlador Vista Agregar Empleado
         public IActionResult AgregarEmpleado()
         {
-            if (this.IsLogued() && this.IsAdmin())
+            if (HttpContext.Session.GetString("USUARIO") != null && HttpContext.Session.GetObject<Usuario>("USUARIO").IdRol == 2)
             {
                 //Esto se debe de poner en otro sitio investigar (esta en trello)
                 ViewBag.Layout = "_LayoutEmpleados";
@@ -75,41 +76,5 @@ namespace AdiestramientoParaPerros.Controllers
             return RedirectToAction("EmpleadosListado");
         }
         #endregion
-
-        private bool IsLogued()
-        {
-            if (HttpContext.Session.GetInt32("IDUSUARIO") == null || HttpContext.Session.GetInt32("IDROL") == null)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-
-        private bool IsEmpleado()
-        {
-            if (HttpContext.Session.GetInt32("IDROL") == 0)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-
-        private bool IsAdmin()
-        {
-            if (HttpContext.Session.GetInt32("IDROL") == 2)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
     }
 }

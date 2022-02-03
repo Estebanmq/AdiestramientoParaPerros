@@ -139,7 +139,16 @@ namespace AdiestramientoParaPerros.Repositories
         /// <returns>El id mas 1</returns>
         public int GetMaxIdCita()
         {
+            if (this.context.Citas.Count() == 0)
+                return 1;
             return this.context.Citas.Max(x => x.IdCita) + 1;
+        }
+
+        public List<DateTime> GetDiasOcupados()
+        {
+            var consulta = from datos in this.context.Citas
+                           select datos.FechaCita;
+            return consulta.ToList();
         }
 
 

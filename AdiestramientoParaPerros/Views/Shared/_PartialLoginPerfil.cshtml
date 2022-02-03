@@ -1,0 +1,15 @@
+﻿@if (Context.Session.GetString("USUARIO") == null)
+{
+    <li class="nav-item">
+        <a asp-controller="Login" asp-action="LoginIndex" class="nav-link">Login</a>
+    </li>
+
+}
+else
+{
+
+    <li class="nav-item">
+        <a asp-controller="Login" asp-action="Profile" class="nav-link">Perfil</a>
+    </li>
+
+}

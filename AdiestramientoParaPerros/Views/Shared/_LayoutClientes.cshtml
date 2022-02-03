@@ -48,24 +48,10 @@
                         </li>
                         @RenderSection("navlinks",false)
 
-                        <li class="nav-item">
-                            <a asp-controller="Login" asp-action="LoginIndex" class="nav-link" >Login</a>
-                        </li>
 
-                        @*Ejemplo disabled
-                            <li class="nav-item">
-                                <a class="nav-link disabled">Disabled</a>
-                            </li>*@
+                        <partial name="_PartialLoginPerfil" /> 
 
-                        @*Ejemplo dropdown*@
-                        @*<li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
-                                <ul class="dropdown-menu" aria-labelledby="dropdown08">
-                                    <li><a class="dropdown-item" href="#">Logo</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </li>*@
+                
                     </ul>
                 </div>
             </div>

@@ -78,5 +78,8 @@ namespace AdiestramientoParaPerros.Repositories
         /// <returns>El id mas 1</returns>
         int GetMaxIdCita();
 
+
+        List<DateTime> GetDiasOcupados();
+
     }
 }

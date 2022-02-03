@@ -25,18 +25,9 @@ namespace AdiestramientoParaPerros.Controllers
             //Modelo para la vista CitasIndex
             //CAMBIO: solo una lista de datetime
             Calendario cal = new Calendario();
-            cal.DiasOcupados = new List<DateTime>();
-
-            //Lista de prueba para los dias ocupados
-            //BBDD
-            cal.DiasOcupados.Add(new DateTime(2021, 12, 25));
-            cal.DiasOcupados.Add(new DateTime(2022, 01, 12));
-            cal.DiasOcupados.Add(new DateTime(2022, 01, 09));
-            cal.DiasOcupados.Add(new DateTime(2021, 12, 28));
+            cal.DiasOcupados = this.repo.GetDiasOcupados();
 
             return View(cal);
-            
-
         
         }
 

@@ -1,5 +1,4 @@
-﻿using AdiestramientoParaPerros.Extensions;
-using AdiestramientoParaPerros.Models;
+﻿using AdiestramientoParaPerros.Models;
 using AdiestramientoParaPerros.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -23,21 +22,17 @@ namespace AdiestramientoParaPerros.Controllers
         #region Controlador Vista Listado de empleados
         public IActionResult EmpleadosListado()
         {
-            if (HttpContext.Session.GetString("USUARIO") != null && HttpContext.Session.GetObject<Usuario>("USUARIO").IdRol == 2)
-            {
+           
 
-                //Esto se debe de poner en otro sitio investigar (esta en trello)
-                ViewBag.Layout = "_LayoutEmpleados";
+            //Esto se debe de poner en otro sitio investigar (esta en trello)
+            ViewBag.Layout = "_LayoutEmpleados";
 
-                ViewBag.Roles = this.repo.GetRoles();
+            ViewBag.Roles = this.repo.GetRoles();
 
-                List<Usuario> usuariosempleados = this.repo.GetEmpleados();
+            List<Usuario> usuariosempleados = this.repo.GetEmpleados();
 
-                return View(usuariosempleados);
-            } else
-            {
-                return RedirectToAction("AccesoDenegado", "Errors");
-            }
+            return View(usuariosempleados);
+          
         }
 
         [HttpPost]
@@ -51,18 +46,14 @@ namespace AdiestramientoParaPerros.Controllers
         #region Controlador Vista Agregar Empleado
         public IActionResult AgregarEmpleado()
         {
-            if (HttpContext.Session.GetString("USUARIO") != null && HttpContext.Session.GetObject<Usuario>("USUARIO").IdRol == 2)
-            {
-                //Esto se debe de poner en otro sitio investigar (esta en trello)
-                ViewBag.Layout = "_LayoutEmpleados";
+          
+            //Esto se debe de poner en otro sitio investigar (esta en trello)
+            ViewBag.Layout = "_LayoutEmpleados";
 
-                ViewBag.Roles = this.repo.GetRolesEmpleados();
+            ViewBag.Roles = this.repo.GetRolesEmpleados();
 
-                return View();
-            } else
-            {
-                return RedirectToAction("AccesoDenegado", "Errors");
-            }
+            return View();
+        
 
         }
 

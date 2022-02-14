@@ -1,88 +1,110 @@
 ﻿
 <!doctype html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.88.1">
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="EstebanMQ">
     @RenderSection("title", false)
 
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/product/">
-
-    <!-- Bootstrap core CSS -->
     <link href="~/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link href="~/css/dashboard.css" rel="stylesheet" />
+    <link href="~/css/admin.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     @RenderSection("estilos", false)
-
-
-    <!-- Favicons -->
-    @*<link rel="apple-touch-icon" href="/docs/5.1/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-        <link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-        <link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-        <link rel="manifest" href="/docs/5.1/assets/img/favicons/manifest.json">
-        <link rel="mask-icon" href="/docs/5.1/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
-        <link rel="icon" href="/docs/5.1/assets/img/favicons/favicon.ico">
-        <meta name="theme-color" content="#7952b3">*@
-
 </head>
+
 <body>
+    <div class="wrapper">
+        <nav id="sidebar" class="sidebar js-sidebar">
+            <div class="sidebar-content js-simplebar">
+                <p class="sidebar-brand">
+                    Administración
+                </p>
 
-    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Administración</a>
-        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-nav">
-            <div class="nav-item text-nowrap">
-                <a class="nav-link px-3" href="#">Sign out</a>
+                <ul class="sidebar-nav">
+                    <li class="sidebar-header">
+                        Herramientas
+                    </li>
+
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" asp-controller="CitasAdministracion" asp-action="CitasListado">
+                            <i class="align-middle" data-feather="calendar"></i> <span class="align-middle">Citas</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" asp-controller="ConsultasAdministracion" asp-action="ConsultasListado">
+                            <i class="align-middle" data-feather="message-square"></i> <span class="align-middle">Consultas</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" asp-controller="EmpleadosAdministracion" asp-action="EmpleadosListado">
+                            <i class="align-middle" data-feather="users"></i> <span class="align-middle">Empleados</span>
+                        </a>
+                    </li>
+
+                </ul>
             </div>
-        </div>
-    </header>
+        </nav>
 
-    <div class="container-fluid">
-        <div class="row">
-            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-                <div class="position-sticky pt-3">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" asp-controller="HomeEmpleados" asp-action="IndexEmpleados">
-                                Home                            
+        <div class="main">
+            <nav class="navbar navbar-expand navbar-light navbar-bg">
+                <a class="sidebar-toggle js-sidebar-toggle">
+                    <i class="hamburger align-self-center"></i>
+                </a>
+
+                <div class="navbar-collapse collapse">
+                    <ul class="navbar-nav navbar-align">
+                        <li class="nav-item dropdown">
+
+                            <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
+                               data-bs-toggle="dropdown">
+                                <!-- <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1"
+                                    alt="Charles Hall" />-->
+                                <span class="text-dark">Usuario</span>
                             </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <a class="dropdown-item" href="pages-profile.html">
+                                    <i class="align-middle me-1"
+                                       data-feather="user"></i> Perfil
+                                    
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="align-middle me-1"
+                                       data-feather="log-out"></i>Log out
+                                </a>
+                            </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="CitasAdministracion" asp-action="CitasListado">
-                                Citas
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="ConsultasAdministracion" asp-action="ConsultasListado">
-                                Consultas
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="EmpleadosAdministracion" asp-action="EmpleadosListado">
-                               
-                                Empleados
-                            </a>
-                        </li>
-                    </ul> 
+                    </ul>
                 </div>
             </nav>
 
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-
+            <main class="content">
                 @RenderBody()
-                <!--<canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>-->
-   
             </main>
+
+
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row text-muted">
+                        <div class="col-6 text-start">
+                            <p class="mb-0">
+                                <a class="text-muted" href="#"
+                                   target="_blank"><strong>Adiestramiento de perros 2022</strong></a> &copy;
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </footer>
         </div>
     </div>
 
     <script src="~/js/jquery-3.6.0.min.js"></script>
+    <script src="~/js/app.js"></script>
     <script src="~/js/bootstrap.min.js"></script>
     <script src="~/js/bootstrap.bundle.min.js"></script>
     <script>

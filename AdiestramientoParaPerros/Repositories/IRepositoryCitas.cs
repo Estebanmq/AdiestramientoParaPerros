@@ -78,8 +78,17 @@ namespace AdiestramientoParaPerros.Repositories
         /// <returns>El id mas 1</returns>
         int GetMaxIdCita();
 
-
+        /// <summary>
+        /// Devuelve una lista de datetime con los dias ocupados
+        /// </summary>
+        /// <returns>Una lista de DateTime con los dias ocupados</returns>
         List<DateTime> GetDiasOcupados();
+
+        /// <summary>
+        /// Devuelve una lista de enteros con el resumen de total de citas y total de usuarios tipo cliente
+        /// </summary>
+        /// <returns>Una lista de enteros con el resumen</returns>
+        List<int> GetResumenUsuariosCitas();
 
     }
 }

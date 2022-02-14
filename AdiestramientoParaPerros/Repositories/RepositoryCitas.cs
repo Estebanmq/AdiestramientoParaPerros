@@ -144,11 +144,34 @@ namespace AdiestramientoParaPerros.Repositories
             return this.context.Citas.Max(x => x.IdCita) + 1;
         }
 
+        /// <summary>
+        /// Devuelve una lista de datetime con los dias ocupados
+        /// </summary>
+        /// <returns>Una lista de DateTime con los dias ocupados</returns>
         public List<DateTime> GetDiasOcupados()
         {
             var consulta = from datos in this.context.Citas
                            select datos.FechaCita;
             return consulta.ToList();
+        }
+
+        /// <summary>
+        /// Devuelve una lista de enteros con el resumen de total de citas y total de usuarios tipo cliente
+        /// </summary>
+        /// <returns>Una lista de enteros con el resumen</returns>
+        public List<int> GetResumenUsuariosCitas()
+        {
+            List<int> resumen = new List<int>();
+            int totalCitas = (from datos in this.context.Citas
+                            select datos).Count();
+            resumen.Add(totalCitas);
+
+            int totalClientes = (from datos in this.context.Usuarios
+                                 where datos.IdRol == 0
+                                 select datos).Count();
+            resumen.Add(totalClientes);
+
+            return resumen;
         }
 
 

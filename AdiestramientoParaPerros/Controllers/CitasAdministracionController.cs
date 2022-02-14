@@ -22,8 +22,7 @@ namespace AdiestramientoParaPerros.Controllers
         #region Controlador Vista Listado de citas
         public IActionResult CitasListado()
         {
-            if(HttpContext.Session.GetString("USUARIO") == null)
-                return RedirectToAction("AccesoDenegado", "Errors");
+         
 
             //Aqui cargar las citas del empleado logeado !!!!!
 
@@ -34,18 +33,14 @@ namespace AdiestramientoParaPerros.Controllers
 
             return View(citas);
             
-            
-
            
         }
         #endregion
 
         #region Controlador Vista Detalles de cita
-
         public IActionResult DetallesCita(int idcita)
         {
-            if(HttpContext.Session.GetString("USUARIO") == null)
-                return RedirectToAction("AccesoDenegado", "Errors");
+         
 
           
             //Esto se debe de poner en otro sitio investigar (esta en trello)
@@ -61,11 +56,9 @@ namespace AdiestramientoParaPerros.Controllers
         #endregion
 
         #region Controlador Vista Modificar cita
-
         public IActionResult ModificarCita(int idcita)
         {
-            if(HttpContext.Session.GetString("USUARIO") == null) 
-                return RedirectToAction("AccesoDenegado", "Errors");
+         
 
             //Esto se debe de poner en otro sitio investigar (esta en trello)
             ViewBag.Layout = "_LayoutEmpleados";
@@ -84,6 +77,28 @@ namespace AdiestramientoParaPerros.Controllers
             return RedirectToAction("CitasListado");
         }
         #endregion
+
+        #region Controlador Vista Listado de citas
+        public IActionResult DeleteCita(int idcita, String fechacita)
+        {
+            //Esto se debe de poner en otro sitio investigar (esta en trello)
+            ViewBag.Layout = "_LayoutEmpleados";
+
+            ViewBag.IdCita = idcita;
+            ViewBag.FechaCita = fechacita;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult DeleteCita(int idcita, bool elimina)
+        {
+            if(elimina)
+            {
+                this.repo.DeleteCita(idcita);
+            }
+            return RedirectToAction("CitasListado");
+        }
+        #endregion  
 
     }
 }

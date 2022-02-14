@@ -1,0 +1,23 @@
+﻿@{
+    Layout = ViewBag.Layout;
+}
+
+@section title {
+    <title>Delete cita</title>
+}
+
+<h1>¿Está seguro que desa eliminar la cita <strong>@ViewBag.IdCita</strong> con fecha <strong>@ViewBag.FechaCita</strong>?</h1>
+<form method="post">
+    <input type="hidden" name="idcita" value="@ViewBag.IdCita" />
+
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-2">
+            <button class="btn btn-danger" type="submit" name="elimina" value="true">Eliminar</button>
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-success" type="submit" name="elimina" value="false">Cancelar</button>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</form>

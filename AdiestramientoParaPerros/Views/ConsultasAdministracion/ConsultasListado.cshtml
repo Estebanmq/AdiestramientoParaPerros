@@ -9,28 +9,23 @@
     <title>Consultas</title>
 }
 
-
 @foreach (Consulta c in Model)
 {
-    <div class="card m-2">
-        <div class="card-header">
-            @estados.Find(z => z.IdEstado == c.Estado).TextoEstado
-        </div>
-        <div class="card-body">
-            @if (c.TelefonoContacto != "")
-            {
-                <h5 class="card-title">Teléfono: @c.TelefonoContacto</h5>
-            }
-            @if (c.EmailContacto != "")
-            {
-                <h5 class="card-title">Email: @c.EmailContacto</h5>
-            }
-            <p class="card-text">@c.TextoConsulta</p>
-
-            <a class="btn btn-info" asp-controller="ConsultasAdministracion" asp-action="DetallesConsulta" asp-route-idconsulta="@c.IdConsulta">
-                Detalles
-            </a>
-
+    <div class="container-fluid p-0">
+        <div class="row">
+            <div class="col-12 col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">@estados.Find(z => z.IdEstado == c.Estado).TextoEstado</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text"><strong>Teléfono:</strong>  @c.TelefonoContacto </p>
+                        <p class="card-text"><strong>Email:</strong> @c.EmailContacto </p>
+                        <p class="card-text">@c.TextoConsulta</p>
+                        <a  class="btn btn-primary" asp-controller="ConsultasAdministracion" asp-action="DetallesConsulta" asp-route-idconsulta="@c.IdConsulta">Detalles</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 }

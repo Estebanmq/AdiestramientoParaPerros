@@ -23,69 +23,113 @@
 }
 
 @section navlinks {
-    <li class="nav-item">
-        <a class="nav-link" href="#container-concertar-cita">Concertar Cita</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#container-quienessomos-contacto">Quienes Somos</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#container-quienessomos-contacto">Contacto</a>
-    </li>
+    <a class="nav-item nav-link active" asp-controller="Home" asp-action="Index">Inicio</a>
+    <a href="about.html" class="nav-item nav-link">Concertar Cita</a>
+    <a class="nav-item nav-link" asp-controller="QuienesSomos" asp-action="QuienesSomosVista">Quienes Somos</a>
+    <a class="nav-item nav-link" asp-controller="" asp-action="">Contacto</a>
+    <a href="service.html" class="nav-item nav-link">Iniciar Sesión</a>
 }
-
-<!-- #region Contenedor imagen de portada -->
-<div id="header-home" class="bg-overlay w-100">
-    <div class="row text-center">
-        <h1>Logo</h1>
-        <h4>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        </h4>
+<!-- Carousel Start -->
+<div class="container-fluid p-0 pb-5">
+    <div class="owl-carousel header-carousel position-relative">
+        <div class="owl-carousel-item position-relative">
+            <img class="img-fluid" src="~/images/coverimg.jpg" alt="">
+            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(53, 53, 53, .7);">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-lg-8 text-center">
+                            <h1 class="display-3 text-white animated slideInDown mb-4">AdiestriPerros</h1>
+                            <p class="fs-5 fw-medium text-white mb-4 pb-2">El espacio para conectar con tu perro</p>
+                            <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Sobre nosotros</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 </div>
-<!-- #endregion Cntenedor imagen de portada -->
-<!-- #region Contenedores contenido home -->
-<div class="m-5">
+<!-- Carousel End -->
+<!-- Service Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="section-title text-center">
+            <h1 class="display-5 mb-5">Que ofrecemos</h1>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="service-item">
+                    <div class="overflow-hidden">
+                        <img class="img-fluid" src="~/images/coverimg.jpg" alt="">
+                    </div>
+                    <div class="p-4 text-center border border-5 border-light border-top-0">
+                        <h4 class="mb-3">Atención personalizada</h4>
+                        <p>Una atención ajustada a cada caso especifico</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="service-item">
+                    <div class="overflow-hidden">
+                        <img class="img-fluid" src="~/images/coverimg.jpg" alt="">
+                    </div>
+                    <div class="p-4 text-center border border-5 border-light border-top-0">
+                        <h4 class="mb-3">Sesiones a medida</h4>
+                        <p>Desde donde tu quieras, cuando tu quieras</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="service-item">
+                    <div class="overflow-hidden">
+                        <img class="img-fluid" src="~/images/coverimg.jpg" alt="">
+                    </div>
+                    <div class="p-4 text-center border border-5 border-light border-top-0">
+                        <h4 class="mb-3">Cuidado especial</h4>
+                        <p>Con cada cita y cada cliente sin excepciones</p>
+                    </div>
+                </div>
+            </div>
 
-    <!-- #region Jumbotron concertar cita -->
-    <div class="p-5 mb-4 bg-light rounded-3" id="container-concertar-cita">
-        <div class="container-fluid py-5">
-            <h1 class="display-5 fw-bold">¿Lorem ipsum dolor sit?</h1>
-            <p class="col-md-8 fs-4">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae iste exercitationem quos maxime cupiditate soluta architecto possimus
-            </p>
-            <a asp-controller="Citas" asp-action="CitasIndex" class="btn btn-primary btn-lg" >Concertar citas</a>
         </div>
     </div>
-    <!--#endregion -->
-    <!-- #region Contenedor quienes somos y contacto-->
-    <div class="row align-items-md-stretch" id="container-quienessomos-contacto">
-
-        <!-- #region Jumbotron quienes somos -->
-        <div class="col-md-6">
-            <div class="h-100 p-5 text-white bg-dark rounded-3">
-                <h2>Quienes somos</h2>
-                <p>
-                    Lorem ipsum ea illo error rerum magnam accusantium consequatur tempore iusto, laborum natus, eos reprehenderit.
-                </p>
-                <a asp-controller="QuienesSomos" asp-action="QuienesSomosVista" class="btn btn-outline-light">Saber mas</a>
-            </div>
-        </div>
-        <!-- #endregion -->
-        <!-- #region Jumbotron contacto-->
-        <div class="col-md-6">
-            <div class="h-100 p-5 bg-light border rounded-3">
-                <h2>Contacta con nosotros</h2>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae iste exercitationem quos maxime cupiditate soluta architecto possimus,
-                    ea illo error rerum magnam accusantium consequatur tempore iusto, laborum natus, eos reprehenderit.
-                </p>
-                <a asp-controller="Contacto" asp-action="ContactoVista" class="btn btn-outline-secondary">Contacto</a>
-            </div>
-        </div>
-        <!-- #endregion -->
-    </div>
-    <!-- #endregion -->
 </div>
-<!-- #endregion -->
+<!-- Service End -->
+<!-- Quote Start -->
+<div class="container-fluid bg-light overflow-hidden my-5 px-lg-0">
+    <div class="container quote px-lg-0">
+        <div class="row g-0 mx-lg-0">
+            <div class="col-lg-6 ps-lg-0" style="min-height: 400px;">
+                <div class="position-relative h-100">
+                    <img class="position-absolute img-fluid w-100 h-100" src="~/images/citas-header-img.jpg" style="object-fit: cover;" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6 quote-text py-5 wow fadeIn" data-wow-delay="0.5s">
+                <div class="p-lg-5 pe-lg-0">
+                    <div class="section-title text-start">
+                        <h1 class="display-5 mb-4">Contacto</h1>
+                    </div>
+                    <p class="mb-4 pb-2">¿Quieres preguntarnos directamente? Contacta con nosotros sin compromiso!</p>
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-12 col-sm-6">
+                                <input type="text" class="form-control border-0" placeholder="Email de contacto" style="height: 55px;">
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <input type="email" class="form-control border-0" placeholder="Teléfono de contacto" style="height: 55px;">
+                            </div>
+
+                            <div class="col-12">
+                                <textarea class="form-control border-0" placeholder="Tu consulta"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Contactar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Quote End -->

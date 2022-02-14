@@ -9,9 +9,9 @@
     <title>Administración de citas</title>
 }
 
-<h1>Listado de citas</h1>
+<h1>Citas de USUARIO</h1>
 
-<div class="dropdown">
+@*<div class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
         Filtro
     </button>
@@ -20,7 +20,7 @@
         <li><a class="dropdown-item" href="#">Raza</a></li>
         <li><a class="dropdown-item" href="#">Cerradas</a></li>
     </ul>
-</div>
+</div>*@
 
 <table class="table">
     <thead>
@@ -29,36 +29,42 @@
             <th>Perro</th>
             <th>Raza</th>
             <th>Teléfono</th>
-            <th>Detalles</th>
-            <th>Modificar</th>
-            <th>Eliminar</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (Cita cita in Model)
         {
             <tr>
-                <td>@cita.FechaCita</td>
+                <td>@cita.FechaCita.ToShortDateString()</td>
                 <td>@cita.NombrePerro</td>
                 <td>@cita.RazaPerro</td>
                 <td>@cita.TelefonoContacto</td>
                 <td>
-                    <!--Aqui enviar el id de la cita -->
-                    <a asp-controller="CitasAdministracion" asp-action="DetallesCita" asp-route-idcita="@cita.IdCita" class="btn btn-info">
-                        Detalles
-                    </a>
-                </td>
-                <td>
-                    <!--Aqui enviar el id de la cita -->
+                    
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
+                               data-bs-toggle="dropdown"><span class="text-dark">Opciones </span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <a class="dropdown-item" asp-controller="CitasAdministracion" asp-action="DetallesCita" asp-route-idcita="@cita.IdCita">
+                                    <i class="align-middle me-1"
+                                       data-feather="info"></i> Detalles
+                                </a>
 
-                    <a asp-controller="CitasAdministracion" asp-action="ModificarCita" asp-route-idcita="@cita.IdCita" class="btn btn-warning">
-                        Modificar
-                    </a>
-                </td>
-                <td>
-                    <a class="btn btn-danger">
-                        Eliminar
-                    </a>
+                                <a class="dropdown-item" asp-controller="CitasAdministracion" asp-action="ModificarCita" asp-route-idcita="@cita.IdCita">
+                                    <i class="align-middle me-1"
+                                       data-feather="edit"></i> Modificar
+                                </a>
+                              
+                                <a class="dropdown-item" asp-controller="CitasAdministracion" asp-action="DeleteCita" asp-route-idcita="@cita.IdCita" asp-route-fechacita="@cita.FechaCita.ToShortDateString()">
+                                    <i class="align-middle me-1"
+                                       data-feather="delete"></i> Eliminar
+                                </a>
+                              
+                            </div>
+                        </div>
+                
                 </td>
             </tr>
         }

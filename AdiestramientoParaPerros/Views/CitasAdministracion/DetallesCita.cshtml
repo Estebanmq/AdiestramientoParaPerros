@@ -9,20 +9,21 @@
 }
 
 <h1>Detalles de la cita</h1>
+<div class="row">
+    <div class="col-12 col-md-12">
+        <div class="card">
 
-<div class="card">
-    <h5 class="card-header">Detalles</h5>
-    <div class="card-body">
-        <h5 class="card-title">Fecha de la cita: @Model.FechaCita</h5>
-        <h5 class="card-title">Nombre del perro: @Model.NombrePerro - Raza: @Model.RazaPerro </h5>
-        <h5 class="card-title">Teléfono de contacto: @Model.TelefonoContacto</h5>
+            <div class="card-body">
+                <p class="card-text"><strong>Fecha de la cita:</strong> @Model.FechaCita</p>
+                <p class="card-text"><strong>Nombre y raza del perro:</strong> @Model.NombrePerro - @Model.RazaPerro </p>
+                <p class="card-text"><strong>Teléfono de contacto:</strong> @Model.TelefonoContacto </p>
+                <p class="card-text"><strong>Motivo de la cita:</strong></p>
+                <p class="card-text">@Model.MotivoCita</p>
+                <p class="card-text"><strong>Objetivo de la cita:</strong></p>
+                <p class="card-text">@Model.ObjetivoCita</p>
 
-        <h5 class="card-title">Motivo de la cita:</h5>
-        <p class="card-text">@Model.MotivoCita</p>
-
-        <h5 class="card-title">Objetivo de la cita:</h5>
-        <p class="card-text">@Model.ObjetivoCita</p>
-
-        <a asp-controller="CitasAdministracion" asp-action="ModificarCita" asp-route-idcita="@Model.IdCita" class="btn btn-primary">Modificar</a>
+                <a asp-controller="CitasAdministracion" asp-action="ModificarCita" asp-route-idcita="@Model.IdCita" class="btn btn-primary">Modificar</a>
+            </div>
+        </div>
     </div>
 </div>

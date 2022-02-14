@@ -1,5 +1,4 @@
-﻿using AdiestramientoParaPerros.Extensions;
-using AdiestramientoParaPerros.Helpers;
+﻿using AdiestramientoParaPerros.Helpers;
 using AdiestramientoParaPerros.Models;
 using AdiestramientoParaPerros.Repositories;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
@@ -36,7 +35,6 @@ namespace AdiestramientoParaPerros.Controllers
             Usuario usuario = this.repo.LogIn(email, password);
             if(usuario != null)
             {
-                HttpContext.Session.SetObject("USUARIO", usuario);
 
                 //HttpContext.Session.SetInt32("IDUSUARIO", usuario.IdUsuario);
                 //HttpContext.Session.SetInt32("IDROL", usuario.IdRol);
@@ -75,10 +73,7 @@ namespace AdiestramientoParaPerros.Controllers
         #region Controlador Close Session
         public IActionResult CloseSession()
         {
-            if(HttpContext.Session.GetString("USUARIO") != null)
-            {
-                HttpContext.Session.Remove("USUARIO");
-            }
+           
             return RedirectToAction("Index","HomeController");
         }
         #endregion

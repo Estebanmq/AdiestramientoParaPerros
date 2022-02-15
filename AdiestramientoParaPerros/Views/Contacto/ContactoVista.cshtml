@@ -3,42 +3,60 @@
 }
 
 
+
 @section navlinks {
-    <li class="nav-item">
-        <a asp-controller="Citas" asp-action="CitasIndex" class="nav-link">Concertar Cita</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" asp-controller="QuienesSomos" asp-action="QuienesSomosVista">Quienes Somos</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" asp-controller="Contacto" asp-action="ContactoVista">Contacto</a>
-    </li>
+    <a class="nav-item nav-link" asp-controller="Home" asp-action="Index">Inicio</a>
+    <a class="nav-item nav-link" asp-controller="Citas" asp-action="CitasIndex">Concertar Cita</a>
+    <a class="nav-item nav-link" asp-controller="QuienesSomos" asp-action="QuienesSomosVista">Quienes Somos</a>
+    <a class="nav-item nav-link active" asp-controller="Contacto" asp-action="ContactoVista">Contacto</a>
 }
 
-<h1>Contacto</h1>
+<!-- Page Header Start -->
+<div class="container-fluid page-header py-5 mb-5">
+    <div class="container py-5">
+        <h1 class="display-3 text-white mb-3 animated slideInDown">Contacto</h1>
 
-<div class="row m-5">
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
-        <form method="post">
-            <div class="input-group mb-3">
-                <span class="input-group-text">Email de contacto</span>
-                <input name="emailcontacto" type="text" class="form-control" placeholder="nombre@ejemplo.com" aria-label="Email de contacto">
-            </div>
-
-            <div class="input-group mb-3">
-                <input name="telefonocontacto" type="text" class="form-control" placeholder="Teléfono" aria-label="Email de contacto">
-                <span class="input-group-text">Teléfono de contacto</span>
-            </div>
-
-            <div class="input-group">
-                <span class="input-group-text">Mensaje</span>
-                <textarea maxlength="255" class="form-control" name="textoconsulta" aria-label="Mensaje"></textarea>
-            </div>
-
-            <button class="w-100 btn btn-lg btn-primary m-3" type="submit">Envía mensaje</button>
-        </form>
     </div>
-    <div class="col-md-3"></div>
 </div>
+<!-- Page Header End -->
+<!-- Contact Start -->
+<div class="container-fluid bg-light overflow-hidden px-lg-0" style="margin: 6rem 0;">
+    <div class="container contact px-lg-0">
+        <div class="row g-0 mx-lg-0">
+            <div class="col-lg-6 contact-text py-5 wow fadeIn" data-wow-delay="0.5s">
+                <div class="p-lg-5 ps-lg-0">
+                    <div class="section-title text-start">
+                        <h1 class="display-5 mb-4">Contactanos</h1>
+                    </div>
+                    <p class="mb-4">Preguntanos las dudas que tengas sin ningún compromiso! Estamos a su disposición</p>
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-12 col-sm-6">
+                                <input type="text" class="form-control border-0" placeholder="Email de contacto" style="height: 55px;">
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <input type="email" class="form-control border-0" placeholder="Teléfono de contacto" style="height: 55px;">
+                            </div>
 
+                            <div class="col-12">
+                                <textarea class="form-control border-0" placeholder="Tu consulta"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Contactar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-6 pe-lg-0" style="min-height: 400px;">
+                <div class="position-relative h-100">
+                    <iframe class="position-absolute w-100 h-100" style="object-fit: cover;"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3038.511773349827!2d-3.6523691850753117!3d40.39751207936747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4225e8ff764297%3A0xe65b1da855dfafd4!2sColegio%20Tajamar!5e0!3m2!1ses!2ses!4v1644940160041!5m2!1ses!2ses"
+                            frameborder="0" allowfullscreen="" aria-hidden="false"
+                            tabindex="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->

@@ -6,20 +6,20 @@
 
 
 @section navlinks {
-    <li class="nav-item">
-        <a asp-controller="Citas" asp-action="CitasIndex" class="nav-link">Concertar Cita</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" asp-controller="QuienesSomos" asp-action="QuienesSomosVista">Quienes Somos</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" asp-controller="Contacto" asp-action="ContactoVista">Contacto</a>
-    </li>
+    <a class="nav-item nav-link" asp-controller="Home" asp-action="Index">Inicio</a>
+    <a class="nav-item nav-link active" asp-controller="Citas" asp-action="CitasIndex">Concertar Cita</a>
+    <a class="nav-item nav-link" asp-controller="QuienesSomos" asp-action="QuienesSomosVista">Quienes Somos</a>
+    <a class="nav-item nav-link" asp-controller="Contacto" asp-action="ContactoVista">Contacto</a>
 }
 
-<h1>
-    Citas concertadas
-</h1>
+
+<!-- Page Header Start -->
+<div class="container-fluid page-header py-5 ">
+    <div class="container py-5">
+        <h1 class="display-3 text-white mb-3 animated slideInDown">Tus citas</h1>
+    </div>
+</div>
+<!-- Page Header End -->
 
 @if (Model != null)
 {
@@ -27,7 +27,7 @@
     {
         <div class="card m-5">
             <div class="card-header">
-                Fecha de la cita: @c.FechaCita.Date
+                Fecha de la cita: @c.FechaCita.Date.ToShortDateString()
             </div>
             <div class="card-body">
                 <h5 class="card-title">Cita para: @c.NombrePerro</h5>
@@ -37,7 +37,8 @@
         </div>
     }
 
-} else
+}
+else
 {
     <h2>No tienes citas</h2>
 }

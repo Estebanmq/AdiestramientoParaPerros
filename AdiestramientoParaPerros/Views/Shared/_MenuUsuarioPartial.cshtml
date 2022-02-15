@@ -1,0 +1,17 @@
+﻿@if (Context.User.Identity.IsAuthenticated == true)
+{
+    if (Context.User.IsInRole("0") == false)
+    {
+        <a class="nav-item nav-link" asp-controller="HomeEmpleados" asp-action="IndexEmpleados">Panel Empleados</a>
+    }
+    else
+    {
+        <a class="nav-item nav-link" asp-controller="HomeEmpleados" asp-action="IndexEmpleados">Perfil</a>      
+    }
+    <a class="nav-item nav-link" asp-controller="Manage" asp-action="CerrarSesion">Cerrar Sesión</a>
+
+}
+else
+{
+    <a class="nav-item nav-link" asp-controller="Manage" asp-action="PerfilUsuario">Iniciar Sesión</a>
+}

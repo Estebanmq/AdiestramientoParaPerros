@@ -244,7 +244,7 @@
 }
 
 .page-header {
-    background: linear-gradient(rgba(53, 53, 53, .7), rgba(53, 53, 53, .7)), url(../img/carousel-1.jpg) center center no-repeat;
+    background: linear-gradient(rgba(53, 53, 53, .7), rgba(53, 53, 53, .7)), url(../images/coverimg.jpg) center center no-repeat;
     background-size: cover;
 }
 
@@ -562,7 +562,7 @@
 
 /*** Footer ***/
 .footer {
-    background: linear-gradient(rgba(53, 53, 53, .7), rgba(53, 53, 53, .7)), url(../img/footer.jpg) center center no-repeat;
+    background: linear-gradient(rgba(53, 53, 53, .7), rgba(53, 53, 53, .7)), url(../images/coverimg.jpg) center center no-repeat;
     background-size: cover;
 }
 

@@ -1,5 +1,6 @@
 using AdiestramientoParaPerros.Data;
 using AdiestramientoParaPerros.Repositories;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -27,6 +28,17 @@ namespace AdiestramientoParaPerros
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            //Configuracion de autenticacion
+            services.AddAuthentication(options =>
+            {
+                options.DefaultSignInScheme =
+                CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultAuthenticateScheme =
+                CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme =
+                CookieAuthenticationDefaults.AuthenticationScheme;
+            }).AddCookie();
+
 
             //Configuracion de la base de datos
             String cadena = this.Configuration.GetConnectionString("cadenaazureadiestramiento");
@@ -46,7 +58,8 @@ namespace AdiestramientoParaPerros
                 options.IdleTimeout = TimeSpan.FromMinutes(60);
             });
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(options => options.EnableEndpointRouting = false).AddSessionStateTempDataProvider();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,14 +74,24 @@ namespace AdiestramientoParaPerros
 
             app.UseStaticFiles();
 
+            app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseSession();
-
-            app.UseEndpoints(endpoints =>
+            app.UseMvc(routes =>
             {
-                endpoints.MapControllerRoute(
-                    name : "default" , pattern:"{controller=Home}/{action=Index}"    
-                );
+                routes.MapRoute(
+                    name : "default",
+                    template: "{controller=Home}/{action=Index}"
+                    );
             });
+
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllerRoute(
+            //        name : "default" , pattern:"{controller=Home}/{action=Index}"    
+            //    );
+            //});
         }
     }
 }

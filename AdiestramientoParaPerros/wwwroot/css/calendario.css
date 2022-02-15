@@ -183,12 +183,12 @@
 }
 
 .week .day.highlight span {
-  color: #2196f3;
+    color: #AB7442;
 }
 
 .week .day.selected span {
-  background: #2d6bb3;
-  color: white;
+    background: #AB7442;
+    color: white;
 }
 
 .week .day[disabled="disabled"] span {

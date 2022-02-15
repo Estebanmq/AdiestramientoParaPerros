@@ -1,0 +1,47 @@
+﻿@section title {
+    <title>Iniciar sesión</title>
+}
+
+
+@section navlinks {
+    <a class="nav-item nav-link" asp-controller="Home" asp-action="Index">Inicio</a>
+    <a class="nav-item nav-link active" asp-controller="Citas" asp-action="CitasIndex">Concertar Cita</a>
+    <a class="nav-item nav-link" asp-controller="QuienesSomos" asp-action="QuienesSomosVista">Quienes Somos</a>
+    <a class="nav-item nav-link" asp-controller="Contacto" asp-action="ContactoVista">Contacto</a>
+}
+
+<a asp-controller="HomeEmpleados" asp-action="IndexEmpleados" class="link-info">Ir a empleados</a>
+
+<div class="row m-5">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <form method="post">
+            <h1 class="h3 mb-3 fw-normal">Iniciar sesion</h1>
+            <div class="form-floating m-3">
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
+                <label for="floatingInput">Direccion de correo</label>
+            </div>
+            <div class="form-floating m-3">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+                <label for="floatingPassword">Contraseña</label>
+            </div>
+
+            <button class="w-100 btn btn-lg btn-primary m-3" type="submit">Iniciar sesión</button>
+        </form>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+<h1>@ViewBag.Mensaje</h1>
+
+<div class="row m-5">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <h1>
+            ¿No tiene cuenta? <a asp-controller="Manage" asp-action="Registrarse" class="link-info">Registrese</a>
+        </h1>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+

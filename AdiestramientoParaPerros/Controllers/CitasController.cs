@@ -52,8 +52,6 @@ namespace AdiestramientoParaPerros.Controllers
         //Recibe la fecha seleccionada en el calendario
         public IActionResult ConcertarCita(String fecha)
         {
-            if (HttpContext.Session.GetString("USUARIO") == null)
-                return RedirectToAction("NoRegistradoCitas", "Errors");
             
             //Convierto el String a DateTime para mostrar la fecha en formato dd/MM/yyyy
             DateTime dateFecha = DateTime.ParseExact(fecha, "ddd MMM dd yyyy HH:mm:ss ", System.Globalization.CultureInfo.InvariantCulture);
@@ -81,9 +79,7 @@ namespace AdiestramientoParaPerros.Controllers
         public IActionResult ListadoCitas()
         {
 
-           if(HttpContext.Session.GetString("USUARIO") == null)
-                return RedirectToAction("NoRegistradoCitas", "Errors");
-            
+       
            //AQUI RECUPERAR EL ID DEL USUARIO REGISTRADO
             List<Cita> citas = this.repo.GetCitasCliente(4);
             return View(citas);

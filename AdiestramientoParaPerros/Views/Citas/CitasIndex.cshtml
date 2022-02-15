@@ -5,20 +5,15 @@
 }
 
 @section estilos {
-    <link href="~/css/calendario.css" rel="stylesheet" />
+    <link href="~/css/calendario.css" rel="stylesheet" asp-append-version="true" />
     <link href="~/css/cover-img-style.css" rel="stylesheet" />
 }
 
 @section navlinks {
-    <li class="nav-item">
-        <a asp-controller="Citas" asp-action="CitasIndex" class="nav-link">Concertar Cita</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" asp-controller="QuienesSomos" asp-action="QuienesSomosVista">Quienes Somos</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" asp-controller="Contacto" asp-action="ContactoVista">Contacto</a>
-    </li>
+    <a class="nav-item nav-link" asp-controller="Home" asp-action="Index">Inicio</a>
+    <a class="nav-item nav-link active" asp-controller="Citas" asp-action="CitasIndex">Concertar Cita</a>
+    <a class="nav-item nav-link" asp-controller="QuienesSomos" asp-action="QuienesSomosVista">Quienes Somos</a>
+    <a class="nav-item nav-link" asp-controller="Contacto" asp-action="ContactoVista">Contacto</a>
 }
 
 @section scripts {
@@ -72,8 +67,7 @@
         var calendar = $('.calendar-wrapper').calendar({
             date: new Date(),
             onClickDate: selectDate,
-            showTodayButton: true,
-            todayButtonContent: "Hoy",
+            showTodayButton: false,
             prevButton: "<",
             nextButton: ">",
             min: new Date(),
@@ -102,28 +96,29 @@
     </script>
 }
 
-<div id="header-citas" class="bg-overlay">
-    <div class="row text-center">
-        <h2 class="text-white">
-            Si quieres, puedes concertar una cita con nosotros. Pidela ahora sin compromiso! Tambien puedes
-            <a asp-controller="Citas" asp-action="ListadoCitas" class="link-info">
+<!-- Page Header Start -->
+<div class="container-fluid page-header py-5 mb-5">
+    <div class="container py-5">
+        <h3 class="display-3 text-white mb-3 animated slideInDown">
+            ¿Estás interesado/a en concertar una cita con nosotros? Pidela ahora sin compromiso! Tambien puedes
+            <a asp-controller="Citas" asp-action="ListadoCitas">
                 consultar tus citas
             </a>
-        </h2>
-
+        </h3>
 
     </div>
 </div>
+<!-- Page Header End -->
 
 <!-- Wrapper para el calendario -->
-<div class="p-5 calendar-wrapper" id="calendar-wrapper"></div>
+<div class="p-5 calendar-wrapper wow fadeUp" id="calendar-wrapper"></div>
 
 <!-- Formulario para la fecha seleccionada -->
 <div class="container">
     <div class="col-md-12 text-center">
         <form method="post">
             <input type="text" name="cita" hidden />
-            <button type="submit" id="btnconcertarcita" class="btn btn-success" hidden>
+            <button type="submit" id="btnconcertarcita" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft" hidden>
                 Pedir cita
             </button>
         </form>

@@ -28,6 +28,14 @@ namespace AdiestramientoParaPerros.Repositories
         Usuario FindUsuarioEmail(String email);
 
         /// <summary>
+        ///     Devuelve un usuario por su id
+        /// </summary>
+        /// <param name="idusuario">El id del usuario a buscar</param>
+        /// <returns>El usuario si se ha encontrado.
+        /// Null si no se ha encontrado</returns>
+        Usuario FindUsuarioId(int idusuario);
+
+        /// <summary>
         ///     Inserta un usuario nuevo en la base de datos a partir de los valores pasados como parametros
         /// </summary>
         /// <param name="nombre">Nombre del usuario</param>

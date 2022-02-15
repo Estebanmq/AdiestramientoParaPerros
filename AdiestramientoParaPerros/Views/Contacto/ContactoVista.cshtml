@@ -29,17 +29,17 @@
                         <h1 class="display-5 mb-4">Contactanos</h1>
                     </div>
                     <p class="mb-4">Preguntanos las dudas que tengas sin ningún compromiso! Estamos a su disposición</p>
-                    <form>
+                    <form method="post">
                         <div class="row g-3">
                             <div class="col-12 col-sm-6">
-                                <input type="text" class="form-control border-0" placeholder="Email de contacto" style="height: 55px;">
+                                <input type="email" class="form-control border-0" name="emailcontacto" placeholder="Email de contacto" style="height: 55px;">
                             </div>
                             <div class="col-12 col-sm-6">
-                                <input type="email" class="form-control border-0" placeholder="Teléfono de contacto" style="height: 55px;">
+                                <input type="text" class="form-control border-0" name="telefonocontacto" placeholder="Teléfono de contacto" style="height: 55px;">
                             </div>
 
                             <div class="col-12">
-                                <textarea class="form-control border-0" placeholder="Tu consulta"></textarea>
+                                <textarea class="form-control border-0" name="textoconsulta" placeholder="Tu consulta"></textarea>
                             </div>
                             <div class="col-12">
                                 <button class="btn btn-primary w-100 py-3" type="submit">Contactar</button>

@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -94,6 +93,16 @@ namespace AdiestramientoParaPerros.Controllers
         public IActionResult PerfilUsuario()
         {
             return View();
+        }
+
+        [AuthorizeUsuarios]
+        public IActionResult PerfilEmpleado()
+        {
+            ViewBag.Layout = "_LayoutEmpleados";
+            ViewBag.Roles = this.repo.GetRoles();
+
+            Usuario usuario = this.repo.FindUsuarioId(int.Parse(HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value));
+            return View(usuario);
         }
         #endregion
 

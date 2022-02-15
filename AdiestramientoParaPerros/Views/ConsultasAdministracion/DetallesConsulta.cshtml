@@ -1,23 +1,27 @@
 ﻿@model Consulta
-@{ 
+@{
+    Layout = ViewBag.Layout;
     List<Estado> estados = ViewBag.Estados as List<Estado>;
 }
 
+@section title {
+    <title>Detalles consulta</title>
+}
 
 <div class="container m-3">
     <div class="card">
         <div class="card-body">
             <a class="btn btn-info float-end m-2" asp-controller="ConsultasAdministracion" asp-action="ConsultasListado">Volver</a>
-            <h3 class="card-title">Información de la consulta</h3>
-            <h5 class="card-subtitle p-1">Email: @Model.EmailContacto</h5>
-            <h5 class="card-subtitle p-1">Teléfono: @Model.TelefonoContacto</h5>
+            <p class="card-text"><strong>Email de contacto:</strong> @Model.EmailContacto</p>
+            <p class="card-text"><strong>Teléfono de contacto:</strong> @Model.TelefonoContacto</p>
+            
             <div class="row justify-content-center">
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                    <h4 class="box-title mt-2">Motivo de la consulta</h4>
-                    <p>@Model.TextoConsulta</p>
+                    <p class="card-text"><strong>Motivo de la consulta:</strong></p>
+                    <p class="card-text">@Model.TextoConsulta</p>
 
-                    <form method="post" class="w-25" >
-                        <input type="hidden" name="idconsulta" value="@Model.IdConsulta" />    
+                    <form method="post" class="w-25">
+                        <input type="hidden" name="idconsulta" value="@Model.IdConsulta" />
                         <div class="form-group">
                             <label>Estado</label>
                             <select class="form-select" name="estado">

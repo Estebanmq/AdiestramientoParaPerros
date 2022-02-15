@@ -9,6 +9,25 @@
     <title>Consultas</title>
 }
 
+<form method="post">
+    <div class="form-group mb-3">
+        <select name="idestado" class="form-select" required>
+            <option selected disabled>Selecciona un estado para filtrar</option>
+            <option value="-1">Mostrar todas</option>
+            @foreach (Estado estado in estados)
+            {
+                <option value="@estado.IdEstado">@estado.TextoEstado</option>
+            }
+        </select>
+    </div>
+    <div class="form-group mb-3">
+        <button type="submit" class="btn btn-primary">
+            Buscar
+        </button>
+    </div>
+
+
+</form>
 @foreach (Consulta c in Model)
 {
     <div class="container-fluid p-0">

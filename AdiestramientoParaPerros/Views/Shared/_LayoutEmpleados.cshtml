@@ -40,11 +40,7 @@
                         </a>
                     </li>
 
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" asp-controller="EmpleadosAdministracion" asp-action="EmpleadosListado">
-                            <i class="align-middle" data-feather="users"></i> <span class="align-middle">Empleados</span>
-                        </a>
-                    </li>
+                    <partial name="_AdminEmpleadosPartial" />s
 
                 </ul>
             </div>
@@ -64,15 +60,15 @@
                                data-bs-toggle="dropdown">
                                 <!-- <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1"
                                     alt="Charles Hall" />-->
-                                <span class="text-dark">Usuario</span>
+                                <span class="text-dark">@Context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name).Value</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
-                                <a class="dropdown-item" href="pages-profile.html">
+                                <a class="dropdown-item" asp-controller="Manage" asp-action="PerfilEmpleado">
                                     <i class="align-middle me-1"
                                        data-feather="user"></i> Perfil
                                     
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" asp-controller="Manage" asp-action="CerrarSesion">
                                     <i class="align-middle me-1"
                                        data-feather="log-out"></i>Log out
                                 </a>

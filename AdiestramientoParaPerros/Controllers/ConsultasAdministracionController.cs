@@ -20,19 +20,34 @@ namespace AdiestramientoParaPerros.Controllers
         }
 
         #region Controlador Vista Listado de consultas
-        public IActionResult ConsultasListado()
+        public IActionResult ConsultasListado(int? idestado)
         {
            
             //Esto se debe de poner en otro sitio investigar (esta en trello)
             ViewBag.Layout = "_LayoutEmpleados";
 
             ViewBag.Estados = this.repo.GetEstados();
+            List<Consulta> consultas;
+            if (idestado == null)
+                idestado = -1;
 
-            List<Consulta> consultas = this.repo.GetConsultas();
+            if (idestado.Value != -1)
+            {
+                consultas = this.repo.GetConsultasEstado(idestado.Value);
+            } else 
+            {
+                consultas = this.repo.GetConsultas();
+            }
 
             return View(consultas);
          
-        } 
+        }
+        
+        [HttpPost]
+        public IActionResult ConsultasListado(int idestado)
+        {    
+            return RedirectToAction("ConsultasListado", new { idestado = idestado});
+        }
 
 
         #endregion
@@ -41,7 +56,8 @@ namespace AdiestramientoParaPerros.Controllers
         #region Controlador Vista Detalles de consulta
         public IActionResult DetallesConsulta(int idconsulta)
         {
-        
+            ViewBag.Layout = "_LayoutEmpleados";
+
             List<Estado> estados = this.repo.GetEstados();
             ViewBag.Estados = estados;
 

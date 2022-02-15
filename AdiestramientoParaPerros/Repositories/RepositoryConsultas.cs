@@ -62,8 +62,21 @@ namespace AdiestramientoParaPerros.Repositories
             return this.context.Consultas.FirstOrDefault(z => z.IdConsulta == idconsulta);
         }
 
+        /// <summary>
+        /// Devuelve las consultas con el estado indicado como parametro
+        /// </summary>
+        /// <param name="idestado">El id del estado de las consultas</param>
+        /// <returns>La lista con las consultas</returns>
+        public List<Consulta> GetConsultasEstado(int idestado)
+        {
+            var consulta = from datos in this.context.Consultas
+                           where datos.Estado == idestado
+                           select datos;
+            return consulta.ToList();
+        }
 
-         /// <summary>
+
+        /// <summary>
         ///     Actualiza el estado de una consulta con el id pasado como parametro
         /// </summary>
         /// <param name="estado">El id del estado nuevo</param>
@@ -99,6 +112,8 @@ namespace AdiestramientoParaPerros.Repositories
         {
             return this.context.Estados.FirstOrDefault(z => z.IdEstado == id);
         }
+
+     
 
         #endregion
     }

@@ -26,6 +26,13 @@ namespace AdiestramientoParaPerros.Repositories
         List<Consulta> GetConsultas();
 
         /// <summary>
+        /// Devuelve las consultas con el estado indicado como parametro
+        /// </summary>
+        /// <param name="idestado">El id del estado de las consultas</param>
+        /// <returns>La lista con las consultas</returns>
+        List<Consulta> GetConsultasEstado(int idestado);
+
+        /// <summary>
         ///     Devuelve una consulta a partir de su id 
         /// </summary>
         /// <param name="idconsulta">El id de la consulta</param>

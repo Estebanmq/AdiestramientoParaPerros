@@ -1,0 +1,38 @@
+﻿@model Usuario
+@{
+    Layout = ViewBag.Layout;
+    List<Rol> roles = ViewBag.Roles as List<Rol>;
+
+}
+
+@section title {
+    <title>Perfil</title>
+}
+
+
+<div class="container-fluid p-0">
+    <div class="row">
+        <div class="col-md-12 col-xl-12">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h1 class="card-title mb-1">Tu perfil</h1>
+                </div>
+                <div class="card-body text-center">
+                    <img src="~/images/avatar.jpg" alt="@Model.Nombre @Model.Apellidos"
+                         class="img-fluid rounded-circle mb-2" width="128" height="128" />
+                    <h2 class="mb-1">@Model.Nombre @Model.Apellidos</h2>
+
+                    <div class="text-muted mb-2">@roles.Find(x => x.IdRol == Model.IdRol).NombreRol</div>
+
+                    <div>
+
+                        <a class="btn btn-primary btn-sm" href="#">
+                            <span data-feather="edit"></span> Editar perfil
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

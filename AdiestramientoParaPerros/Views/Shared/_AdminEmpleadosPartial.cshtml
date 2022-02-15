@@ -1,0 +1,8 @@
+﻿@if (Context.User.IsInRole("2") == true)
+{
+    <li class="sidebar-item">
+        <a class="sidebar-link" asp-controller="EmpleadosAdministracion" asp-action="EmpleadosListado">
+            <i class="align-middle" data-feather="users"></i> <span class="align-middle">Empleados</span>
+        </a>
+    </li>
+}

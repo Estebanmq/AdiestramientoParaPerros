@@ -2,17 +2,11 @@
     <title>Registro</title>
 }
 
-
 @section navlinks {
-    <li class="nav-item">
-        <a asp-controller="Citas" asp-action="CitasIndex" class="nav-link">Concertar Cita</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" asp-controller="QuienesSomos" asp-action="QuienesSomosVista">Quienes Somos</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" asp-controller="Contacto" asp-action="ContactoVista">Contacto</a>
-    </li>
+    <a class="nav-item nav-link" asp-controller="Home" asp-action="Index">Inicio</a>
+    <a class="nav-item nav-link" asp-controller="Citas" asp-action="CitasIndex">Concertar Cita</a>
+    <a class="nav-item nav-link" asp-controller="QuienesSomos" asp-action="QuienesSomosVista">Quienes Somos</a>
+    <a class="nav-item nav-link" asp-controller="Contacto" asp-action="ContactoVista">Contacto</a>
 }
 
 @section scripts {
@@ -27,7 +21,64 @@
         });
     </script>
 }
-<h1>Sign Up </h1>
+
+<!-- Page Header Start -->
+<div class="container-fluid page-header py-5 mb-5">
+    <div class="container py-5">
+        <h1 class="display-3 text-white mb-3 animated slideInDown">Registro</h1>
+    </div>
+</div>
+<!-- Page Header End -->
+<!-- Contact Start -->
+<div class="container-fluid bg-light overflow-hidden px-lg-0" style="margin: 6rem 0;">
+    <div class="container contact pt-5 px-lg-0">
+        <div class="row g-0 mx-lg-0">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8 p-4 wow fadeIn" data-wow-delay="0.5s">
+                <form method="post">
+                    <div class="row g-3">
+                        <div class="col-4">
+                            <input id="cajanombre" class="form-control border-0" style="height: 55px;" type="text" name="nombre" placeholder="Nombre *"
+                                   required maxlength="50" />
+                        </div>
+                        <div class="col-8">
+                            <input id="cajaapellidos" class="form-control border-0" style="height: 55px;" type="text" name="apellidos" placeholder="Apellidos"
+                                   maxlength="50" />
+                        </div>
+
+                        <div class="col-8">
+                            <input id="cajausuario" class="form-control border-0" style="height: 55px;" type="text" name="nombreusuario" placeholder="Usuario *"
+                                   required maxlength="50" />
+                        </div>
+                        <div class="col-4">
+                            <input id="cajatelefono" class="form-control border-0" style="height: 55px;" type="text" name="telefono" placeholder="Teléfono *"
+                                   title="Debe introducir un telefóno válido de 9 dígitos" minlength="9" maxlength="9" />
+                        </div>
+
+                        <div class="col-12">
+                            <input id="cajacorreo" class="form-control border-0" style="height: 55px;" type="email" name="correo" required placeholder="Correo electronico *"
+                                   pattern="^[^@("@")]+@("@")[^@("@")]+\.[a-zA-Z]{2,}$" title="Debe introducir un email valido. Ejemplo: email@email.com" maxlength="100" />
+                        </div>
+
+                        <div class="col-12">
+                            <input id="cajacontrasenya" class="form-control border-0" style="height: 55px;" type="password" name="password" placeholder="Contraseña *" required
+                                   pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" title="La contraseña debe de tener mínimo ocho caracteres, al menos una letra y un número" minlength="8" />
+                        </div>
+
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary w-100 py-3">
+                                Registrarse
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+<!--<h1>Sign Up </h1>
 
 <form class="form m-5" method="post">
     <div class="row mt-3">
@@ -72,36 +123,34 @@
                        pattern="^[^@("@")]+@("@")[^@("@")]+\.[a-zA-Z]{2,}$" title="Debe introducir un email valido. Ejemplo: email@email.com" maxlength="100" />
                 <label for="cajacorreo">Correo electronico *</label>
             </div>
+        </div>-->
+@*<div class="col-md-6">
+        <div class="form-floating">
+            <input id="cajacorreo" class="form-control" type="email" name="correo" required placeholder="Repita el correo electronico *"
+                   pattern="^[^@("@")]+@("@")[^@("@")]+\.[a-zA-Z]{2,}$" title="Debe introducir un email valido. Ejemplo: email@email.com" maxlength="100" />
+            <label for="cajacorreo">Repita el correo electronico</label>
         </div>
-        @*<div class="col-md-6">
-            <div class="form-floating">
-                <input id="cajacorreo" class="form-control" type="email" name="correo" required placeholder="Repita el correo electronico *"
-                       pattern="^[^@("@")]+@("@")[^@("@")]+\.[a-zA-Z]{2,}$" title="Debe introducir un email valido. Ejemplo: email@email.com" maxlength="100" />
-                <label for="cajacorreo">Repita el correo electronico</label>
-            </div>
 
-        </div>*@
-    </div>
+    </div>*@
+<!--</div>
 
-    <div class="form-floating mt-3">
-        <input id="cajacontrasenya" class="form-control" type="text" name="password" placeholder="Contraseña *" required
-               pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" title="La contraseña debe de tener mínimo ocho caracteres, al menos una letra y un número" minlength="8" />
-        <label for="cajacontrasenya">Contraseña *</label>
-    </div>
-    @*<div class="form-floating mt-3">
+<div class="form-floating mt-3">
+    <input id="cajacontrasenya" class="form-control" type="text" name="password" placeholder="Contraseña *" required
+           pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" title="La contraseña debe de tener mínimo ocho caracteres, al menos una letra y un número" minlength="8" />
+    <label for="cajacontrasenya">Contraseña *</label>
+</div>-->
+@*<div class="form-floating mt-3">
         <input id="cajacontrasenyarepeat" class="form-control" type="text" name="passwordrepeat" placeholder="Repita la contraseña"
                required />
         <label for="cajacontrasenyarepeat">Repita la contraseña</label>
     </div>*@
-    <div class="form-group mt-2">
-        <button class="btn btn-success">
-            Registrarse
-        </button>
-    </div>
-
-    <!-- Para validar los campos mirar:
-    <asp:CompareValidator ID="cfvNumeroCelular" runat="server"  ControlToCompare="txtCorreo" ControlToValidate="txtValidaCorreo" Operator="Equal" Type="Integer" Display="Dynamic" ValidationGroup="vgrCapturaDatos" ErrorMessage="El valor ingresado no coincide." ></asp:CompareValidator>
-    https://es.stackoverflow.com/questions/145654/comparar-dos-campos-de-entrada-c-comparevalidator
-    -->
-</form>
-
+<!--<div class="form-group mt-2">
+    <button class="btn btn-success">
+        Registrarse
+    </button>
+</div>-->
+<!-- Para validar los campos mirar:
+<asp:CompareValidator ID="cfvNumeroCelular" runat="server"  ControlToCompare="txtCorreo" ControlToValidate="txtValidaCorreo" Operator="Equal" Type="Integer" Display="Dynamic" ValidationGroup="vgrCapturaDatos" ErrorMessage="El valor ingresado no coincide." ></asp:CompareValidator>
+https://es.stackoverflow.com/questions/145654/comparar-dos-campos-de-entrada-c-comparevalidator
+-->
+<!--</form>-->

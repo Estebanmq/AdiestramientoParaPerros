@@ -149,6 +149,26 @@ namespace AdiestramientoParaPerros.Repositories
             this.context.Usuarios.Add(usuario);
             this.context.SaveChanges();
         }
+
+        /// <summary>
+        /// Actualiza los datos de un usuario
+        /// </summary>
+        /// <param name="nombre">El nuevo nombre</param>
+        /// <param name="apellidos">Los nuevos apellidos</param>
+        /// <param name="nombreusuario">El nuevo nombre de usuario</param>
+        /// <param name="telefono">El nuevo telefono</param>
+        /// <param name="correo">El nuevo correo</param>
+        public void ModificarUsuario(int idusuario, string nombre, string apellidos, string nombreusuario, string telefono, string correo)
+        {
+            Usuario usuario = this.FindUsuarioId(idusuario);
+            usuario.Nombre = nombre;
+            usuario.Apellidos = apellidos;
+            usuario.NombreUsuario = nombreusuario;
+            usuario.Telefono = telefono;
+            usuario.Correo = correo;
+            this.context.SaveChanges();
+        }
+
         #endregion
 
         #region AAD A ROLES

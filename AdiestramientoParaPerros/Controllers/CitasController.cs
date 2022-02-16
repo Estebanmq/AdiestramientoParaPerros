@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace AdiestramientoParaPerros.Controllers
 {
@@ -68,11 +69,13 @@ namespace AdiestramientoParaPerros.Controllers
         {
 
             //El id tiene que ser del session usuario registrado
-            this.repo.InsertCita(fechacita, telefonocontacto, nombreperro, razaperro, motivocita, objetivocita, 4);
+            this.repo.InsertCita(fechacita, telefonocontacto, nombreperro, razaperro, motivocita, objetivocita, int.Parse(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value));
 
             return RedirectToAction("ListadoCitas");
         }
         #endregion
+
+
 
 
         #region Controlador Vista ListadoCitas

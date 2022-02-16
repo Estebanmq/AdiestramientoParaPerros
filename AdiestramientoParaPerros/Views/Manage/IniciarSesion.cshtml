@@ -5,14 +5,54 @@
 
 @section navlinks {
     <a class="nav-item nav-link" asp-controller="Home" asp-action="Index">Inicio</a>
-    <a class="nav-item nav-link active" asp-controller="Citas" asp-action="CitasIndex">Concertar Cita</a>
+    <a class="nav-item nav-link" asp-controller="Citas" asp-action="CitasIndex">Concertar Cita</a>
     <a class="nav-item nav-link" asp-controller="QuienesSomos" asp-action="QuienesSomosVista">Quienes Somos</a>
     <a class="nav-item nav-link" asp-controller="Contacto" asp-action="ContactoVista">Contacto</a>
 }
 
-<a asp-controller="HomeEmpleados" asp-action="IndexEmpleados" class="link-info">Ir a empleados</a>
+<!-- Page Header Start -->
+<div class="container-fluid page-header py-5  mb-5">
+    <div class="container py-5">
+        <h1 class="display-3 text-white mb-3 animated slideInDown">Iniciar Sesion</h1>
+    </div>
+</div>
+<!-- Page Header End -->
 
-<div class="row m-5">
+<!-- Contact Start -->
+<div class="container-fluid bg-light overflow-hidden px-lg-0" style="margin: 6rem 0;">
+    <div class="container contact pt-5 px-lg-0">
+        <div class="row g-0 mx-lg-0">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8 p-4 wow fadeIn" data-wow-delay="0.5s">
+                <form method="post">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <input type="text" class="form-control border-0" placeholder="Direccion de correo" style="height: 55px;" name="email" />
+                        </div>
+                        <div class="col-12">
+                            <input type="password" class="form-control border-0" placeholder="Contraseña" style="height: 55px;" name="password" />
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary w-100 py-3">
+                                Iniciar Sesion
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <div class="mt-4 mb-4" style="border-bottom: 2px rgb(158, 158, 158) solid;"></div>
+                <h3 class="text-center">
+                    ¿No tiene cuenta? <a asp-controller="Manage" asp-action="Registrarse" class="link">Registrese</a>
+                </h3>
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+
+    </div>
+</div>
+<!-- Contact End -->
+
+
+@*<div class="row m-5">
     <div class="col-md-3"></div>
     <div class="col-md-6">
         <form method="post">
@@ -42,6 +82,6 @@
         </h1>
     </div>
     <div class="col-md-3"></div>
-</div>
+</div>*@
 
 

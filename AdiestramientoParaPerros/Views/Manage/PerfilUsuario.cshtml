@@ -1,8 +1,72 @@
-﻿@section navlinks {
-    <a class="nav-item nav-link active" asp-controller="Home" asp-action="Index">Inicio</a>
+﻿@model List<Cita>
+
+@section navlinks {
+    <a class="nav-item nav-link" asp-controller="Home" asp-action="Index">Inicio</a>
     <a class="nav-item nav-link" asp-controller="Citas" asp-action="CitasIndex">Concertar Cita</a>
     <a class="nav-item nav-link" asp-controller="QuienesSomos" asp-action="QuienesSomosVista">Quienes Somos</a>
     <a class="nav-item nav-link" asp-controller="Contacto" asp-action="ContactoVista">Contacto</a>
-    <a class="nav-item nav-link" asp-controller="Manage" asp-action="PerfilUsuario">Iniciar Sesión</a>
 }
-<h1>perfil sispau</h1>
+
+<!-- Page Header Start -->
+<div class="container-fluid page-header py-5 mb-5">
+    <div class="container py-5">
+        <h1 class="display-3 text-white mb-3 animated slideInDown">Tu perfil</h1>
+    </div>
+</div>
+<!-- Page Header End -->
+
+<!-- Contact Start -->
+<div class="container-fluid bg-light overflow-hidden px-lg-0" style="margin: 6rem 0;">
+    <div class="container p-5 px-lg-0">
+        <div class="g-0 mx-lg-0">
+            <div class="contact-text py-5 wow fadeIn" data-wow-delay="0.5s">
+                <div class="p-lg-5 ps-lg-0">
+                    <a class="btn btn-primary float-end m-2" asp-controller="Manage" asp-action="ModificarPerfilUsuario">Editar Perfil</a>
+
+                    <h3>@Context.User.FindFirst("NombreCompleto").Value</h3>
+                    <h4>@Context.User.FindFirst(ClaimTypes.Name).Value</h4>
+                    <div class="p-2 rounded-3">
+                        <h4 class="mb-4 p-3 rounded-3" style="background-color: #f7f1ec; color: #9a683b; box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%); border: #7c5330 4px solid; border-top: #7c5330 1px solid;border-right: #7c5330 1px solid;border-left: #7c5330 1px solid;">Tus Citas</h4>
+                        @if (Model != null)
+                        {
+                            <div class="accordion" id="accordionCitas">
+                                @foreach (Cita cita in Model)
+                                {
+                                    string idheading = "heading" + cita.IdCita;
+                                    string idcollapse = "collapse" + cita.IdCita;
+
+
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="@idheading">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#@idcollapse" aria-expanded="false" aria-controls="#@idcollapse">
+                                                @cita.FechaCita.ToShortDateString() para @cita.NombrePerro
+                                            </button>
+                                        </h2>
+                                        <div id="@idcollapse" class="accordion-collapse collapse" aria-labelledby="#@idheading" data-bs-parent="#accordionCitas">
+                                            <div class="accordion-body">
+                                                <strong>Motivo: </strong>
+                                                <br />
+                                                @cita.MotivoCita
+                                                <br />
+                                                <strong>Objetivo: </strong>
+                                                <br />
+                                                @cita.ObjetivoCita
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            <h5 class="text-danger">No tiene citas</h5>
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Contact End -->

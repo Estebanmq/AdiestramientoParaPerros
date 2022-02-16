@@ -54,6 +54,16 @@ namespace AdiestramientoParaPerros.Repositories
         /// </returns>
         int GetMaxIdUsuarios();
 
+        /// <summary>
+        /// Actualiza los datos de un usuario
+        /// </summary>
+        /// <param name="nombre">El nuevo nombre</param>
+        /// <param name="apellidos">Los nuevos apellidos</param>
+        /// <param name="nombreusuario">El nuevo nombre de usuario</param>
+        /// <param name="telefono">El nuevo telefono</param>
+        /// <param name="correo">El nuevo correo</param>
+        void ModificarUsuario(int idusuario, string nombre, string apellidos, string nombreusuario, string telefono, string correo);
+
         #endregion
 
         #region AAD EMPLEADOS

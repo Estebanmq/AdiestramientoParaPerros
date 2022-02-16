@@ -1,0 +1,61 @@
+﻿@model Usuario
+
+@section navlinks {
+    <a class="nav-item nav-link" asp-controller="Home" asp-action="Index">Inicio</a>
+    <a class="nav-item nav-link" asp-controller="Citas" asp-action="CitasIndex">Concertar Cita</a>
+    <a class="nav-item nav-link" asp-controller="QuienesSomos" asp-action="QuienesSomosVista">Quienes Somos</a>
+    <a class="nav-item nav-link" asp-controller="Contacto" asp-action="ContactoVista">Contacto</a>
+}
+
+<!-- Page Header Start -->
+<div class="container-fluid page-header py-5 mb-5">
+    <div class="container py-5">
+        <h1 class="display-3 text-white mb-3 animated slideInDown">Modificar perfil</h1>
+    </div>
+</div>
+<!-- Page Header End -->
+
+<!-- Contact Start -->
+<div class="container-fluid bg-light overflow-hidden px-lg-0" style="margin: 6rem 0;">
+    <div class="container contact p-5 px-lg-0">
+        <div class="row g-0 mx-lg-0">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10 wow fadeIn" data-wow-delay="0.5s">
+                <form method="post">
+                    <div class="row g-3">
+                        <div class="col-12 col-sm-6">
+                            <input type="text" class="form-control border-0" placeholder="Nombre" style="height: 55px;" name="nombre" value="@Model.Nombre" />
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <input type="text" class="form-control border-0" placeholder="Apellidos" style="height: 55px;" name="apellidos" value="@Model.Apellidos" />
+                        </div>
+
+                        <div class="col-12 col-sm-6">
+                            <input type="text" class="form-control border-0" placeholder="Nombre de usuario" style="height: 55px;" name="nombreusuario" value="@Model.NombreUsuario" />
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <input type="text" class="form-control border-0" placeholder="Telefono" style="height: 55px;" name="telefono" value="@Model.Telefono" />
+                        </div>
+
+                        <div class="col-12">
+                            <input type="text" class="form-control border-0 disabled" placeholder="Correo" style="height: 55px;" name="correo" value="@Model.Correo" />
+                        </div>
+
+                        <div class="col-6">
+                            <button type="submit" class="btn btn-primary w-100 py-3">
+                                Modificar
+                            </button>
+                        </div>
+                        <div class="col-6">
+                            <a class="btn btn-dark w-100 py-3" asp-controller="Manage" asp-action="PerfilUsuario">
+                                Cancelar
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-1"></div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->

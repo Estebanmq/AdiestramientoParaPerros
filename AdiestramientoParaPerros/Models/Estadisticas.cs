@@ -17,6 +17,6 @@ namespace AdiestramientoParaPerros.Models
 
         public int CantidadEmpleados { get; set; }
 
-        public int CantidadAdministradores { get; set; }
+        public int CantidadUsuarios { get; set; }
     }
 }

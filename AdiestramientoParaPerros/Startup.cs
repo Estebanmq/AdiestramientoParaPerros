@@ -66,6 +66,7 @@ namespace AdiestramientoParaPerros
             services.AddTransient<RepositoryCitas>();
             services.AddTransient<RepositoryConsultas>();
             services.AddTransient<RepositoryUsuarios>();
+            services.AddTransient<RepositoryEstadisticas>();
             services.AddDbContext<AdiestramientoContext>(options => options.UseSqlServer(cadena));
 
             //Configuracion del session

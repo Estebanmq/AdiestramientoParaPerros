@@ -50,7 +50,7 @@
 						fill: true,
 						backgroundColor: "transparent",
 						borderColor: window.theme.primary,
-						data: [100, 50, 200]
+						data: [@Model.ConsultasPendientes, @Model.ConsultasProceso, @Model.ConsultasTerminadas]
 					}]
 				},
 				options: {
@@ -87,14 +87,14 @@
 			new Chart(document.getElementById("chartjs-bar"), {
 				type: "bar",
 				data: {
-					labels: ["Clientes", "Empleados", "Administradores"],
+					labels: ["Clientes", "Empleados", "Total de usuarios"],
 					datasets: [{
 						label: "Cantidad",
 						backgroundColor: window.theme.primary,
 						borderColor: window.theme.primary,
 						hoverBackgroundColor: window.theme.primary,
 						hoverBorderColor: window.theme.primary,
-						data: [10, 30, 2],
+						data: [@Model.CantidadClientes, @Model.CantidadEmpleados, @Model.CantidadUsuarios],
 						barPercentage: .75,
 						categoryPercentage: .5
 					}
@@ -122,7 +122,7 @@
 							},
 							stacked: false,
 							ticks: {
-								stepSize: 10
+								stepSize: 5
 							}
 						}]
 					}

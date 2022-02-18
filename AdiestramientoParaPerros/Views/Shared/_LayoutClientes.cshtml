@@ -35,7 +35,7 @@
         <a asp-controller="Home" asp-action="Index" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <h2 class="m-0 text-primary">AdiestriPerros</h2>
         </a>
-        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <button id="btnmenucollapse" type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" >
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -82,6 +82,14 @@
 
     <!-- Template Javascript -->
     <script src="~/js/clientpage.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#btnmenucollapse").click(function(){
+                $("#navbarCollapse").fadeToggle(400);
+            });
+
+        });
+    </script>
     @RenderSection("scripts", false)
 
 </body>

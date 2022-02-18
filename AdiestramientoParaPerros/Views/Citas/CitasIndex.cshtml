@@ -99,28 +99,37 @@
 <!-- Page Header Start -->
 <div class="container-fluid page-header py-5 mb-5">
     <div class="container py-5">
-        <h3 class="display-3 text-white mb-3 animated slideInDown">
-            ¿Estás interesado/a en concertar una cita con nosotros? Pidela ahora sin compromiso! Tambien puedes consultar tus citas en
-            <a asp-controller="Manage" asp-action="PerfilUsuario">
-                tu perfil
-            </a>
-        </h3>
-
+        <h1 class="display-3 text-white mb-3 animated slideInDown">Concertar cita</h1>
     </div>
 </div>
 <!-- Page Header End -->
+<div class="text-center p-4">
+    <p style="font-size: 1.5em;" class="display-3 mb-3 animated slideInDown">
+        Pidela ahora una cita con nosotros sin compromiso! Tambien puedes consultar tus citas en
+        <a asp-controller="Manage" asp-action="PerfilUsuario">
+            tu perfil
+        </a>
+    </p>
+</div>
 
-<!-- Wrapper para el calendario -->
-<div class="p-5 calendar-wrapper wow fadeUp" id="calendar-wrapper"></div>
-
-<!-- Formulario para la fecha seleccionada -->
-<div class="container">
-    <div class="col-md-12 text-center">
-        <form method="post">
-            <input type="text" name="cita" hidden />
-            <button type="submit" id="btnconcertarcita" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft" hidden>
-                Pedir cita
-            </button>
-        </form>
+<div class="bg-light">
+    <!-- Wrapper para el calendario -->
+    <div class="row ">
+        <div class="col-sm-2"></div>
+        <div class="col-12 col-sm-8 p-5 calendar-wrapper wow fadeUp" id="calendar-wrapper"></div>
+        <div class="col-sm-2"></div>
     </div>
+
+    <!-- Formulario para la fecha seleccionada -->
+    <div class="container p-2">
+        <div class="col-md-12 text-center">
+            <form method="post">
+                <input type="text" name="cita" hidden />
+                <button type="submit" id="btnconcertarcita" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft" hidden>
+                    Pedir cita
+                </button>
+            </form>
+        </div>
+    </div>
+
 </div>

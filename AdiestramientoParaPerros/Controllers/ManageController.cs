@@ -94,7 +94,7 @@ namespace AdiestramientoParaPerros.Controllers
 
         #region Controlador Perfil usuario
 
-        [AuthorizeUsuarios]
+        [AuthorizeUsuarios(Policy = "PermisosCliente")]
         public IActionResult PerfilUsuario()
         {
             int id = int.Parse(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
@@ -102,17 +102,18 @@ namespace AdiestramientoParaPerros.Controllers
             return View(citasUsuario);
         }
 
-        [AuthorizeUsuarios]
+        [AuthorizeUsuarios(Policy = "PermisosCliente")]
         public IActionResult ModificarPerfilUsuario()
         {
             Usuario usuario = this.repo.FindUsuarioId(int.Parse(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value));
             return View(usuario);
         }
 
+        [AuthorizeUsuarios(Policy = "PermisosCliente")]
         [HttpPost]
         public async  Task<IActionResult> ModificarPerfilUsuario(string nombre, string apellidos, string nombreusuario, string telefono, string correo)
         {
-            this.repo.ModificarUsuario(int.Parse(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value), nombre, apellidos, nombreusuario, telefono, correo);
+            this.repo.ModificarUsuario(int.Parse(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value), nombre, apellidos, nombreusuario, telefono);
             var claimNombre = HttpContext.User.FindFirst(ClaimTypes.Name);
             var identity = HttpContext.User.Identity as ClaimsIdentity;
             if (claimNombre != null)
@@ -132,7 +133,8 @@ namespace AdiestramientoParaPerros.Controllers
             return RedirectToAction("PerfilUsuario");
         }
 
-      [AuthorizeUsuarios]
+
+        [AuthorizeUsuarios(Policy = "PermisosEmpleado")]
         public IActionResult PerfilEmpleado()
         {
             ViewBag.Layout = "_LayoutEmpleados";
@@ -143,17 +145,63 @@ namespace AdiestramientoParaPerros.Controllers
         }
 
 
-        [AuthorizeUsuarios]
-        public IActionResult ModificarPerilEmpleado()
+        [AuthorizeUsuarios(Policy = "PermisosEmpleado")]
+        public IActionResult ModificarPerfilEmpleado()
         {
+            ViewBag.Layout = "_LayoutEmpleados";
+
+            ViewBag.Roles = this.repo.GetRoles();
+
             Usuario usuario = this.repo.FindUsuarioId(int.Parse(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value));
             return View(usuario);
+        }
+
+        [HttpPost]
+        [AuthorizeUsuarios(Policy = "PermisosEmpleado")]
+        public async  Task<IActionResult> ModificarPerfilEmpleado(int idusuario, string nombreusuario, string nombre, string apellidos, string telefono)
+        {
+            if (nombreusuario == null)
+                nombreusuario = HttpContext.User.FindFirst(ClaimTypes.Name).Value;
+
+            this.repo.ModificarUsuario(idusuario, nombre, apellidos, nombreusuario, telefono);
+
+            var claimNombre = HttpContext.User.FindFirst(ClaimTypes.Name);
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            if (claimNombre != null)
+            {
+                identity.RemoveClaim(claimNombre);
+                identity.AddClaim(new Claim(ClaimTypes.Name, nombreusuario));
+            }
+
+            var claimNombreCompleto = HttpContext.User.FindFirst("NombreCompleto");
+            if (claimNombreCompleto != null)
+            {
+                identity.RemoveClaim(claimNombreCompleto);
+                identity.AddClaim(new Claim("NombreCompleto", nombre + " " + apellidos));
+            }
+            ClaimsPrincipal usuarioPrincipal = new ClaimsPrincipal(identity);
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, usuarioPrincipal);
+
+            return RedirectToAction("PerfilEmpleado");
         }
         #endregion
 
         #region Controlador de Error de acceso
         public IActionResult ErrorAcceso()
         {
+            //String controller = HttpContext.RouteData.Values["controller"].ToString();
+            String action = HttpContext.Request.RouteValues["action"].ToString();
+            ////if else depende laypout sisisi
+            if (HttpContext.User.IsInRole("0") == true )
+            {
+                ViewBag.Layout = "_LayoutClientes";
+
+            } else
+            {
+                ViewBag.Layout = "_LayoutEmpleados";
+
+            }
+
             return View();
         }
         #endregion

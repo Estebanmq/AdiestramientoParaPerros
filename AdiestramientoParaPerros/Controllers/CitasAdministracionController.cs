@@ -1,4 +1,5 @@
-﻿using AdiestramientoParaPerros.Models;
+﻿using AdiestramientoParaPerros.Filters;
+using AdiestramientoParaPerros.Models;
 using AdiestramientoParaPerros.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace AdiestramientoParaPerros.Controllers
 {
+    [AuthorizeUsuarios(Policy = "PermisosEmpleado")]
     public class CitasAdministracionController : Controller
     {
 

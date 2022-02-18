@@ -62,7 +62,7 @@ namespace AdiestramientoParaPerros.Repositories
         /// <param name="nombreusuario">El nuevo nombre de usuario</param>
         /// <param name="telefono">El nuevo telefono</param>
         /// <param name="correo">El nuevo correo</param>
-        void ModificarUsuario(int idusuario, string nombre, string apellidos, string nombreusuario, string telefono, string correo);
+        void ModificarUsuario(int idusuario, string nombre, string apellidos, string nombreusuario, string telefono);
 
         #endregion
 

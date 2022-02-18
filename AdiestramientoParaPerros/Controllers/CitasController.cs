@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Security.Claims;
+using AdiestramientoParaPerros.Filters;
 
 namespace AdiestramientoParaPerros.Controllers
 {
@@ -36,6 +37,7 @@ namespace AdiestramientoParaPerros.Controllers
         //Recibe un string con la cita seleccionada
         //Formatea ese string y lo convierte a un objeto DateTime
         //Devuelve un string con la view a cargar y el model con la fecha formateada
+        [AuthorizeUsuarios(Policy = "PermisosCliente")]
         [HttpPost]
         public IActionResult CitasIndex(String cita)
         {
@@ -51,6 +53,7 @@ namespace AdiestramientoParaPerros.Controllers
 
         #region Controlador Vista ConcertarCita
         //Recibe la fecha seleccionada en el calendario
+        [AuthorizeUsuarios(Policy = "PermisosCliente")]
         public IActionResult ConcertarCita(String fecha)
         {
             
@@ -64,6 +67,7 @@ namespace AdiestramientoParaPerros.Controllers
         //Metodo post de la vista ConcertarCita
         //Recibe todos los parametros necesarios para crear un objeto Cita
         //Devuelve un string con la view a cargar
+        [AuthorizeUsuarios(Policy = "PermisosCliente")]
         [HttpPost]
         public IActionResult ConcertarCita(String fechacita, String telefonocontacto, String nombreperro, String razaperro, String motivocita, String objetivocita)
         {
@@ -71,25 +75,9 @@ namespace AdiestramientoParaPerros.Controllers
             //El id tiene que ser del session usuario registrado
             this.repo.InsertCita(fechacita, telefonocontacto, nombreperro, razaperro, motivocita, objetivocita, int.Parse(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value));
 
-            return RedirectToAction("ListadoCitas");
+            return RedirectToAction("PerfilUsuario","Manage");
         }
         #endregion
-
-
-
-
-        #region Controlador Vista ListadoCitas
-        public IActionResult ListadoCitas()
-        {
-
-       
-           //AQUI RECUPERAR EL ID DEL USUARIO REGISTRADO
-            List<Cita> citas = this.repo.GetCitasCliente(4);
-            return View(citas);
-            
-        } 
-        #endregion
-
      
     }
 }

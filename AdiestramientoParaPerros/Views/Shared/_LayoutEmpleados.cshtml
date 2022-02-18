@@ -59,14 +59,33 @@
                             <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
                                data-bs-toggle="dropdown">
                                 <!-- <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1"
-                                    alt="Charles Hall" />-->
+                alt="Charles Hall" />-->
                                 <span class="text-dark">@Context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name).Value</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <a class="dropdown-item" asp-controller="Manage" asp-action="PerfilEmpleado">
                                     <i class="align-middle me-1"
                                        data-feather="user"></i> Perfil
-                                    
+
+                                </a>
+                                <a class="dropdown-item" asp-controller="Manage" asp-action="CerrarSesion">
+                                    <i class="align-middle me-1"
+                                       data-feather="log-out"></i>Log out
+                                </a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#"
+                               data-bs-toggle="dropdown">
+                                <i class="align-middle" data-feather="user"></i>
+                            </a>
+
+                      
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <a class="dropdown-item" asp-controller="Manage" asp-action="PerfilEmpleado">
+                                    <i class="align-middle me-1"
+                                       data-feather="user"></i> Perfil
+
                                 </a>
                                 <a class="dropdown-item" asp-controller="Manage" asp-action="CerrarSesion">
                                     <i class="align-middle me-1"
@@ -86,7 +105,7 @@
             <footer class="footer">
                 <div class="container-fluid">
                     <div class="row text-muted">
-                        <div class="col-6 text-start">
+                        <div class="col-12 text-start">
                             <p class="mb-0">
                                 <a class="text-muted" href="#"
                                    target="_blank"><strong>Adiestramiento de perros 2022</strong></a> &copy;

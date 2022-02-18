@@ -28,6 +28,23 @@ namespace AdiestramientoParaPerros
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+
+            //Configuracion de autorizacion
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("PermisosEmpleado",
+                    policy =>
+                    policy.RequireRole("1", "2"));
+
+                options.AddPolicy("PermisosAdministrador",
+                    policy =>
+                    policy.RequireRole("2"));
+
+                options.AddPolicy("PermisosCliente",
+                    policy =>
+                    policy.RequireRole("0"));
+            });
+
             //Configuracion de autenticacion
             services.AddAuthentication(options =>
             {
@@ -37,7 +54,10 @@ namespace AdiestramientoParaPerros
                 CookieAuthenticationDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme =
                 CookieAuthenticationDefaults.AuthenticationScheme;
-            }).AddCookie();
+            }).AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, config =>
+            {
+                config.AccessDeniedPath = "/Manage/ErrorAcceso";
+            });
 
 
             //Configuracion de la base de datos

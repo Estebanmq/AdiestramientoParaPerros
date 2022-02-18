@@ -1,0 +1,54 @@
+﻿@model Usuario
+
+@{
+    Layout = ViewBag.Layout;
+    List<Rol> roles = ViewBag.Roles as List<Rol>;
+}
+
+@section title {
+    <title>Modificar perfil</title>
+}
+
+<form method="post">
+    <input type="hidden" name="idusuario" value="@Model.IdUsuario" />
+    <div class="row">
+        <div class="form-group mb-3 col-md-12 col-xl-12">
+            <label class="form-label">Usuario</label>
+            @if (Context.User.IsInRole("2"))
+            {
+                <input type="text" name="nombreusuario" class="form-control" value="@Model.NombreUsuario" />
+
+            }
+            else
+            {
+                <input type="text" name="nombreusuario" class="form-control" value="@Model.NombreUsuario" disabled/>
+            }
+        </div>
+        <div class="form-group mb-3 col-md-4 col-xl-4 col-xs-12">
+            <label class="form-label">Nombre</label>
+            <input type="text" name="nombre" class="form-control" value="@Model.Nombre" />
+        </div>
+        <div class="form-group mb-3 col-md-8 col-xl-8 col-xd-12">
+            <label class="form-label">Apellidos</label>
+            <input type="text" name="apellidos" class="form-control" value="@Model.Apellidos" />
+        </div>
+        <div class="form-group mb-3 col-md-12 col-xl-12 col-xd-12">
+            <label class="form-label">Correo</label>
+            <input type="text" name="correo" class="disabled form-control" value="@Model.Correo" disabled/>
+        </div>
+        <div class="form-group mb-3 col-md-6 col-xl-6 col-xd-12">
+            <label class="form-label">Telefono</label>
+            <input type="text" name="telefono" class="form-control" value="@Model.Telefono" />
+        </div>
+        <div class="form-group mb-3 col-md-6 col-xl-6 col-xd-12">
+            <label class="form-label">Rol</label>
+            <input type="text" name="rol" class="disabled form-control" value="@roles.Find( x=> x.IdRol == Model.IdRol).NombreRol" disabled />
+        </div>
+    </div>
+
+    <div class="form-group mb-3 col-md-12 col-xl-12 col-xd-12">
+        <button type="submit" class="btn btn-primary">
+            Modificar
+        </button>
+    </div>
+</form>

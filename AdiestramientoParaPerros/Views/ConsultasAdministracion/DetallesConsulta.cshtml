@@ -8,7 +8,7 @@
     <title>Detalles consulta</title>
 }
 
-<div class="container m-3">
+<div class="container ">
     <div class="card">
         <div class="card-body">
             <a class="btn btn-info float-end m-2" asp-controller="ConsultasAdministracion" asp-action="ConsultasListado">Volver</a>
@@ -20,7 +20,7 @@
                     <p class="card-text"><strong>Motivo de la consulta:</strong></p>
                     <p class="card-text">@Model.TextoConsulta</p>
 
-                    <form method="post" class="w-25">
+                    <form method="post" class="w-100">
                         <input type="hidden" name="idconsulta" value="@Model.IdConsulta" />
                         <div class="form-group">
                             <label>Estado</label>

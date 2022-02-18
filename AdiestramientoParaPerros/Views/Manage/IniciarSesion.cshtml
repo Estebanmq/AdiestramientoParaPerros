@@ -24,6 +24,11 @@
         <div class="row g-0 mx-lg-0">
             <div class="col-lg-2"></div>
             <div class="col-lg-8 p-4 wow fadeIn" data-wow-delay="0.5s">
+                @if(ViewBag.Mensaje != null)
+                {
+                    <p class="rounded-3 p-3" style="background-color:#ffebe9;border: 2px rgb(255, 129, 130) solid;">@ViewBag.Mensaje</p>
+                }
+
                 <form method="post">
                     <div class="row g-3">
                         <div class="col-12">

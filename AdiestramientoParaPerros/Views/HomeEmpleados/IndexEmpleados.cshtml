@@ -1,9 +1,133 @@
-﻿@{
+﻿@model Estadisticas
+
+@{
     Layout = ViewBag.Layout;
 }
 
 @section title {
     <title>Home empleados</title>
 }
+<div class="row">
+    <div class="col-12 col-lg-6">
+        <div class="card flex-fill w-100">
+            <div class="card-header">
+                <h5 class="card-title">Consultas</h5>
+                <h6 class="card-subtitle text-muted">Estadisticas sobre el proceso de todas las consultas</h6>
+            </div>
+            <div class="card-body">
+                <div class="chart">
+                    <canvas id="chartjs-line"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<h1 class="text-center text-primary">Bienvenido USER</h1>
+    <div class="col-12 col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Usuarios</h5>
+                <h6 class="card-subtitle text-muted">Datos sobre los tipos de usuarios registrados</h6>
+            </div>
+            <div class="card-body">
+                <div class="chart">
+                    <canvas id="chartjs-bar"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+		document.addEventListener("DOMContentLoaded", function() {
+			// Line chart
+			new Chart(document.getElementById("chartjs-line"), {
+				type: "line",
+				data: {
+					labels: ["Pendientes", "En proceso", "Terminadas"],
+					datasets: [{
+						label: "Tareas",
+						fill: true,
+						backgroundColor: "transparent",
+						borderColor: window.theme.primary,
+						data: [100, 50, 200]
+					}]
+				},
+				options: {
+					maintainAspectRatio: false,
+					legend: {
+						display: false
+					},
+					tooltips: {
+						intersect: false
+					},
+					hover: {
+						intersect: true
+					},
+					plugins: {
+						filler: {
+							propagate: false
+						}
+					},
+					scales: {
+						xAxes: [{
+							reverse: true,
+							gridLines: {
+								color: "rgba(0,0,0,0.05)"
+							}
+						}]
+					}
+				}
+			});8
+		});
+    </script>
+    <script>
+		document.addEventListener("DOMContentLoaded", function() {
+			// Bar chart
+			new Chart(document.getElementById("chartjs-bar"), {
+				type: "bar",
+				data: {
+					labels: ["Clientes", "Empleados", "Administradores"],
+					datasets: [{
+						label: "Cantidad",
+						backgroundColor: window.theme.primary,
+						borderColor: window.theme.primary,
+						hoverBackgroundColor: window.theme.primary,
+						hoverBorderColor: window.theme.primary,
+						data: [10, 30, 2],
+						barPercentage: .75,
+						categoryPercentage: .5
+					}
+					// }, {
+					// 	label: "This year",
+					// 	backgroundColor: "#dee2e6",
+					// 	borderColor: "#dee2e6",
+					// 	hoverBackgroundColor: "#dee2e6",
+					// 	hoverBorderColor: "#dee2e6",
+					// 	data: [69, 66, 24, 48, 52, 51, 44, 53, 62, 79, 51, 68],
+					// 	barPercentage: .75,
+					// 	categoryPercentage: .5
+					// }]
+					]
+				},
+				options: {
+					maintainAspectRatio: false,
+					legend: {
+						display: false
+					},
+					scales: {
+						yAxes: [{
+							gridLines: {
+								display: true
+							},
+							stacked: false,
+							ticks: {
+								stepSize: 10
+							}
+						}]
+					}
+				}
+			});
+		});
+    </script>
+}

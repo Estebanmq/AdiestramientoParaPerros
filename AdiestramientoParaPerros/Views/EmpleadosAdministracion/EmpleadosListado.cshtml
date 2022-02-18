@@ -1,6 +1,6 @@
 ﻿@model List<Usuario>
 
-@{  
+@{
     Layout = ViewBag.Layout;
     List<Rol> roles = ViewBag.Roles as List<Rol>;
 }
@@ -10,34 +10,43 @@
 }
 
 @*<form method="post" class="form">
-    <div class="form-group">
-        <input type="search" name="nombre" placeholder="Nombre de empleado" class="m-2 form-control" />
-        <button class="btn btn-info m-2">Buscar</button>
-    </div>
-</form>*@
+        <div class="form-group">
+            <input type="search" name="nombre" placeholder="Nombre de empleado" class="m-2 form-control" />
+            <button class="btn btn-info m-2">Buscar</button>
+        </div>
+    </form>*@
 
 <a class="btn btn-warning" asp-controller="EmpleadosAdministracion" asp-action="AgregarEmpleado">Agregar empleado</a>
+@if (Model.Count != 0)
+{
+    <div class="table-responsive h-100">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>Correo</th>
+                    <th>Teléfono</th>
+                    <th>Rol</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Usuario usuario in Model)
+                {
+                    <tr>
+                        <td>@usuario.Nombre</td>
+                        <td>@usuario.Apellidos</td>
+                        <td>@usuario.Correo</td>
+                        <td>@usuario.Telefono</td>
+                        <td>@roles.Find(z => z.IdRol == usuario.IdRol).NombreRol</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Apellidos</th>
-            <th>Correo</th>
-            <th>Teléfono</th>
-            <th>Rol</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach(Usuario usuario in Model)
-        {
-        <tr>
-            <td>@usuario.Nombre</td>
-            <td>@usuario.Apellidos</td>
-            <td>@usuario.Correo</td>
-            <td>@usuario.Telefono</td>
-            <td>@roles.Find(z => z.IdRol == usuario.IdRol).NombreRol</td>
-        </tr>
-        }    
-    </tbody>
-</table>
+    </div>
+}
+else
+{
+    <h3 class="text-black p-4">No tienes citas</h3>
+}

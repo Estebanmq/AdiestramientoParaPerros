@@ -21,13 +21,17 @@
         <div class="g-0 mx-lg-0">
             <div class="contact-text py-5 wow fadeIn" data-wow-delay="0.5s">
                 <div class="p-lg-5 ps-lg-0">
-                    <a class="btn btn-primary float-end m-2" asp-controller="Manage" asp-action="ModificarPerfilUsuario">Editar Perfil</a>
+                    <div class="text-center">
+                        <h3>@Context.User.FindFirst("NombreCompleto").Value</h3>
+                        <h4>@Context.User.FindFirst(ClaimTypes.Name).Value</h4>
+                        <a class="btn btn-primary m-2" asp-controller="Manage" asp-action="ModificarPerfilUsuario">Editar Perfil</a>
 
-                    <h3>@Context.User.FindFirst("NombreCompleto").Value</h3>
-                    <h4>@Context.User.FindFirst(ClaimTypes.Name).Value</h4>
+                    </div>
+
+                
                     <div class="p-2 rounded-3">
-                        <h4 class="mb-4 p-3 rounded-3" style="background-color: #f7f1ec; color: #9a683b; box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%); border: #7c5330 4px solid; border-top: #7c5330 1px solid;border-right: #7c5330 1px solid;border-left: #7c5330 1px solid;">Tus Citas</h4>
-                        @if (Model != null)
+                        <h4 class="mb-4 p-3 rounded-0" style="background-color: #f7f1ec; color: #9a683b; box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%); border-bottom: #7c5330 2px solid;">Tus Citas</h4>
+                        @if (Model.Count != 0)
                         {
                             <div class="accordion" id="accordionCitas">
                                 @foreach (Cita cita in Model)
@@ -38,7 +42,7 @@
 
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="@idheading">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#@idcollapse" aria-expanded="false" aria-controls="#@idcollapse">
+                                            <button class="accordion-button collapsed" style="background-color: #f7f1ec;" type="button" data-bs-toggle="collapse"  aria-expanded="false" aria-controls="#@idcollapse">
                                                 @cita.FechaCita.ToShortDateString() para @cita.NombrePerro
                                             </button>
                                         </h2>
@@ -59,7 +63,7 @@
                         }
                         else
                         {
-                            <h5 class="text-danger">No tiene citas</h5>
+                            <h4 class="text-black p-4">No tiene citas</h4>
                         }
 
                     </div>
@@ -70,3 +74,20 @@
     </div>
 </div>
 <!-- Contact End -->
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            @foreach(Cita cita in Model)
+            {
+                string idheading = "heading" + cita.IdCita;
+                string idcollapse = "collapse" + cita.IdCita;
+                <text>
+                $("#@idheading").click(function () {
+                    $("#@idcollapse").fadeToggle(400);
+                });
+                </text>
+            }
+        });
+    </script>
+}

@@ -44,7 +44,7 @@ namespace AdiestramientoParaPerros.Repositories
         /// <param name="telefono">Telefono del usuario</param>
         /// <param name="correo">Correo del usuario</param>
         /// <param name="password">Contraseña del usuario</param>
-        void RegistrarUsuario(String nombre, String apellidos, String nombreusuario, String telefono, String correo, String password);
+        void RegistrarUsuario(String nombre, String apellidos, String nombreusuario, int telefono, String correo, String password);
 
         /// <summary>
         ///     Retorna el ID maximo de los usuarios
@@ -62,7 +62,7 @@ namespace AdiestramientoParaPerros.Repositories
         /// <param name="nombreusuario">El nuevo nombre de usuario</param>
         /// <param name="telefono">El nuevo telefono</param>
         /// <param name="correo">El nuevo correo</param>
-        void ModificarUsuario(int idusuario, string nombre, string apellidos, string nombreusuario, string telefono);
+        void ModificarUsuario(int idusuario, string nombre, string apellidos, string nombreusuario, int telefono);
 
         #endregion
 
@@ -81,7 +81,7 @@ namespace AdiestramientoParaPerros.Repositories
         /// <param name="correo">El correo del empleado</param>
         /// <param name="telefono">El telefono del empleado</param>
         /// <param name="idrol">El id del rol que tendra el empleado</param>
-        void InsertEmpleado(String nombre, String apellidos, String correo, String telefono, int idrol);
+        void InsertEmpleado(String nombre, String apellidos, String correo, int telefono, int idrol);
         #endregion
 
         #region AAD ROLES

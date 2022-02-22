@@ -14,7 +14,6 @@
     </div>
 </div>
 <!-- Page Header End -->
-
 <!-- Contact Start -->
 <div class="container-fluid bg-light overflow-hidden px-lg-0" style="margin: 6rem 0;">
     <div class="container contact p-5 px-lg-0">
@@ -24,21 +23,21 @@
                 <form method="post">
                     <div class="row g-3">
                         <div class="col-12 col-sm-6">
-                            <input type="text" class="form-control border-0" placeholder="Nombre" style="height: 55px;" name="nombre" value="@Model.Nombre" />
+                            <input type="text" class="form-control border-0" placeholder="Nombre" style="height: 55px;" name="nombre" value="@Model.Nombre" required />
                         </div>
                         <div class="col-12 col-sm-6">
                             <input type="text" class="form-control border-0" placeholder="Apellidos" style="height: 55px;" name="apellidos" value="@Model.Apellidos" />
                         </div>
 
                         <div class="col-12 col-sm-6">
-                            <input type="text" class="form-control border-0" placeholder="Nombre de usuario" style="height: 55px;" name="nombreusuario" value="@Model.NombreUsuario" />
+                            <input type="text" class="form-control border-0" placeholder="Nombre de usuario" style="height: 55px;" name="nombreusuario" required value="@Model.NombreUsuario" />
                         </div>
                         <div class="col-12 col-sm-6">
-                            <input type="text" class="form-control border-0" placeholder="Telefono" style="height: 55px;" name="telefono" value="@Model.Telefono" />
+                            <input id="cajatelefono" type="text" class="form-control border-0" minlength="9" maxlength="9" placeholder="Telefono" title="Debe introducir un telefóno válido de 9 dígitos" style="height: 55px;" name="telefono" value="@Model.Telefono" required />
                         </div>
 
                         <div class="col-12">
-                            <input type="text" class="form-control border-0" placeholder="Correo" style="height: 55px;" name="correo" value="@Model.Correo" disabled/>
+                            <input type="text" class="form-control border-0" placeholder="Correo" style="height: 55px;" name="correo" value="@Model.Correo" disabled />
                         </div>
 
                         <div class="col-6">
@@ -59,3 +58,16 @@
     </div>
 </div>
 <!-- Contact End -->
+
+@section scripts {
+    <script>
+        $("#cajatelefono").on('keypress', function (event) {
+            var regex = new RegExp("[0-9]");
+            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+            if (!regex.test(key)) {
+                event.preventDefault();
+                return false;
+            }
+        });
+    </script>
+}

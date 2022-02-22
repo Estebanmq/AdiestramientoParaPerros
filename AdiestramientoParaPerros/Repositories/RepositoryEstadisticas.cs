@@ -7,6 +7,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+#region Procedimientos Almacenados
+
+//Procedimiento que devuelve varias estadisticas
+//ALTER PROCEDURE ESTADISTICAS(@CONSULTASPENDIENTES INT OUT, @CONSULTASPROCESO INT OUT, @CONSULTASTERMINADAS INT OUT, @CANTIDADCLIENTES INT OUT, @CANTIDADEMPLEADOS INT OUT, @TOTALUSUARIOS INT OUT)
+//AS
+//    SELECT @CONSULTASPENDIENTES = COUNT(IDCONSULTA) FROM CONSULTAS WHERE ESTADO = 0;
+//SELECT @CONSULTASPROCESO = COUNT(IDCONSULTA) FROM CONSULTAS WHERE ESTADO = 1;
+//SELECT @CONSULTASTERMINADAS = COUNT(IDCONSULTA) FROM CONSULTAS WHERE ESTADO = 2;
+//SELECT @CANTIDADCLIENTES = COUNT(IDUSUARIO) FROM USUARIOS WHERE IDROL = 0;
+//SELECT @CANTIDADEMPLEADOS = COUNT(IDUSUARIO) FROM USUARIOS WHERE IDROL = 1 OR IDROL = 2;
+//SELECT @TOTALUSUARIOS = COUNT(IDUSUARIO) FROM USUARIOS;
+//GO
+
+#endregion
+
 namespace AdiestramientoParaPerros.Repositories
 {
     public class RepositoryEstadisticas : IRepositoryEstadisticas
@@ -23,6 +38,8 @@ namespace AdiestramientoParaPerros.Repositories
         {
             Estadisticas estadisticas = new Estadisticas();
             String procedimiento = "ESTADISTICAS @CONSULTASPENDIENTES out, @CONSULTASPROCESO out, @CONSULTASTERMINADAS out, @CANTIDADCLIENTES out, @CANTIDADEMPLEADOS out, @TOTALUSUARIOS out";
+
+
             SqlParameter pamPendientes = new SqlParameter("@CONSULTASPENDIENTES", -1);
             pamPendientes.Direction = System.Data.ParameterDirection.Output;
             SqlParameter pamProceso = new SqlParameter("@CONSULTASPROCESO", -1);
@@ -35,7 +52,8 @@ namespace AdiestramientoParaPerros.Repositories
             pamEmpleados.Direction = System.Data.ParameterDirection.Output;
             SqlParameter pamUsuarios = new SqlParameter("@TOTALUSUARIOS", -1);
             pamUsuarios.Direction = System.Data.ParameterDirection.Output;
- 
+
+
             var consulta = this.context.Database.ExecuteSqlRaw(procedimiento, pamPendientes, pamProceso, pamTerminadas, pamClientes, pamEmpleados, pamUsuarios);
             estadisticas.ConsultasPendientes = int.Parse(pamPendientes.Value.ToString());
             estadisticas.ConsultasProceso = int.Parse(pamProceso.Value.ToString());

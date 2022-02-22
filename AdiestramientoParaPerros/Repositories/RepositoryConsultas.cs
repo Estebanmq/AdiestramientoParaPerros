@@ -25,15 +25,13 @@ namespace AdiestramientoParaPerros.Repositories
         /// <param name="emailcontacto">El email de contacto</param>
         /// <param name="telefonocontacto">El telefono de contacto</param>
         /// <param name="textoconsulta">El texto con la consulta</param>        
-        public void InsertConsulta(String emailcontacto, String telefonocontacto, String textoconsulta)
+        public void InsertConsulta(String emailcontacto, int telefonocontacto, String textoconsulta)
         {       
             Consulta consulta = new Consulta();
             consulta.EmailContacto = emailcontacto;
             consulta.TelefonoContacto = telefonocontacto;
             consulta.TextoConsulta = textoconsulta;
-
-            //Cambiar por store procedure
-            int id = this.context.Consultas.Max(z => z.IdConsulta + 1);
+            int id = this.GetMaxIdConsulta() + 1;
             consulta.IdConsulta = id;
             consulta.Estado = 0;
 
@@ -87,10 +85,25 @@ namespace AdiestramientoParaPerros.Repositories
             consulta.Estado = estado;
             this.context.SaveChanges();
         }
+
+        /// <summary>
+        ///     Metodo que calcula el id mas alto de la tabla
+        /// </summary>
+        /// <returns>El id mas alto</returns>
+        public int GetMaxIdConsulta()
+        {
+            if (this.context.Consultas.Count() == 0)
+            {
+                return 1;
+            }
+            return this.context.Consultas.Max(z => z.IdConsulta);
+        }
+
+
         #endregion
 
         #region AAD Estados
-        
+
         /// <summary>
         ///     Devuelve todos los estados para las consultas
         /// </summary>        
@@ -113,7 +126,7 @@ namespace AdiestramientoParaPerros.Repositories
             return this.context.Estados.FirstOrDefault(z => z.IdEstado == id);
         }
 
-     
+   
 
         #endregion
     }

@@ -1,26 +1,11 @@
-﻿@*<!-- #region EJEMPLOS PARA PROBAR -->
-    @*JUMBOTRON CON IMAGEN DE FONDO PARA LA PORTADA*@
-@*<div class="p-5 text-center bg-image rounded-3"
-         style=" background-image: url('http://www.australia.com/contentimages/about-landscapes-nature.jpg'); height: 400px; ">
-        <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
-            <div class="d-flex justify-content-center align-items-center h-100">
-                <div class="text-white">
-                    <h1 class="mb-3">Heading</h1>
-                    <h4 class="mb-3">Subheading</h4>
-                    <a class="btn btn-outline-light btn-lg" href="#!" role="button">Call to action</a>
-                </div>
-            </div>
-        </div>
-    </div>*@
-<!-- #endregion -->
-
+﻿
 @section title {
-    <title>Home</title>
+    <title>Inicio</title>
 }
 
-@section estilos {
-    <link href="~/css/cover-img-style.css" rel="stylesheet" />
-}
+@*@section estilos {
+        <link href="~/css/cover-img-style.css" rel="stylesheet" />
+    }*@
 
 @section navlinks {
     <a class="nav-item nav-link active" asp-controller="Home" asp-action="Index">Inicio</a>
@@ -28,7 +13,7 @@
     <a class="nav-item nav-link" asp-controller="QuienesSomos" asp-action="QuienesSomosVista">Quienes Somos</a>
     <a class="nav-item nav-link" asp-controller="Contacto" asp-action="ContactoVista">Contacto</a>
 }
-<!-- Carousel Start -->
+<!-- Cover Start -->
 <div class="container-fluid p-0 pb-5">
     <div class="owl-carousel header-carousel position-relative">
         <div class="owl-carousel-item position-relative">
@@ -39,7 +24,7 @@
                         <div class="col-12 col-lg-8 text-center">
                             <h1 class="display-3 text-white animated slideInDown mb-4">AdiestriPerros</h1>
                             <p class="fs-5 fw-medium text-white mb-4 pb-2">El espacio para conectar con tu perro</p>
-                            <a asp-controller="QuienesSomos" asp-action="QuienesSomosVista" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Quienes somos</a>
+                            <a asp-controller="QuienesSomos" asp-action="QuienesSomosVista" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Quiénes somos</a>
                         </div>
                     </div>
                 </div>
@@ -48,12 +33,13 @@
 
     </div>
 </div>
-<!-- Carousel End -->
-<!-- Service Start -->
+<!-- Cover End -->
+
+<!-- Que ofrecemos Start -->
 <div class="container-xxl py-5">
     <div class="container">
         <div class="section-title text-center">
-            <h1 class="display-5 mb-5">Que ofrecemos</h1>
+            <h1 class="display-5 mb-5">Qué ofrecemos</h1>
         </div>
         <div class="row g-4">
             <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
@@ -74,7 +60,7 @@
                     </div>
                     <div class="p-4 text-center border border-5 border-light border-top-0">
                         <h4 class="mb-3">Sesiones a medida</h4>
-                        <p>Desde donde tu quieras, cuando tu quieras</p>
+                        <p>Donde tú quieras, cuando tu quieras</p>
                     </div>
                 </div>
             </div>
@@ -93,8 +79,9 @@
         </div>
     </div>
 </div>
-<!-- Service End -->
-<!-- Quote Start -->
+<!-- Que ofrecemos End -->
+
+<!-- Contacto Start -->
 <div class="container-fluid bg-light overflow-hidden my-5 px-lg-0">
     <div class="container quote px-lg-0">
         <div class="row g-0 mx-lg-0">
@@ -108,18 +95,18 @@
                     <div class="section-title text-start">
                         <h1 class="display-5 mb-4">Contacto</h1>
                     </div>
-                    <p class="mb-4 pb-2">¿Quieres preguntarnos directamente? Contacta con nosotros sin compromiso!</p>
+                    <p class="mb-4 pb-2">¿Quieres preguntarnos directamente? ¡Contacta con nosotros sin compromiso!</p>
                     <form method="post">
                         <div class="row g-3">
                             <div class="col-12 col-sm-6">
-                                <input type="text" class="form-control border-0" name="telefonocontacto" placeholder="Teléfono de contacto" style="height: 55px;">
+                                <input id="cajatelefono" type="text" class="form-control border-0" name="telefonocontacto" minlength="9" maxlength="9" title="Debe introducir un telefóno válido de 9 dígitos" placeholder="Teléfono de contacto" style="height: 55px;" required>
                             </div>
                             <div class="col-12 col-sm-6">
-                                <input type="email" class="form-control border-0" name="emailcontacto" placeholder="Email de contacto" style="height: 55px;">
+                                <input pattern="[a-z0-9._%+-]+@@[a-z0-9.-]+\.[a-z]{2,4}$" title="El email debe segir un formato como el siguiente: email@ejemplo.com. El dominio (.com por ejemplo, debe tener al menos 2 caracteres)" type="email" class="form-control border-0" name="emailcontacto" placeholder="Email de contacto" style="height: 55px;" required>
                             </div>
 
                             <div class="col-12">
-                                <textarea class="form-control border-0" name="textoconsulta" placeholder="Tu consulta"></textarea>
+                                <textarea class="form-control border-0" name="textoconsulta" placeholder="Tu consulta" title="Debe poner su consulta" required></textarea>
                             </div>
                             <div class="col-12">
                                 <button class="btn btn-primary w-100 py-3" type="submit">Contactar</button>
@@ -131,4 +118,43 @@
         </div>
     </div>
 </div>
-<!-- Quote End -->
+<!-- Contacto End -->
+
+
+
+@section scripts {
+    <script>
+        $("#cajatelefono").on('keypress', function (event) {
+            var regex = new RegExp("[0-9]");
+            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+            if (!regex.test(key)) {
+                event.preventDefault();
+                return false;
+            }
+        });
+
+        @if(ViewBag.Mensaje != null)
+        {
+            <text>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                },
+                background: '#6c757d',
+                color: '#FFFFFF'
+            });
+
+            Toast.fire({
+                icon: 'success',
+                title: "@ViewBag.Mensaje"
+            });
+            </text>
+        }
+    </script>
+}

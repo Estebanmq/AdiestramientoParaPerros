@@ -18,7 +18,7 @@ namespace AdiestramientoParaPerros.Models
         public DateTime FechaCita { get; set; }
 
         [Column("TELEFONOCONTACTO")]
-        public String TelefonoContacto { get; set; }
+        public int TelefonoContacto { get; set; }
 
         [Column("NOMBREPERRO")]
         public String NombrePerro { get; set; }

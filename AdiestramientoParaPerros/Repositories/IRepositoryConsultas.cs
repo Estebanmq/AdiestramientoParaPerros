@@ -17,7 +17,13 @@ namespace AdiestramientoParaPerros.Repositories
         /// <param name="emailcontacto">El email de contacto</param>
         /// <param name="telefonocontacto">El telefono de contacto</param>
         /// <param name="textoconsulta">El texto con la consulta</param>        
-        void InsertConsulta(String emailcontacto, String telefonocontacto, String textoconsulta);
+        void InsertConsulta(String emailcontacto, int telefonocontacto, String textoconsulta);
+
+        /// <summary>
+        ///     Metodo que calcula el id mas alto de la tabla
+        /// </summary>
+        /// <returns>El id mas alto</returns>
+        int GetMaxIdConsulta();
 
         /// <summary>
         ///     Devuelve todas las consultas almacenadas en la bdd

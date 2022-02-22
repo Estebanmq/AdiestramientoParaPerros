@@ -2,8 +2,6 @@
     <title>Contacto</title>
 }
 
-
-
 @section navlinks {
     <a class="nav-item nav-link" asp-controller="Home" asp-action="Index">Inicio</a>
     <a class="nav-item nav-link" asp-controller="Citas" asp-action="CitasIndex">Concertar Cita</a>
@@ -11,34 +9,35 @@
     <a class="nav-item nav-link active" asp-controller="Contacto" asp-action="ContactoVista">Contacto</a>
 }
 
-<!-- Page Header Start -->
+<!-- Cabecera de pagina Start -->
 <div class="container-fluid page-header py-5 mb-5">
     <div class="container py-5">
         <h1 class="display-3 text-white mb-3 animated slideInDown">Contacto</h1>
     </div>
 </div>
-<!-- Page Header End -->
-<!-- Contact Start -->
+<!-- Cabecera de pagina End -->
+
+<!-- Contacto Start -->
 <div class="container-fluid bg-light overflow-hidden px-lg-0" style="margin: 6rem 0;">
     <div class="container contact px-lg-0">
         <div class="row g-0 mx-lg-0">
             <div class="col-lg-6 contact-text py-5 wow fadeIn" data-wow-delay="0.5s">
                 <div class="p-lg-5 ps-lg-0">
                     <div class="section-title text-start">
-                        <h1 class="display-5 mb-4">Contactanos</h1>
+                        <h1 class="display-5 mb-4">Contáctanos</h1>
                     </div>
-                    <p class="mb-4">Preguntanos las dudas que tengas sin ningún compromiso! Estamos a su disposición</p>
+                    <p class="mb-4">¡Preguntanos las dudas que tengas sin ningún compromiso! Estamos a su disposición</p>
                     <form method="post">
                         <div class="row g-3">
                             <div class="col-12 col-sm-6">
-                                <input type="email" class="form-control border-0" name="emailcontacto" placeholder="Email de contacto" style="height: 55px;">
+                                <input pattern="[a-z0-9._%+-]+@@[a-z0-9.-]+\.[a-z]{2,4}$" title="El email debe segir un formato como el siguiente: email@ejemplo.com. El dominio (.com por ejemplo, debe tener al menos 2 caracteres)" type="email" class="form-control border-0" name="emailcontacto" placeholder="Email de contacto" style="height: 55px;" required>
                             </div>
                             <div class="col-12 col-sm-6">
-                                <input type="text" class="form-control border-0" name="telefonocontacto" placeholder="Teléfono de contacto" style="height: 55px;">
+                                <input id="cajatelefono" type="text" class="form-control border-0" name="telefonocontacto" minlength="9" maxlength="9" title="Debe introducir un telefóno válido de 9 dígitos" placeholder="Teléfono de contacto" style="height: 55px;" required>
                             </div>
 
                             <div class="col-12">
-                                <textarea class="form-control border-0" name="textoconsulta" placeholder="Tu consulta"></textarea>
+                                <textarea class="form-control border-0" name="textoconsulta" placeholder="Tu consulta" required title="Debe poner su consulta"></textarea>
                             </div>
                             <div class="col-12">
                                 <button class="btn btn-primary w-100 py-3" type="submit">Contactar</button>
@@ -58,4 +57,41 @@
         </div>
     </div>
 </div>
-<!-- Contact End -->
+<!-- Contacto End -->
+
+@section scripts {
+    <script>
+        $("#cajatelefono").on('keypress', function (event) {
+            var regex = new RegExp("[0-9]");
+            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+            if (!regex.test(key)) {
+                event.preventDefault();
+                return false;
+            }
+        });
+
+        @if(ViewBag.Mensaje != null)
+        {
+            <text>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                },
+                background: '#6c757d',
+                color: '#FFFFFF'
+            });
+
+            Toast.fire({
+                icon: 'success',
+                title: "@ViewBag.Mensaje"
+            });
+            </text>
+        }
+    </script>
+}

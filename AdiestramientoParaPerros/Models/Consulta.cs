@@ -18,7 +18,7 @@ namespace AdiestramientoParaPerros.Models
         public String TextoConsulta { get; set; }
 
         [Column("TELEFONOCONTACTO")]
-        public String TelefonoContacto { get; set; }
+        public int TelefonoContacto { get; set; }
 
         [Column("EMAILCONTACTO")]
         public String EmailContacto { get; set; }

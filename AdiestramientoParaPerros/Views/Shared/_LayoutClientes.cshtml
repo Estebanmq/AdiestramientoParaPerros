@@ -35,7 +35,7 @@
         <a asp-controller="Home" asp-action="Index" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <h2 class="m-0 text-primary">AdiestriPerros</h2>
         </a>
-        <button id="btnmenucollapse" type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" >
+        <button id="btnmenucollapse" type="button" class="navbar-toggler me-4" data-bs-toggle="collapse">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -58,7 +58,7 @@
             <div class="copyright">
                 <div class="row">
                     <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a class="border-bottom" asp-controller="Home" asp-action="Index">AdiestriPerros</a>, Todos los derechos reservados.
+                        &copy; <a class="border-bottom" asp-controller="Home" asp-action="Index">AdiestriPerros @DateTime.Now.Year</a>, Todos los derechos reservados.
                     </div>
                 </div>
             </div>
@@ -74,17 +74,18 @@
     <script src="~/js/bootstrap.min.js"></script>
     <script src="~/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/wow.min.js"></script>
-    <script src="~/js/easing.min.js"></script>   
+    <script src="~/js/easing.min.js"></script>
     <script src="~/js/waypoints.min.js"></script>
     <script src="~/js/counterup.min.js"></script>
     <script src="~/js/owl.carousel.min.js"></script>
     <script src="~/js/isotope.pkgd.min.js"></script>
 
+    <script src="~/js/sweetalert2@11.js"></script>
     <!-- Template Javascript -->
     <script src="~/js/clientpage.js"></script>
     <script>
         $(document).ready(function () {
-            $("#btnmenucollapse").click(function(){
+            $("#btnmenucollapse").click(function () {
                 $("#navbarCollapse").fadeToggle(400);
             });
 

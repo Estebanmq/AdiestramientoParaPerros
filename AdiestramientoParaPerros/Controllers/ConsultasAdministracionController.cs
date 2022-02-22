@@ -22,9 +22,12 @@ namespace AdiestramientoParaPerros.Controllers
         }
 
         #region Controlador Vista Listado de consultas
-        public IActionResult ConsultasListado(int? idestado)
+        public IActionResult ConsultasListado(int? idestado, string mensaje)
         {
-           
+             if(mensaje != null)
+             {
+                ViewBag.Mensaje = mensaje;
+             }
             //Esto se debe de poner en otro sitio investigar (esta en trello)
             ViewBag.Layout = "_LayoutEmpleados";
 
@@ -48,8 +51,9 @@ namespace AdiestramientoParaPerros.Controllers
         [HttpPost]
         public IActionResult ConsultasListado(int idestado)
         {    
-            return RedirectToAction("ConsultasListado", new { idestado = idestado});
+            return RedirectToAction("ConsultasListado", new { idestado = idestado });
         }
+
 
 
         #endregion
@@ -73,7 +77,7 @@ namespace AdiestramientoParaPerros.Controllers
         {
             this.repo.UpdateEstadoConsulta(estado, idconsulta);
 
-            return RedirectToAction("ConsultasListado");
+            return RedirectToAction("ConsultasListado", new { mensaje = "Estado cambiado correctamente" });
         }
         #endregion
 

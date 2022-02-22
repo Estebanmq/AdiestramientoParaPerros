@@ -22,9 +22,13 @@ namespace AdiestramientoParaPerros.Controllers
         }
 
         #region Controlador Vista Listado de empleados
-        public IActionResult EmpleadosListado()
+        public IActionResult EmpleadosListado(string mensaje)
         {
-           
+            if(mensaje != null)
+            {
+                ViewBag.Mensaje = mensaje;
+            }
+
 
             //Esto se debe de poner en otro sitio investigar (esta en trello)
             ViewBag.Layout = "_LayoutEmpleados";
@@ -37,12 +41,7 @@ namespace AdiestramientoParaPerros.Controllers
           
         }
 
-        [HttpPost]
-        public IActionResult EmpleadosListado(String nombre)
-        {
-            System.Diagnostics.Debug.WriteLine(nombre);
-            return View();
-        }
+        
         #endregion
 
         #region Controlador Vista Agregar Empleado
@@ -60,13 +59,13 @@ namespace AdiestramientoParaPerros.Controllers
         }
 
         [HttpPost]
-        public IActionResult AgregarEmpleado(String nombre, String apellidos, String correo, String telefono, int rol)
+        public IActionResult AgregarEmpleado(String nombre, String apellidos, String correo, int telefono, int rol)
         {
             this.repo.InsertEmpleado(nombre,apellidos,correo,telefono,rol);
 
             ViewBag.Roles = this.repo.GetRolesEmpleados();
 
-            return RedirectToAction("EmpleadosListado");
+            return RedirectToAction("EmpleadosListado", new { mensaje = "Empleado agregado correctamente"});
         }
         #endregion
     }

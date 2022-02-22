@@ -10,23 +10,24 @@
 
 <form method="post">
     <div class="form-group mb-3">
-        <label class="form-label">Nombre</label>
-        <input type="text" name="nombre" class="form-control" />
+        <label class="form-label">Nombre *</label>
+        <input type="text" name="nombre" class="form-control" required />
     </div>
     <div class="form-group mb-3">
         <label class="form-label">Apellidos</label>
-        <input type="text" name="apellidos" class="form-control" />
+        <input type="text" name="apellidos" class="form-control" required />
     </div>
     <div class="form-group mb-3">
-        <label class="form-label">Correo</label>
-        <input type="text" name="correo" class="form-control" />
+        <label class="form-label">Correo *</label>
+        <input pattern="[a-z0-9._%+-]+@@[a-z0-9.-]+\.[a-z]{2,4}$" title="El email debe segir un formato como el siguiente: email@ejemplo.com. El dominio (.com por ejemplo, debe tener al menos 2 caracteres)"  type="email" name="correo" class="form-control" required />
     </div>
     <div class="form-group mb-3">
-        <label class="form-label">Telefono</label>
-        <input type="text" name="telefono" class="form-control" />
+        <label class="form-label">Telefono *</label>
+        <input  id="cajatelefono" type="text" name="telefono" class="form-control"  title="Debe introducir un telefóno válido de 9 dígitos"  minlength="9" maxlength="9" required />
     </div>
     <div class="form-group mb-3">
-        <select name="rol" class="form-select">
+        <select name="rol" class="form-select" required>
+            <option value="" selected disabled>Seleccione un rol *</option>
             @foreach (Rol rol in roles)
             {
                 <option value="@rol.IdRol">@rol.NombreRol</option>
@@ -41,3 +42,16 @@
 
 
 </form>
+
+@section scripts {
+    <script>
+        $("#cajatelefono").on('keypress', function (event) {
+            var regex = new RegExp("[0-9]");
+            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+            if (!regex.test(key)) {
+                event.preventDefault();
+                return false;
+            }
+        });
+    </script>
+}

@@ -69,13 +69,13 @@ namespace AdiestramientoParaPerros.Controllers
         //Devuelve un string con la view a cargar
         [AuthorizeUsuarios(Policy = "PermisosCliente")]
         [HttpPost]
-        public IActionResult ConcertarCita(String fechacita, String telefonocontacto, String nombreperro, String razaperro, String motivocita, String objetivocita)
+        public IActionResult ConcertarCita(String fechacita, int telefonocontacto, String nombreperro, String razaperro, String motivocita, String objetivocita)
         {
 
             //El id tiene que ser del session usuario registrado
             this.repo.InsertCita(fechacita, telefonocontacto, nombreperro, razaperro, motivocita, objetivocita, int.Parse(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value));
 
-            return RedirectToAction("PerfilUsuario","Manage");
+            return RedirectToAction("PerfilUsuario","Manage", new { mensaje = "Su cita ha sido enviada" });
         }
         #endregion
      

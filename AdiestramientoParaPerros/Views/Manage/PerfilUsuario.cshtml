@@ -14,7 +14,6 @@
     </div>
 </div>
 <!-- Page Header End -->
-
 <!-- Contact Start -->
 <div class="container-fluid bg-light overflow-hidden px-lg-0" style="margin: 6rem 0;">
     <div class="container p-5 px-lg-0">
@@ -22,13 +21,15 @@
             <div class="contact-text py-5 wow fadeIn" data-wow-delay="0.5s">
                 <div class="p-lg-5 ps-lg-0">
                     <div class="text-center">
+                        <img src="~/images/client-profile-img.jpg" 
+                             class="img-fluid rounded-circle mb-2" width="128" height="128" />
                         <h3>@Context.User.FindFirst("NombreCompleto").Value</h3>
                         <h4>@Context.User.FindFirst(ClaimTypes.Name).Value</h4>
                         <a class="btn btn-primary m-2" asp-controller="Manage" asp-action="ModificarPerfilUsuario">Editar Perfil</a>
 
                     </div>
 
-                
+
                     <div class="p-2 rounded-3">
                         <h4 class="mb-4 p-3 rounded-0" style="background-color: #f7f1ec; color: #9a683b; box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%); border-bottom: #7c5330 2px solid;">Tus Citas</h4>
                         @if (Model.Count != 0)
@@ -42,7 +43,7 @@
 
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="@idheading">
-                                            <button class="accordion-button collapsed" style="background-color: #f7f1ec;" type="button" data-bs-toggle="collapse"  aria-expanded="false" aria-controls="#@idcollapse">
+                                            <button class="accordion-button collapsed" style="background-color: #f7f1ec;" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="#@idcollapse">
                                                 @cita.FechaCita.ToShortDateString() para @cita.NombrePerro
                                             </button>
                                         </h2>
@@ -89,5 +90,28 @@
                 </text>
             }
         });
+         @if(ViewBag.Mensaje != null)
+        {
+            <text>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                },
+                background: '#6c757d',
+                color: '#FFFFFF'
+            });
+
+            Toast.fire({
+                icon: 'success',
+                title: "@ViewBag.Mensaje"
+            });
+            </text>
+        }
     </script>
 }

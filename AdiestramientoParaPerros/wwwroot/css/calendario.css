@@ -106,10 +106,12 @@
 
 .prev-button,
 .next-button {
-  font-weight: bolder;
-  color: rgb(0, 0, 0);
-  border: none;
-  padding: 10px;
+    font-weight: bolder;
+    color: #fff;
+    border: none;
+    background-color: rgb(171 116 66);
+    border-radius: 0.2em;
+    padding: 15px;
 }
 
 .week {
@@ -192,9 +194,9 @@
 }
 
 .week .day[disabled="disabled"] span {
-  color: white;
-  background-color: rgb(228, 81, 81);
-  cursor: not-allowed;
+    color: white;
+    background-color: rgb(124, 124, 124);
+    cursor: not-allowed;
 }
 
 .months-wrapper .month span {

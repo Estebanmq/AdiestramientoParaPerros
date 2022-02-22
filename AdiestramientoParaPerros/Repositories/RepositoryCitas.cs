@@ -57,7 +57,7 @@ namespace AdiestramientoParaPerros.Repositories
         /// <param name="motivocita">El motivo de la cita</param>
         /// <param name="objetivocita">El objetivo de la cita</param>
         /// <param name="idcliente">El id del cliente que pidio la cita</param>
-        public void InsertCita(String fechacita, String telefonocontacto, String nombreperro, String razaperro, String motivocita, String objetivocita, int idcliente)
+        public void InsertCita(String fechacita, int telefonocontacto, String nombreperro, String razaperro, String motivocita, String objetivocita, int idcliente)
         {
             //Formateo la fecha para agregarla al objeto Cita
             DateTime fecha = DateTime.ParseExact(fechacita, "d/M/yyyy", System.Globalization.CultureInfo.InvariantCulture);

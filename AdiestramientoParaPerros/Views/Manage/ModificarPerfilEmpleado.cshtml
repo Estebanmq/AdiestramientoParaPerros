@@ -9,6 +9,19 @@
     <title>Modificar perfil</title>
 }
 
+@section scripts {
+    <script>
+        $("#cajatelefono").on('keypress', function (event) {
+            var regex = new RegExp("[0-9]");
+            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+            if (!regex.test(key)) {
+                event.preventDefault();
+                return false;
+            }
+        });
+    </script>
+}
+
 <form method="post">
     <input type="hidden" name="idusuario" value="@Model.IdUsuario" />
     <div class="row">
@@ -16,17 +29,17 @@
             <label class="form-label">Usuario</label>
             @if (Context.User.IsInRole("2"))
             {
-                <input type="text" name="nombreusuario" class="form-control" value="@Model.NombreUsuario" />
+                <input type="text" name="nombreusuario" class="form-control" value="@Model.NombreUsuario" required />
 
             }
             else
             {
-                <input type="text" name="nombreusuario" class="form-control" value="@Model.NombreUsuario" disabled/>
+                <input type="text" name="nombreusuario" class="form-control" value="@Model.NombreUsuario" disabled />
             }
         </div>
         <div class="form-group mb-3 col-md-4 col-xl-4 col-xs-12">
             <label class="form-label">Nombre</label>
-            <input type="text" name="nombre" class="form-control" value="@Model.Nombre" />
+            <input type="text" name="nombre" class="form-control" value="@Model.Nombre" required />
         </div>
         <div class="form-group mb-3 col-md-8 col-xl-8 col-xd-12">
             <label class="form-label">Apellidos</label>
@@ -34,11 +47,11 @@
         </div>
         <div class="form-group mb-3 col-md-12 col-xl-12 col-xd-12">
             <label class="form-label">Correo</label>
-            <input type="text" name="correo" class="disabled form-control" value="@Model.Correo" disabled/>
+            <input type="text" name="correo" class="disabled form-control" value="@Model.Correo" disabled />
         </div>
         <div class="form-group mb-3 col-md-6 col-xl-6 col-xd-12">
             <label class="form-label">Telefono</label>
-            <input type="text" name="telefono" class="form-control" value="@Model.Telefono" />
+            <input id="cajatelefono" type="text" name="telefono" class="form-control" minlength="9" maxlength="9" title="Debe introducir un telefóno válido de 9 dígitos" value="@Model.Telefono"  required />
         </div>
         <div class="form-group mb-3 col-md-6 col-xl-6 col-xd-12">
             <label class="form-label">Rol</label>

@@ -79,7 +79,7 @@ namespace AdiestramientoParaPerros.Controllers
         }
 
         [HttpPost]
-        public IActionResult Registrarse(String nombre, String apellidos, String nombreusuario, String telefono, String correo, String password)
+        public IActionResult Registrarse(String nombre, String apellidos, String nombreusuario, int telefono, String correo, String password)
         {
             this.repo.RegistrarUsuario(nombre, apellidos, nombreusuario, telefono, correo, password);
             return RedirectToAction("PerfilUsuario");
@@ -95,10 +95,15 @@ namespace AdiestramientoParaPerros.Controllers
         #region Controlador Perfil usuario
 
         [AuthorizeUsuarios(Policy = "PermisosCliente")]
-        public IActionResult PerfilUsuario()
+        public IActionResult PerfilUsuario(string mensaje)
         {
+            if(mensaje != null)
+            {
+                ViewBag.Mensaje = mensaje;
+            }
             int id = int.Parse(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
             List<Cita> citasUsuario = this.repoCitas.GetCitasCliente(id);
+            citasUsuario.OrderByDescending(x => x.FechaCita);
             return View(citasUsuario);
         }
 
@@ -111,7 +116,7 @@ namespace AdiestramientoParaPerros.Controllers
 
         [AuthorizeUsuarios(Policy = "PermisosCliente")]
         [HttpPost]
-        public async  Task<IActionResult> ModificarPerfilUsuario(string nombre, string apellidos, string nombreusuario, string telefono, string correo)
+        public async  Task<IActionResult> ModificarPerfilUsuario(string nombre, string apellidos, string nombreusuario, int telefono, string correo)
         {
             this.repo.ModificarUsuario(int.Parse(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value), nombre, apellidos, nombreusuario, telefono);
             var claimNombre = HttpContext.User.FindFirst(ClaimTypes.Name);
@@ -130,13 +135,18 @@ namespace AdiestramientoParaPerros.Controllers
             }
             ClaimsPrincipal usuarioPrincipal = new ClaimsPrincipal(identity);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, usuarioPrincipal);
-            return RedirectToAction("PerfilUsuario");
+           
+            return RedirectToAction("PerfilUsuario", new { mensaje = "Se ha modificado correctamente" });
         }
 
 
         [AuthorizeUsuarios(Policy = "PermisosEmpleado")]
-        public IActionResult PerfilEmpleado()
+        public IActionResult PerfilEmpleado(string mensaje)
         {
+            if(mensaje != null)
+            {
+                ViewBag.Mensaje = mensaje;
+            }
             ViewBag.Layout = "_LayoutEmpleados";
             ViewBag.Roles = this.repo.GetRoles();
 
@@ -158,7 +168,7 @@ namespace AdiestramientoParaPerros.Controllers
 
         [HttpPost]
         [AuthorizeUsuarios(Policy = "PermisosEmpleado")]
-        public async  Task<IActionResult> ModificarPerfilEmpleado(int idusuario, string nombreusuario, string nombre, string apellidos, string telefono)
+        public async  Task<IActionResult> ModificarPerfilEmpleado(int idusuario, string nombreusuario, string nombre, string apellidos, int telefono)
         {
             if (nombreusuario == null)
                 nombreusuario = HttpContext.User.FindFirst(ClaimTypes.Name).Value;
@@ -182,7 +192,7 @@ namespace AdiestramientoParaPerros.Controllers
             ClaimsPrincipal usuarioPrincipal = new ClaimsPrincipal(identity);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, usuarioPrincipal);
 
-            return RedirectToAction("PerfilEmpleado");
+            return RedirectToAction("PerfilEmpleado", new { mensaje = "Perfil modificado correctamente"});
         }
         #endregion
 
@@ -190,7 +200,7 @@ namespace AdiestramientoParaPerros.Controllers
         public IActionResult ErrorAcceso()
         {
             //String controller = HttpContext.RouteData.Values["controller"].ToString();
-            String action = HttpContext.Request.RouteValues["action"].ToString();
+            //String action = HttpContext.Request.RouteValues["action"].ToString();
             ////if else depende laypout sisisi
             if (HttpContext.User.IsInRole("0") == true )
             {

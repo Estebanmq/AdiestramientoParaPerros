@@ -306,7 +306,6 @@
     </div>
 </div>
 <!-- Page Header End -->
-
 <!-- Quote Start -->
 <div class="container-fluid bg-light overflow-hidden px-lg-0">
     <div class="container  px-lg-0">
@@ -321,7 +320,7 @@
                                 <input type="text" class="form-control border-0" placeholder="Fecha de la cita" style="height: 55px;" name="fechacita" value="@ViewBag.fechacita" readonly />
                             </div>
                             <div class="col-12 col-sm-6">
-                                <input type="text" class="form-control border-0" placeholder="Telefono de contacto *" style="height: 55px;" name="telefonocontacto" required />
+                                <input id="cajatelefono" type="text" class="form-control border-0" placeholder="Teléfono de contacto *" title="Debe introducir un telefóno válido de 9 dígitos" style="height: 55px;" minlength="9" maxlength="9" name="telefonocontacto" required />
                             </div>
 
                             <div class="col-12 col-sm-6">
@@ -341,7 +340,7 @@
                                 <textarea class="form-control border-0" placeholder="Motivo de la cita *" name="motivocita" rows="3" maxlength="255" required></textarea>
                             </div>
                             <div class="col-12">
-                                <textarea class="form-control border-0" placeholder="Objetivo de la cita, que quiere conseguir con la sesión" name="objetivocita" rows="3" maxlength="255"></textarea>
+                                <textarea class="form-control border-0" placeholder="Objetivo de la cita, qué quiere conseguir con la sesión" name="objetivocita" rows="3" maxlength="255"></textarea>
                             </div>
 
                             <div class="col-6">
@@ -364,3 +363,16 @@
     </div>
 </div>
 <!-- Quote End -->
+
+@section scripts {
+    <script>
+        $("#cajatelefono").on('keypress', function (event) {
+            var regex = new RegExp("[0-9]");
+            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+            if (!regex.test(key)) {
+                event.preventDefault();
+                return false;
+            }
+        });
+    </script>
+}

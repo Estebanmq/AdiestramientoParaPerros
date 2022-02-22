@@ -22,9 +22,12 @@ namespace AdiestramientoParaPerros.Controllers
         }
 
         #region Controlador Vista Listado de citas
-        public IActionResult CitasListado()
+        public IActionResult CitasListado(string mensaje)
         {
-         
+            if(mensaje != null)
+            {
+                ViewBag.Mensaje = mensaje;
+            }
 
             //Aqui cargar las citas del empleado logeado !!!!!
 
@@ -32,10 +35,33 @@ namespace AdiestramientoParaPerros.Controllers
             ViewBag.Layout = "_LayoutEmpleados";
 
             List<Cita> citas = this.repo.GetCitas();
-
+            citas.OrderByDescending(x => x.FechaCita);
             return View(citas);
             
            
+        }
+
+        public IActionResult DeleteCita(int idcita, String fechacita, String nombreperro)
+        {
+            //Esto se debe de poner en otro sitio investigar (esta en trello)
+            ViewBag.Layout = "_LayoutEmpleados";
+
+            ViewBag.IdCita = idcita;
+            ViewBag.NomrePerro = nombreperro;
+            ViewBag.FechaCita = fechacita;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult DeleteCita(int idcita, bool elimina)
+        {
+            string mensaje = "No se ha realizado ninguna operación";
+            if (elimina)
+            {
+                this.repo.DeleteCita(idcita);
+                mensaje = "Cita eliminada correctamente";
+            }
+            return RedirectToAction("CitasListado", new { mensaje = mensaje});
         }
         #endregion
 
@@ -76,31 +102,9 @@ namespace AdiestramientoParaPerros.Controllers
         public IActionResult ModificarCita(int idcita, String motivocita, String objetivocita)
         {
             this.repo.UpdateCita(idcita,motivocita,objetivocita);
-            return RedirectToAction("CitasListado");
+            return RedirectToAction("CitasListado", new { mensaje = "Cita modificada correctamente" });
         }
         #endregion
-
-        #region Controlador Vista Listado de citas
-        public IActionResult DeleteCita(int idcita, String fechacita)
-        {
-            //Esto se debe de poner en otro sitio investigar (esta en trello)
-            ViewBag.Layout = "_LayoutEmpleados";
-
-            ViewBag.IdCita = idcita;
-            ViewBag.FechaCita = fechacita;
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult DeleteCita(int idcita, bool elimina)
-        {
-            if(elimina)
-            {
-                this.repo.DeleteCita(idcita);
-            }
-            return RedirectToAction("CitasListado");
-        }
-        #endregion  
 
     }
 }

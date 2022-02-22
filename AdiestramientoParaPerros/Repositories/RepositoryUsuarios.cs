@@ -78,10 +78,10 @@ namespace AdiestramientoParaPerros.Repositories
         /// <param name="telefono">Telefono del usuario</param>
         /// <param name="correo">Correo del usuario</param>
         /// <param name="password">Contraseña del usuario</param>
-        public void RegistrarUsuario(String nombre, String apellidos, String nombreusuario, String telefono, String correo, String password)
+        public void RegistrarUsuario(String nombre, String apellidos, String nombreusuario, int telefono, String correo, String password)
         {
             Usuario usuario = new Usuario();
-            usuario.IdUsuario = this.GetMaxIdUsuarios();
+            usuario.IdUsuario = this.GetMaxIdUsuarios() + 1;
             usuario.Nombre = nombre;
             usuario.Apellidos = apellidos;
             usuario.NombreUsuario = nombreusuario;
@@ -108,7 +108,7 @@ namespace AdiestramientoParaPerros.Repositories
             {
                 return 1;
             }
-            return this.context.Usuarios.Max(z => z.IdUsuario) + 1;
+            return this.context.Usuarios.Max(z => z.IdUsuario);
         }
         #endregion
 
@@ -133,17 +133,17 @@ namespace AdiestramientoParaPerros.Repositories
         /// <param name="correo">El correo del empleado</param>
         /// <param name="telefono">El telefono del empleado</param>
         /// <param name="idrol">El id del rol que tendra el empleado</param>
-        public void InsertEmpleado(String nombre, String apellidos, String correo, String telefono, int idrol)
+        public void InsertEmpleado(String nombre, String apellidos, String correo, int telefono, int idrol)
         {
           
             Usuario usuario = new Usuario();
-            usuario.IdUsuario = this.GetMaxIdUsuarios();
+            usuario.IdUsuario = this.GetMaxIdUsuarios() + 1;
             usuario.Nombre = nombre;
             usuario.Apellidos = apellidos;
-            usuario.NombreUsuario = nombre.ToLower() + apellidos.ToLower();
+            usuario.NombreUsuario = nombre.ToLower() + " " + apellidos.ToLower();
             usuario.Correo = correo;
             usuario.Telefono = telefono;
-            usuario.Password = HelperPassword.GetHashedPassword(nombre.ToLower()+apellidos.ToLower());
+            usuario.Password = HelperPassword.GetHashedPassword(nombre.Replace(" ", "").ToLower()+apellidos.Replace(" ", "").ToLower());
             usuario.IdRol = idrol;
 
             this.context.Usuarios.Add(usuario);
@@ -158,7 +158,7 @@ namespace AdiestramientoParaPerros.Repositories
         /// <param name="nombreusuario">El nuevo nombre de usuario</param>
         /// <param name="telefono">El nuevo telefono</param>
         /// <param name="correo">El nuevo correo</param>
-        public void ModificarUsuario(int idusuario, string nombre, string apellidos, string nombreusuario, string telefono)
+        public void ModificarUsuario(int idusuario, string nombre, string apellidos, string nombreusuario, int telefono)
         {
             Usuario usuario = this.FindUsuarioId(idusuario);
             usuario.Nombre = nombre;

@@ -81,11 +81,13 @@ namespace AdiestramientoParaPerros.Repositories
         ///     Metodo que actualiza el motivo y el objetivo de la cita con el id pasado como parametro
         /// </summary>
         /// <param name="idcita">El id de la cita a actualizar</param>
+        /// <param name="nombreperro">El nombre del perro a actualizar</param>
         /// <param name="motivocita">El nuevo motivo de la cita</param>
         /// <param name="objetivocita">El nuevo motivo de la cita</param>
-        public void UpdateCita(int idcita, String motivocita, String objetivocita)
+        public void UpdateCita(int idcita, String nombreperro, String motivocita, String objetivocita)
         {
             Cita cita = this.FindCita(idcita);
+            cita.NombrePerro = nombreperro;
             cita.MotivoCita = motivocita;
             cita.ObjetivoCita = objetivocita;
 

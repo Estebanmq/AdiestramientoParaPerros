@@ -14,7 +14,7 @@
         <div class="card">
 
             <div class="card-body">
-                <p class="card-text"><strong>Fecha de la cita:</strong> @Model.FechaCita</p>
+                <p class="card-text"><strong>Fecha de la cita:</strong> @Model.FechaCita.ToShortDateString()</p>
                 <p class="card-text"><strong>Nombre y raza del perro:</strong> @Model.NombrePerro - @Model.RazaPerro </p>
                 <p class="card-text"><strong>Teléfono de contacto:</strong> @Model.TelefonoContacto </p>
                 <p class="card-text"><strong>Motivo de la cita:</strong></p>

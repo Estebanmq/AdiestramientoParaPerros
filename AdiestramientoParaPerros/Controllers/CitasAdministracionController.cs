@@ -99,9 +99,9 @@ namespace AdiestramientoParaPerros.Controllers
         }
 
         [HttpPost]
-        public IActionResult ModificarCita(int idcita, String motivocita, String objetivocita)
+        public IActionResult ModificarCita(int idcita, String nombreperro, String motivocita, String objetivocita)
         {
-            this.repo.UpdateCita(idcita,motivocita,objetivocita);
+            this.repo.UpdateCita(idcita, nombreperro,motivocita,objetivocita);
             return RedirectToAction("CitasListado", new { mensaje = "Cita modificada correctamente" });
         }
         #endregion
